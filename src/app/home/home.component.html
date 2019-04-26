@@ -9,7 +9,10 @@
         <button type="submit" class="button-left" mat-flat-button color="primary">Search</button>
         <div class="container">
             <div *ngIf="this.ds.DefObjList !== null" class="">
-              <pre class="font-fam3">{{ this.ds.DefObjList | json }}</pre>
+                  <mat-card>
+                  <pre class="font-fam3">{{ c | json }}</pre>
+                  </mat-card>
+              <!-- <pre class="font-fam3">{{ this.ds.DefObjList | json }}</pre> -->
             </div>
           </div>
         </form> 
@@ -59,7 +62,7 @@
         <pre>
             words with a meaning similar to ringing in the ears	/words?ml=ringing+in+the+ears
             words related to duck that start with the letter b	/words?ml=duck&sp=b*
-            words related to spoon that end with the letter a	/words?ml=spoon&sp=*a
+            words related to spoon nvmthat end with the letter a	/words?ml=spoon&sp=*a
             words that sound like elefint	/words?sl=elefint
             words that start with t, end in k, and have two letters in between	/words?sp=t??k
             words that are spelled similarly to coneticut	/words?sp=coneticut

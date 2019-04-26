@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response} from '@angular/http';
 import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { SearchType } from './enum';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class DataService {
   word: string;
   any: string;
   errMessage;
-  AntObjList: Observable<any>;
 
+  AntObjList: Observable<any>;
   RhymObjList: Observable<any>;
   SynObjList: Observable<any>;
   DefObjList: Observable<any>;
@@ -25,13 +25,6 @@ export class DataService {
   ) {
 
 }
-
-
-    // const requestOptions = {
-    //   headers: new Headers(headerDict),
-    // };
-
-
     public getData(setWord: string, types: string) {
         this.word = setWord;
         this.any = types;
