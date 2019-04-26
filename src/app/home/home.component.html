@@ -1,0 +1,50 @@
+
+<div class="container">
+<mat-tab-group>
+    <mat-tab label="Definition"> 
+        <form (ngSubmit)="this.ds.getData(definition.value, 'definition')">
+            <mat-form-field>
+            <input matInput #definition placeholder="Find Rhyme">
+        </mat-form-field>
+        <button type="submit" class="button-left" mat-flat-button color="primary">Search</button>
+
+        </form> 
+      </mat-tab>
+    <mat-tab label="Synonym">
+      <form (onclick)="this.ds.getData(synonym.value, 'synonym')">
+        <mat-form-field>
+            <input #synonym matInput placeholder="Find Synonym">
+        </mat-form-field>
+        <button type="submit" class="button-left" mat-flat-button color="primary">Search</button>
+
+      </form> 
+    </mat-tab>
+    <mat-tab label="Antonym"> 
+        <form (ngSubmit)="this.ds.getData(antonym.value, 'antonym')">
+          <mat-form-field>
+            <input #antonym   matInput placeholder="Find Antonym">
+        </mat-form-field>
+        <button type="submit" mat-flat-button class="button-left" color="primary">Search</button>
+
+        </form>
+    </mat-tab>
+    <mat-tab label="Rhyme"> 
+      <form (ngSubmit)="this.ds.getData(rhyme.value, 'rhyme')">
+        <mat-form-field>
+            <input matInput #rhyme   placeholder="Find Rhyme">
+          </mat-form-field>
+          <button type="submit" mat-flat-button class="button-left" color="primary">Search</button>
+
+        </form>
+        <div class="container">
+          <div *ngIf="this.ds.RhymObjList !== null" class="">
+            <pre>{{ this.ds.RhymObjList | json }}</pre>
+
+          </div>
+        </div>
+        </mat-tab>
+  </mat-tab-group>
+</div>
+
+
+
