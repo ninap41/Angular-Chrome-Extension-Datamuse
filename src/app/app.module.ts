@@ -12,17 +12,24 @@ import { HomeComponent } from './home/home.component';
 import {  DemoMaterialModule } from './angular-material';
 import { AppRoutingModule } from './app-routing.module';
 import { DataService } from './data.service';
+import { AboutComponent } from './about/about.component';
+import { SettingsComponent } from './settings/settings.component';
+import { HelpComponent } from './help/help.component';
 // import { Observable } from 'rxjs';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent,
+    SettingsComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
     DemoMaterialModule,
+    BrowserAnimationsModule,
     // Observable,
     AppRoutingModule,
     BrowserModule,
