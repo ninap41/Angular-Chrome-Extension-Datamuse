@@ -1,6 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Nothing+You+Could+Do|Rock+Salt');
 .background{
     margin: 0 auto;
     padding: 1em 0em;
     width: 450px;
     height: 450px;
 }
+
+ .m-heading  {
+    z-index: 2;
+    position: relative;
+    padding-left: 1.5em;
+    padding-bottom: 1em;
+    vertical-align: top;
+    display:inline-block;
+}
+
+.font-fam1 {
+    font-family: 'Rock Salt', cursive;
+}
+
+.font-fam2 {
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: 1.2em
+}
+.mat-fab {
+    position: absolute;
+    top: 0;
+}
+
+.gray {
+    color: rgba(128, 128, 128, 0.671);
+}
+
+.font-fam3 {
+ font-family: 'Covered By Your Grace', cursive;
+ font-size: 1.4em
+}
+
+// font-family: 'Rock Salt', cursive;
+// font-family: 'Nothing You Could Do', cursive;
+// font-family: 'Covered By Your Grace', cursive;

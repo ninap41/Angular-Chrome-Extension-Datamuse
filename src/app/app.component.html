@@ -9,14 +9,15 @@
     <button mat-icon-button [matMenuTriggerFor]="appMenu">
       <mat-icon>more_vert</mat-icon>
     </button>
-
-      <button mat-fab color="primary">W</button>
+      <h2 class="m-heading"><span class="font-fam1">Words. </span><span class="font-fam2">Words? </span><span  class="font-fam3">Words!</span></h2>
+      <!-- <span class="gray"> Find the words; find all the words; learn, discover, and go.</span> -->
+      <!-- <button mat-fab color="primary">W</button>
       <button mat-fab color="accent">0</button>
       <button mat-fab color="warn">R</button>
       <button mat-fab disabled>D</button>
-      <button mat-fab>S</button>
+      <button mat-fab>S</button> -->
       
-    <br><mat-divider></mat-divider><br>
+    <br><mat-divider></mat-divider>
     <main [@routerTransition]="getState(o)">
         <router-outlet #o="outlet"></router-outlet>
     </main>

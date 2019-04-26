@@ -68,7 +68,7 @@ export class DataService {
             break;
           }
           case 'synonym': {
-            return this.http.get(`${this.url}/words?rel_syn=${this.word}`)
+            return this.http.get(`${this.url}/words?rel_syn=${this.word}&ml=${this.word}`)
               .subscribe((data: Response) => {
                 console.log(data.json());
                 this.SynObjList = data.json();

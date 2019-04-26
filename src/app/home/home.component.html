@@ -9,7 +9,7 @@
         <button type="submit" class="button-left" mat-flat-button color="primary">Search</button>
         <div class="container">
             <div *ngIf="this.ds.DefObjList !== null" class="">
-              <pre>{{ this.ds.DefObjList | json }}</pre>
+              <pre class="font-fam3">{{ this.ds.DefObjList | json }}</pre>
             </div>
           </div>
         </form> 
@@ -23,7 +23,7 @@
       </form> 
       <div class="container">
         <div *ngIf="this.ds.SynObjList !== null" class="">
-          <pre>{{ this.ds.SynObjList | json }}</pre>
+          <pre class="font-fam3">{{ this.ds.SynObjList | json }}</pre>
         </div>
       </div>
     </mat-tab>
@@ -36,7 +36,7 @@
         </form>
         <div class="container">
             <div *ngIf="this.ds.AntObjList !== null" class="">
-              <pre>{{ this.ds.AntObjList | json }}</pre>
+              <pre class="font-fam3">{{ this.ds.AntObjList | json }}</pre>
             </div>
           </div>
     </mat-tab>
@@ -50,10 +50,29 @@
         </form>
         <div class="container">
           <div *ngIf="this.ds.RhymObjList !== null" class="">
-            <pre>{{ this.ds.RhymObjList | json }}</pre>
+            <pre class="font-fam3">{{ this.ds.RhymObjList | json }}</pre>
           </div>
         </div>
         </mat-tab>
+
+        <mat-tab label="Other Search"> 
+        <pre>
+            words with a meaning similar to ringing in the ears	/words?ml=ringing+in+the+ears
+            words related to duck that start with the letter b	/words?ml=duck&sp=b*
+            words related to spoon that end with the letter a	/words?ml=spoon&sp=*a
+            words that sound like elefint	/words?sl=elefint
+            words that start with t, end in k, and have two letters in between	/words?sp=t??k
+            words that are spelled similarly to coneticut	/words?sp=coneticut
+            words that rhyme with forgetful	/words?rel_rhy=forgetful
+            words that rhyme with grape that are related to breakfast	/words?ml=breakfast&rel_rhy=grape
+            adjectives that are often used to describe ocean	/words?rel_jjb=ocean
+            adjectives describing ocean sorted by how related they are to temperature	/words?rel_jjb=ocean&topics=temperature
+            nouns that are often described by the adjective yellow	/words?rel_jja=yellow
+            words that often follow "drink" in a sentence, that start with the letter w	/words?lc=drink&sp=w*
+            words that are triggered by (strongly associated with) the word "cow"	/words?rel_trg=cow
+            suggestions for the user if they have typed in rawand so far	/sug?s=rawand
+        </pre>
+      </mat-tab>
   </mat-tab-group>
 </div>
 
