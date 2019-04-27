@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "Words, Words, Words",
+    "short_name": "Words",
+    "description": "Extension for writers.",
+    "version": "1.0.0",
+    "author": "ninap",
+    "browser_action": {
+        "default_icon":  "assets/icon128.png",
+        "default_popup": "index.html"
+    },
+    "permissions": [
+        "storage" // add storage of favorite words.
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "web_accessible_resources": [
+      "assets/css/*",
+      "assets/js/*",
+      "assets/fonts/*"
+    ],
+    "icons": {
+        "128": "assets/icon128.png"
+    }
+  }
