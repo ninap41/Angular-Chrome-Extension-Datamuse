@@ -65,7 +65,6 @@ export class DataService {
             break;
           }
        }
-
         this.clearData(this.objRef);
         this.ls.createSpinner(`${this.objRef}Spinner`);
         setTimeout(() => {
@@ -73,9 +72,13 @@ export class DataService {
             .subscribe((data: Response) => {
               console.log(data.json());
               this[this.objRef] = data.json();
-              data.json().length === 0 ? this.errMessage = `Sorry No '${this.any}(s)' Found For '${this.word}.'` : this.errMessage = '';
+              data.json().length === 0 ? this.errMessage = `
+              <br> Sorry No '${this.any}(s)' Found For '${this.word}.'<br><br>
+              <img width="100%" src="https://media.giphy.com/media/3ohzdYJK1wAdPWVk88/giphy.gif">
+              ` : this.errMessage = '';
             },
-            (err) => this.errMessage = `Sorry Something Is Wrong With The Datamuse API at this time.`,
+            (err) => this.errMessage = `
+            Sorry Something Is Wrong With The Datamuse API at this time.`,
             () =>  this.ls.destroySpinner(`${this.objRef}Spinner`)
           );
         }, 2000);

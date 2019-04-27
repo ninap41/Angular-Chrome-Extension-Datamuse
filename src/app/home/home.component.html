@@ -10,11 +10,11 @@
         <button type="submit" class="button-left" mat-flat-button color="primary">Search</button>
         </form> 
         <div class="container">
-            <span class="err">{{ this.ds.errMessage }}</span>
+            <span [innerHTML]="this.ds.errMessage" class="err" />
             <span *ngIf="this.ds.DefObjList!== null || ls.DefObjListSpinner.loading === false">
                 <span *ngFor="let word of this.ds.DefObjList;let idx">
                     <mat-chip-list>
-                      <mat-chip [ngStyle]="setMyStyles(word)" value="word.word"> {{word.word}}  </mat-chip>
+                    <mat-chip [ngStyle]="setMyStyles(word)" value="word.word"> {{word.word}}  </mat-chip>
                     </mat-chip-list>
                     <mat-list *ngFor="let def of word.defs">
                         <mat-list-item> -<i>{{def}}</i> </mat-list-item>
@@ -33,7 +33,7 @@
           <button type="submit" mat-flat-button class="button-left" color="primary">Search</button>
           </form>
           <div class="container">
-              <span class="err">{{ this.ds.errMessage }}</span>
+              <span [innerHTML]="this.ds.errMessage" class="err" />
               <span *ngIf="this.ds.RelObjList !== null ||  ls.RelObjListSpinner.loading === false">
                       <mat-chip-list>
                         <span *ngFor="let word of this.ds.RelObjList; let idx">
@@ -53,7 +53,7 @@
         <button type="submit" class="button-left" mat-flat-button color="primary">Search</button>
       </form> 
       <div class="container">
-          <span class="err">{{ this.ds.errMessage }}</span>
+          <span [innerHTML]="this.ds.errMessage" class="err" />
           <span  *ngIf="this.ds.SynObjList !== null ||  ls.SynObjListSpinner.loading === false">
                   <mat-chip-list>
                     <span *ngFor="let word of this.ds.SynObjList; let idx">
@@ -74,7 +74,7 @@
         <button type="submit" mat-flat-button class="button-left" color="primary">Search</button>
         </form>
         <div class="container">
-            <span class="err">{{ this.ds.errMessage }}</span>
+            <span [innerHTML]="this.ds.errMessage" class="err" />
             <span *ngIf="this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false">
             
                     <mat-chip-list>
@@ -95,7 +95,7 @@
            <button type="submit" mat-flat-button class="button-left" color="primary">Search</button>
         </form>
         <div class="container">
-            <span class="err">{{ this.ds.errMessage }}</span>
+            <span [innerHTML]="this.ds.errMessage" class="err" />
             <span *ngIf="this.ds.RhymObjList !== null || ls.RhymObjListSpinner.loading === false" >
                     <mat-chip-list>
                       <span *ngFor="let word of this.ds.RhymObjList">
