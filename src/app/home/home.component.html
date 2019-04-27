@@ -15,6 +15,7 @@
                 <span *ngFor="let word of this.ds.DefObjList">
                     <mat-chip-list>
                       <mat-chip value="word.word"> {{word.word}}  </mat-chip>
+                   
                     </mat-chip-list>
                     <mat-list *ngFor="let def of word.defs">
                         <mat-list-item> -<i>{{def}}</i> </mat-list-item>
@@ -23,7 +24,6 @@
             </span>
             <app-loader *ngIf="ls.DefObjListSpinner.loading === true"></app-loader>        
             <span *ngIf="errMessage"><pre>{{ errMessage | json}}</pre></span>
-            <span *ngIf="ds.DefObjList"><pre *ngIf="ds.DefObjList!.length === 0">Sorry. No Words Found.</pre></span>
 
           </div>
       </mat-tab>
@@ -37,15 +37,14 @@
       </form> 
       <div class="container">
           <span  *ngIf="this.ds.SynObjList !== null ||  ls.SynObjListSpinner.loading === false">
-              <span *ngFor="let word of this.ds.SynObjList ">
                   <mat-chip-list>
+                    <span *ngFor="let word of this.ds.SynObjList ">
                       <mat-chip value="word.word">{{word.word}}</mat-chip>
+                    </span>
                   </mat-chip-list>
-            </span>
           </span>
           <app-loader *ngIf="ls.SynObjListSpinner.loading === true"></app-loader> 
           <span *ngIf="errMessage"><pre>{{ errMessage | json}}</pre></span>
-          <span *ngIf="ds.SynObjList "><pre *ngIf="ds.DefObjList.length === 0">Sorry. No Words Found.</pre></span>
 
 
         </div>
@@ -60,15 +59,14 @@
         </form>
         <div class="container">
             <span *ngIf="this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false">
-                <span *ngFor="let word of this.ds.AntObjList">
                     <mat-chip-list>
+                      <span *ngFor="let word of this.ds.AntObjList">
                         <mat-chip value="word.word">{{word.word}}</mat-chip>
+                      </span>
                     </mat-chip-list>
               </span>
-            </span>
               <app-loader *ngIf="ls.AntObjListSpinner.loading === true"></app-loader>
               <span *ngIf="errMessage"><pre> Sorry. No Words Found.{{ errMessage | json}}</pre></span>
-              <span *ngIf="this.ds.AntObjList"><pre *ngIf="this.ds.AntObjList.length === 0">Sorry. No Words Found.</pre></span>
           </div>
     </mat-tab>
 
@@ -82,16 +80,14 @@
         </form>
         <div class="container">
             <span *ngIf="this.ds.RhymObjList !== null || ls.RhymObjListSpinner.loading === false" >
-                <span *ngFor="let word of this.ds.RhymObjList">
                     <mat-chip-list>
+                      <span *ngFor="let word of this.ds.RhymObjList">
                         <mat-chip value="word.word">{{word.word}}</mat-chip>
+                      </span>
                     </mat-chip-list>
-                </span>
             </span>
             <app-loader *ngIf="ls.RhymObjListSpinner.loading === true"></app-loader>
             <span *ngIf="errMessage"><pre> Sorry. No Words Found.{{ errMessage | json}}</pre></span>
-            <span *ngIf="this.ds.RhymObjList"><pre *ngIf="this.ds.RhymObjList.length === 0">Sorry. No Words Found.</pre></span>
-
         </div>
         </mat-tab>
 

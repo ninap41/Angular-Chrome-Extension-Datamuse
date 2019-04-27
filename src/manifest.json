@@ -10,7 +10,9 @@
         "default_popup": "index.html"
     },
     "permissions": [
-        "storage" // add storage of favorite words.
+        "storage" : {
+            "managed_schema" : "schema.json"
+        }
     ],
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "web_accessible_resources": [
@@ -21,5 +23,4 @@
     "icons": {
         "128": "assets/icon128.png"
     }
-    
   }

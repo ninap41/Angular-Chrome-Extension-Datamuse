@@ -28,8 +28,7 @@ export class DataService {
 
 }
     public getData(setWord: string, types: string) {
-
-
+        if (this.errMessage) { this.errMessage = null; }
         this.word = setWord;
         this.any = types;
         switch (types) {
@@ -68,7 +67,7 @@ export class DataService {
               console.log(data.json());
               this[this.objRef] = data.json();
             },
-            (err) => this.errMessage = err,
+            (err) => this.errMessage = JSON.stringify(err),
             () =>  this.ls.destroySpinner(`${this.objRef}Spinner`)
           );
         }, 2000);
@@ -88,5 +87,6 @@ export class DataService {
             }
           });
         }
+
     }
 

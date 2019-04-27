@@ -9,7 +9,7 @@ import { LoaderService } from '../loader/loader.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [ ] // spinnerFade 
+  animations: [ ] // spinnerFade
 })
 export class HomeComponent implements OnInit {
   constructor(
@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
     console.log(`click... ${word} : ${type}`);
   }
 
-}
+  }
+
 
 
