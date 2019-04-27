@@ -10,7 +10,7 @@
         "default_popup": "index.html"
     },
     "permissions": [
-        "storage" // add storage of favorite words.
+        "storage" 
     ],
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "web_accessible_resources": [
