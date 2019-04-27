@@ -14,7 +14,7 @@
             <span *ngIf="this.ds.DefObjList!== null || ls.DefObjListSpinner.loading === false">
                 <span *ngFor="let word of this.ds.DefObjList;let idx">
                     <mat-chip-list>
-                    <mat-chip [ngStyle]="setMyStyles(word)" value="word.word"> {{word.word}}  </mat-chip>
+                      <mat-chip (click)="getServiceData(word.word, 'definition')" [ngStyle]="setMyStyles(word)" value="word.word"> {{word.word}}  </mat-chip>
                     </mat-chip-list>
                     <mat-list *ngFor="let def of word.defs">
                         <mat-list-item> -<i>{{def}}</i> </mat-list-item>
@@ -37,7 +37,7 @@
               <span *ngIf="this.ds.RelObjList !== null ||  ls.RelObjListSpinner.loading === false">
                       <mat-chip-list>
                         <span *ngFor="let word of this.ds.RelObjList; let idx">
-                          <mat-chip [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
+                          <mat-chip (click)="getServiceData(word.word, 'related')" [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
                         </span>
                       </mat-chip-list>
                 </span>
@@ -57,7 +57,7 @@
           <span  *ngIf="this.ds.SynObjList !== null ||  ls.SynObjListSpinner.loading === false">
                   <mat-chip-list>
                     <span *ngFor="let word of this.ds.SynObjList; let idx">
-                      <mat-chip [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
+                      <mat-chip (click)="getServiceData(word.word, 'synonym')" [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
                     </span>
                   </mat-chip-list>
           </span>
@@ -79,7 +79,7 @@
             
                     <mat-chip-list>
                       <span *ngFor="let word of this.ds.AntObjList; let idx">
-                        <mat-chip [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
+                        <mat-chip (click)="getServiceData(word.word, 'antonym')"  [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
                       </span>
                     </mat-chip-list>
               </span>
@@ -99,7 +99,7 @@
             <span *ngIf="this.ds.RhymObjList !== null || ls.RhymObjListSpinner.loading === false" >
                     <mat-chip-list>
                       <span *ngFor="let word of this.ds.RhymObjList">
-                          <mat-chip [ngStyle]="setMyStyles(word.word)" value="word.word">{{word.word}}</mat-chip>
+                          <mat-chip (click)="getServiceData(word.word, 'rhyme')" [ngStyle]="setMyStyles(word.word)" value="word.word">{{word.word}}</mat-chip>
                       </span>
                     </mat-chip-list>
             </span>
