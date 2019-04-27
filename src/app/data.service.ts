@@ -13,10 +13,11 @@ export class DataService {
   url = 'https://api.datamuse.com';
   word: string;
   any: string;
-  errMessage;
+  // tslint:disable-next-line:no-inferrable-types
+  errMessage: string;
   objRef;
   formatUrl;
-  AntObjList: Observable<any>;
+  AntObjList: Observable<any>; // consider making context, observable collection, or class;
   RhymObjList: Observable<any>;
   SynObjList: Observable<any>;
   DefObjList: Observable<any>;
@@ -30,7 +31,6 @@ export class DataService {
 
 }
     public getData(setWord: string, types: string) {
-        if (this.errMessage) { this.errMessage = null; }
         this.word = setWord;
         this.any = types;
         switch (types) {
@@ -73,12 +73,14 @@ export class DataService {
             .subscribe((data: Response) => {
               console.log(data.json());
               this[this.objRef] = data.json();
+              data.json().length === 0 ? this.errMessage = `Sorry No '${this.any}(s)' Found For '${this.word}.'` : this.errMessage = '';
             },
-            (err) => this.errMessage = JSON.stringify(err),
+            (err) => this.errMessage = `Sorry Something Is Wrong With The Datamuse API at this time.`,
             () =>  this.ls.destroySpinner(`${this.objRef}Spinner`)
           );
         }, 2000);
       }
+
 
       clearData(list: string) {
         // tslint:disable-next-line:variable-name

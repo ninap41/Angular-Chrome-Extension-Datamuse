@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+@import url('https://fonts.googleapis.com/css?family=Neucha');
 
 .example-container {
   display: flex;
@@ -23,7 +23,13 @@
 
 }
 
+.err {
+  font-family: 'Neucha', cursive;
+  font-size: 1.5em;
+ font-weight: 600;
+}
 .mat-progress-spinner {
   margin: 0 auto;
+  background-color: rgb(189, 189, 189)
 }
 

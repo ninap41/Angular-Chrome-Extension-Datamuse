@@ -9,13 +9,12 @@
         </mat-form-field>
         <button type="submit" class="button-left" mat-flat-button color="primary">Search</button>
         </form> 
-
         <div class="container">
+            <span class="err">{{ this.ds.errMessage }}</span>
             <span *ngIf="this.ds.DefObjList!== null || ls.DefObjListSpinner.loading === false">
                 <span *ngFor="let word of this.ds.DefObjList;let idx">
                     <mat-chip-list>
                       <mat-chip [ngStyle]="setMyStyles(word)" value="word.word"> {{word.word}}  </mat-chip>
-                   
                     </mat-chip-list>
                     <mat-list *ngFor="let def of word.defs">
                         <mat-list-item> -<i>{{def}}</i> </mat-list-item>
@@ -23,8 +22,6 @@
               </span>
             </span>
             <app-loader *ngIf="ls.DefObjListSpinner.loading === true"></app-loader>        
-            <span *ngIf="errMessage"><pre>{{ errMessage | json}}</pre></span>
-
           </div>
       </mat-tab>
     
@@ -36,6 +33,7 @@
           <button type="submit" mat-flat-button class="button-left" color="primary">Search</button>
           </form>
           <div class="container">
+              <span class="err">{{ this.ds.errMessage }}</span>
               <span *ngIf="this.ds.RelObjList !== null ||  ls.RelObjListSpinner.loading === false">
                       <mat-chip-list>
                         <span *ngFor="let word of this.ds.RelObjList; let idx">
@@ -44,7 +42,6 @@
                       </mat-chip-list>
                 </span>
                 <app-loader *ngIf="ls.RelObjListSpinner.loading === true"></app-loader>
-                <span *ngIf="errMessage"><pre> Sorry. No Words Found.{{ errMessage | json}}</pre></span>
             </div>
       </mat-tab>
 
@@ -56,6 +53,7 @@
         <button type="submit" class="button-left" mat-flat-button color="primary">Search</button>
       </form> 
       <div class="container">
+          <span class="err">{{ this.ds.errMessage }}</span>
           <span  *ngIf="this.ds.SynObjList !== null ||  ls.SynObjListSpinner.loading === false">
                   <mat-chip-list>
                     <span *ngFor="let word of this.ds.SynObjList; let idx">
@@ -64,8 +62,6 @@
                   </mat-chip-list>
           </span>
           <app-loader *ngIf="ls.SynObjListSpinner.loading === true"></app-loader> 
-          <span *ngIf="errMessage"><pre>{{ errMessage | json}}</pre></span>
-
 
         </div>
     </mat-tab>
@@ -78,7 +74,9 @@
         <button type="submit" mat-flat-button class="button-left" color="primary">Search</button>
         </form>
         <div class="container">
+            <span class="err">{{ this.ds.errMessage }}</span>
             <span *ngIf="this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false">
+            
                     <mat-chip-list>
                       <span *ngFor="let word of this.ds.AntObjList; let idx">
                         <mat-chip [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
@@ -86,7 +84,6 @@
                     </mat-chip-list>
               </span>
               <app-loader *ngIf="ls.AntObjListSpinner.loading === true"></app-loader>
-              <span *ngIf="errMessage"><pre> Sorry. No Words Found.{{ errMessage | json}}</pre></span>
           </div>
     </mat-tab>
 
@@ -98,15 +95,16 @@
            <button type="submit" mat-flat-button class="button-left" color="primary">Search</button>
         </form>
         <div class="container">
+            <span class="err">{{ this.ds.errMessage }}</span>
             <span *ngIf="this.ds.RhymObjList !== null || ls.RhymObjListSpinner.loading === false" >
                     <mat-chip-list>
                       <span *ngFor="let word of this.ds.RhymObjList">
-                        <mat-chip [ngStyle]="setMyStyles(word.word)" value="word.word">{{word.word}}</mat-chip>
+                          <span><pre> {{  this.ds.errMessage }}</pre></span>
+                          <mat-chip [ngStyle]="setMyStyles(word.word)" value="word.word">{{word.word}}</mat-chip>
                       </span>
                     </mat-chip-list>
             </span>
             <app-loader *ngIf="ls.RhymObjListSpinner.loading === true"></app-loader>
-            <span *ngIf="errMessage"><pre> Sorry. No Words Found.{{ errMessage | json}}</pre></span>
         </div>
         </mat-tab>
       

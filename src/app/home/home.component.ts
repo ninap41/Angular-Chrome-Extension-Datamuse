@@ -12,6 +12,8 @@ import { LoaderService } from '../loader/loader.service';
   animations: [ ] // spinnerFade
 })
 export class HomeComponent implements OnInit {
+
+  empty = '';
   constructor(
     private ds: DataService,
     private ls: LoaderService
@@ -20,10 +22,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+
   public getServiceData(word, type) {
+    this.ds.errMessage = '';
     event.preventDefault();
     this.ds.getData(word, type);
-    console.log(`click... ${word} : ${type}`);
+    // console.log(`click... ${word} : ${type}`);
+    this.empty = this.ds.errMessage;
   }
 
   setMyStyles(word) {
