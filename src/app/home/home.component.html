@@ -99,7 +99,6 @@
             <span *ngIf="this.ds.RhymObjList !== null || ls.RhymObjListSpinner.loading === false" >
                     <mat-chip-list>
                       <span *ngFor="let word of this.ds.RhymObjList">
-                          <span><pre> {{  this.ds.errMessage }}</pre></span>
                           <mat-chip [ngStyle]="setMyStyles(word.word)" value="word.word">{{word.word}}</mat-chip>
                       </span>
                     </mat-chip-list>
