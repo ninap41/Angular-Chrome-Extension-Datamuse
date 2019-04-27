@@ -15,6 +15,8 @@ import { DataLoader } from './loader.class';
     DefObjListSpinner  = new DataLoader();
     AntObjListSpinner = new DataLoader();
     SynObjListSpinner  = new DataLoader();
+    RelObjListSpinner  = new DataLoader();
+
 
     constructor() {
     }

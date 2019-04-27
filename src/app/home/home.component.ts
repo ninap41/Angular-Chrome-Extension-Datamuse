@@ -26,6 +26,12 @@ export class HomeComponent implements OnInit {
     console.log(`click... ${word} : ${type}`);
   }
 
+  setMyStyles(word) {
+      const styles = {
+        'background-color': word.score > 70000 ? 'plum' : 'rgb(189, 189, 189)',
+      };
+      return styles;
+    }
   }
 
 

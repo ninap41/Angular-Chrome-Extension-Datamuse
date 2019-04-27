@@ -20,6 +20,8 @@ export class DataService {
   RhymObjList: Observable<any>;
   SynObjList: Observable<any>;
   DefObjList: Observable<any>;
+  RelObjList: Observable<any>;
+
 
   constructor(
     private http: Http,
@@ -53,6 +55,11 @@ export class DataService {
             this.objRef = 'SynObjList';
             break;
           }
+          case 'related': {
+            this.formatUrl = `${this.url}/words?&ml=${this.word}`;
+            this.objRef = 'RelObjList';
+            break;
+          }
           default: {
             console.log('no link reference');
             break;
@@ -78,7 +85,8 @@ export class DataService {
         const arr_list = ['AntObjList',
           'RhymObjList',
           'SynObjList',
-          'DefObjList'];
+          'DefObjList',
+          'RelObjList'];
         arr_list.forEach(l => {
             if (l === list) {
               console.log(l);

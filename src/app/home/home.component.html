@@ -12,9 +12,9 @@
 
         <div class="container">
             <span *ngIf="this.ds.DefObjList!== null || ls.DefObjListSpinner.loading === false">
-                <span *ngFor="let word of this.ds.DefObjList">
+                <span *ngFor="let word of this.ds.DefObjList;let idx">
                     <mat-chip-list>
-                      <mat-chip value="word.word"> {{word.word}}  </mat-chip>
+                      <mat-chip [ngStyle]="setMyStyles(word)" value="word.word"> {{word.word}}  </mat-chip>
                    
                     </mat-chip-list>
                     <mat-list *ngFor="let def of word.defs">
@@ -27,6 +27,26 @@
 
           </div>
       </mat-tab>
+    
+      <mat-tab label="Related"> 
+          <form (ngSubmit)="this.ds.getData(related.value, 'related')">
+            <mat-form-field>
+              <input #related  matInput placeholder="Related Words">
+          </mat-form-field>
+          <button type="submit" mat-flat-button class="button-left" color="primary">Search</button>
+          </form>
+          <div class="container">
+              <span *ngIf="this.ds.RelObjList !== null ||  ls.RelObjListSpinner.loading === false">
+                      <mat-chip-list>
+                        <span *ngFor="let word of this.ds.RelObjList; let idx">
+                          <mat-chip [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
+                        </span>
+                      </mat-chip-list>
+                </span>
+                <app-loader *ngIf="ls.RelObjListSpinner.loading === true"></app-loader>
+                <span *ngIf="errMessage"><pre> Sorry. No Words Found.{{ errMessage | json}}</pre></span>
+            </div>
+      </mat-tab>
 
     <mat-tab label="Synonym">
       <form (ngSubmit)="this.ds.getData(synonym.value, 'synonym')">
@@ -38,8 +58,8 @@
       <div class="container">
           <span  *ngIf="this.ds.SynObjList !== null ||  ls.SynObjListSpinner.loading === false">
                   <mat-chip-list>
-                    <span *ngFor="let word of this.ds.SynObjList ">
-                      <mat-chip value="word.word">{{word.word}}</mat-chip>
+                    <span *ngFor="let word of this.ds.SynObjList; let idx">
+                      <mat-chip [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
                     </span>
                   </mat-chip-list>
           </span>
@@ -60,8 +80,8 @@
         <div class="container">
             <span *ngIf="this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false">
                     <mat-chip-list>
-                      <span *ngFor="let word of this.ds.AntObjList">
-                        <mat-chip value="word.word">{{word.word}}</mat-chip>
+                      <span *ngFor="let word of this.ds.AntObjList; let idx">
+                        <mat-chip [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
                       </span>
                     </mat-chip-list>
               </span>
@@ -76,13 +96,12 @@
             <input matInput #rhyme placeholder="Find Rhyme">
           </mat-form-field>
            <button type="submit" mat-flat-button class="button-left" color="primary">Search</button>
-
         </form>
         <div class="container">
             <span *ngIf="this.ds.RhymObjList !== null || ls.RhymObjListSpinner.loading === false" >
                     <mat-chip-list>
                       <span *ngFor="let word of this.ds.RhymObjList">
-                        <mat-chip value="word.word">{{word.word}}</mat-chip>
+                        <mat-chip [ngStyle]="setMyStyles(word.word)" value="word.word">{{word.word}}</mat-chip>
                       </span>
                     </mat-chip-list>
             </span>
@@ -90,6 +109,7 @@
             <span *ngIf="errMessage"><pre> Sorry. No Words Found.{{ errMessage | json}}</pre></span>
         </div>
         </mat-tab>
+      
 
         <mat-tab label="Other Search"> 
         <pre>
