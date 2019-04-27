@@ -8,13 +8,18 @@ Angular with Typescript, Bootstrap, Materials, and [Datamuse API](https://www.da
 
 ![](words1.png)
 
+## Getting it Into Chrome
+
+*latest build in dist april 27th, 2019*
+load unpacked extension in extension settings developer mode at this directory  `dist/chrome-angular`. Icon should show in extensions (lil book icon).
+
 ## Development server
 
 Run `npm install`, update dependancies in `package.json`, and finally-- `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. 
 
-## Getting It Into Chrome
+## Making Changes, Then Getting It Into Chrome
 
-Run `ng build` to build the project, if the `dist` folder isn't present. The build artifacts will be stored in the `dist/`. create `manifest.json` in `dist/chrome-angular` to upload app to chrome.
+Run `ng build` to build the project, if the `dist` folder isn't present. Create `manifest.json` in `dist/chrome-angular`. Copy code from `/angular-chrome-extension/chrome-angular/src/manifest.json` to that file. Save, then to upload app to chrome.
 
 ![](words2.png)
 
