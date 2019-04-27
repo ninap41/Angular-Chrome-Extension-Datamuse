@@ -16,6 +16,10 @@ import { AboutComponent } from './about/about.component';
 import { SettingsComponent } from './settings/settings.component';
 import { HelpComponent } from './help/help.component';
 // import { Observable } from 'rxjs';
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderService } from './loader/loader.service';
+
+
 
 
 @NgModule({
@@ -24,7 +28,8 @@ import { HelpComponent } from './help/help.component';
     HomeComponent,
     AboutComponent,
     SettingsComponent,
-    HelpComponent
+    HelpComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +48,7 @@ import { HelpComponent } from './help/help.component';
   ],
   providers: [
      DataService,
+     LoaderService
    ],
   bootstrap: [AppComponent]
 })

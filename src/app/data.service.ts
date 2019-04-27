@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response} from '@angular/http';
 import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { SearchType } from './enum';
+import { Observable, observable } from 'rxjs';
+import { LoaderService } from './loader/loader.service';
+import { compileBaseDefFromMetadata, compilePipeFromMetadata } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -13,76 +14,79 @@ export class DataService {
   word: string;
   any: string;
   errMessage;
-
+  objRef;
+  formatUrl;
   AntObjList: Observable<any>;
   RhymObjList: Observable<any>;
   SynObjList: Observable<any>;
   DefObjList: Observable<any>;
 
-
   constructor(
     private http: Http,
+    private ls: LoaderService
   ) {
 
 }
     public getData(setWord: string, types: string) {
+
+
         this.word = setWord;
         this.any = types;
         switch (types) {
           case 'rhyme': {
-            return this.http.get(`${this.url}/words?rel_rhy=${this.word}`)
-              .subscribe((data: Response) => {
-                this.RhymObjList = data.json();
-              },
-              (err) => this.errMessage = err,
-              () => console.log('done')
-            );
+            this.formatUrl = `${this.url}/words?rel_rhy=${this.word}`;
+            this.objRef = 'RhymObjList';
             break;
           }
           case 'definition': {
-            return this.http.get(`${this.url}/words?sp=${this.word}&md=d&max=1`)
-            .subscribe((data: Response) => {
-              this.DefObjList = data.json();
-            },
-            (err) => this.errMessage = err,
-            () => console.log('done')
-            );
+            this.formatUrl = `${this.url}/words?sp=${this.word}&md=d&max=1`;
+            this.objRef = 'DefObjList';
             console.log('definition');
             break;
           }
           case 'antonym': {
-            return this.http.get(`${this.url}/words?rel_ant=${this.word}`)
-            .subscribe((data: Response) => {
-              this.AntObjList = data.json();
-            },
-            (err) => this.errMessage = err,
-            () => console.log('done')
-            );
+            this.formatUrl = `${this.url}/words?rel_ant=${this.word}`;
+            this.objRef = 'AntObjList';
             break;
           }
           case 'synonym': {
-            return this.http.get(`${this.url}/words?rel_syn=${this.word}&ml=${this.word}`)
-              .subscribe((data: Response) => {
-                console.log(data.json());
-                this.SynObjList = data.json();
-              },
-              (err) => this.errMessage = err,
-              () => console.log('done')
-            );
+            this.formatUrl = `${this.url}/words?rel_syn=${this.word}&ml=${this.word}`;
+            this.objRef = 'SynObjList';
             break;
           }
           default: {
-            return this.http.get(`${this.url}/words?rel_rhy=${this.word}`)
-              .subscribe((data: Response) => {
-                this.SynObjList = data.json();
-              },
-              (err) => this.errMessage = err,
-              () => console.log('done')
-            );
+            console.log('no link reference');
             break;
           }
        }
 
+        this.clearData(this.objRef);
+        this.ls.createSpinner(`${this.objRef}Spinner`);
+        setTimeout(() => {
+            return this.http.get(this.formatUrl)
+            .subscribe((data: Response) => {
+              console.log(data.json());
+              this[this.objRef] = data.json();
+            },
+            (err) => this.errMessage = err,
+            () =>  this.ls.destroySpinner(`${this.objRef}Spinner`)
+          );
+        }, 2000);
+      }
+
+      clearData(list: string) {
+        // tslint:disable-next-line:variable-name
+        const arr_list = ['AntObjList',
+          'RhymObjList',
+          'SynObjList',
+          'DefObjList'];
+        arr_list.forEach(l => {
+            if (l === list) {
+              console.log(l);
+              console.log(list);
+              this[l] = null;
+            }
+          });
+        }
     }
 
-}

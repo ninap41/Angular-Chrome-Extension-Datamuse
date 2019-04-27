@@ -1,4 +1,4 @@
-import {trigger, animate, style, group, animateChild, query, stagger, transition} from '@angular/animations';
+import {trigger, animate, style, state, group, animateChild, query, stagger, transition} from '@angular/animations';
 
 export const routerTransition = trigger('routerTransition', [
     transition('* <=> *', [
@@ -19,3 +19,21 @@ export const routerTransition = trigger('routerTransition', [
         ]),
     ]),
 ]);
+
+
+// export const spinnerFade = //work on.
+//     trigger('isSpinnerOpen', [
+//         // ...
+//         state('true', style({
+//           opacity: 1,
+//         })),
+//         state('false', style({
+//           opacity: 0,
+//         })),
+//         transition('true => false', [
+//           animate('2s')
+//         ]),
+//         transition('false => true', [
+//           animate('2s')
+//         ]),
+//       ]);
