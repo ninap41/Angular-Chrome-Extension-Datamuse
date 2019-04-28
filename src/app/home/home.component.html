@@ -14,11 +14,13 @@
             <span *ngIf="this.ds.DefObjList!== null || ls.DefObjListSpinner.loading === false">
                 <span *ngFor="let word of this.ds.DefObjList;let idx">
                     <mat-chip-list>
-                      <mat-chip (click)="getServiceData(0, word.word, 'definition')" [ngStyle]="setMyStyles(word)" value="word.word"> {{word.word}}  </mat-chip>
-                    </mat-chip-list>
-                    <mat-list *ngFor="let def of word.defs">
-                        <mat-list-item> -<i>{{def}}</i> </mat-list-item>
-                    </mat-list>
+                    <mat-chip (click)="getServiceData(0, word.word, 'definition')" [ngStyle]="setMyStyles(word)" value="word.word"> {{word.word}}  </mat-chip>
+                  </mat-chip-list>
+                  <br>
+                  <div *ngFor="let def of word.defs">
+                      <p>-{{def}} </p>
+                  </div>
+
               </span>
             </span>
             <app-loader *ngIf="ls.DefObjListSpinner.loading === true"></app-loader>        
