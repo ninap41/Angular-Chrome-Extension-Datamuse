@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Http, Response} from '@angular/http';
 import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable, observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { LoaderService } from './loader/loader.service';
 import { compileBaseDefFromMetadata, compilePipeFromMetadata } from '@angular/compiler';
+import { Context } from './home/searches.class';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
 
   url = 'https://api.datamuse.com';
   word: string;
@@ -17,18 +20,25 @@ export class DataService {
   errMessage: string;
   objRef;
   formatUrl;
+      // START not in current functionality WIP
+
+  Context = new Context();
+
   AntObjList: Observable<any>; // consider making context, observable collection, or class;
   RhymObjList: Observable<any>;
   SynObjList: Observable<any>;
   DefObjList: Observable<any>;
   RelObjList: Observable<any>;
+  Tab: Observable<any>;
 
-
-  constructor(
+constructor(
     private http: Http,
-    private ls: LoaderService
+    private ls: LoaderService,
+    private router: Router
   ) {
-
+    // START not in current functionality WIP
+    this.Context.getAndAssign('RhymObjList', { meh : 'meh' } );
+      // END not in current functionality WIP
 }
     public getData(setWord: string, types: string) {
         this.word = setWord;
@@ -79,11 +89,15 @@ export class DataService {
             },
             (err) => this.errMessage = `
             Sorry Something Is Wrong With The Datamuse API at this time.`,
-            () =>  this.ls.destroySpinner(`${this.objRef}Spinner`)
+            () =>  this.finished()
           );
         }, 2000);
+
       }
 
+      finished() {
+          this.ls.destroySpinner(`${this.objRef}Spinner`);
+      }
 
       clearData(list: string) {
         // tslint:disable-next-line:variable-name

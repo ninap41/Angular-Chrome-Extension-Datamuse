@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h1>Abooottt </h1>\n    <p>Shall go here soon</p>\n    <a href=\"https://www.datamuse.com/api/\">Datamuse</a>\n</div>"
+module.exports = "<div class=\"container\">\n    <h1>Abooottt </h1>\n    <p>Shall go here soon</p>\n    <a target=\"_blank\" href=\"https://www.datamuse.com/api\">Datamuse</a><br>\n    <a target=\"_blank\" href=\"https://github.com/ninap41/Angular-Chrome-Extension-Datamuse\">View Project Code</a>\n\n</div>"
 
 /***/ }),
 
@@ -430,15 +430,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
 /* harmony import */ var _loader_loader_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loader/loader.service */ "./src/app/loader/loader.service.ts");
+/* harmony import */ var _home_searches_class__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./home/searches.class */ "./src/app/home/searches.class.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
 
 
 
 
 var DataService = /** @class */ (function () {
-    function DataService(http, ls) {
+    function DataService(http, ls, router) {
         this.http = http;
         this.ls = ls;
+        this.router = router;
         this.url = 'https://api.datamuse.com';
+        // START not in current functionality WIP
+        this.Context = new _home_searches_class__WEBPACK_IMPORTED_MODULE_4__["Context"]();
+        // START not in current functionality WIP
+        this.Context.getAndAssign('RhymObjList', { meh: 'meh' });
+        // END not in current functionality WIP
     }
     DataService.prototype.getData = function (setWord, types) {
         var _this = this;
@@ -484,8 +494,11 @@ var DataService = /** @class */ (function () {
                 console.log(data.json());
                 _this[_this.objRef] = data.json();
                 data.json().length === 0 ? _this.errMessage = "\n              <br> Sorry No '" + _this.any + "(s)' Found For '" + _this.word + ".'<br><br>\n              <img width=\"100%\" src=\"https://media.giphy.com/media/3ohzdYJK1wAdPWVk88/giphy.gif\">\n              " : _this.errMessage = '';
-            }, function (err) { return _this.errMessage = "\n            Sorry Something Is Wrong With The Datamuse API at this time."; }, function () { return _this.ls.destroySpinner(_this.objRef + "Spinner"); });
+            }, function (err) { return _this.errMessage = "\n            Sorry Something Is Wrong With The Datamuse API at this time."; }, function () { return _this.finished(); });
         }, 2000);
+    };
+    DataService.prototype.finished = function () {
+        this.ls.destroySpinner(this.objRef + "Spinner");
     };
     DataService.prototype.clearData = function (list) {
         var _this = this;
@@ -508,7 +521,8 @@ var DataService = /** @class */ (function () {
             providedIn: 'root'
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_2__["Http"],
-            _loader_loader_service__WEBPACK_IMPORTED_MODULE_3__["LoaderService"]])
+            _loader_loader_service__WEBPACK_IMPORTED_MODULE_3__["LoaderService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
     ], DataService);
     return DataService;
 }());
@@ -524,7 +538,7 @@ var DataService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h1>HALPPPPP </h1>\n    <p>Shall go here soon</p>\n</div>"
+module.exports = "<div class=\"container\">\n    <h1>HALPPPPP </h1>\n    <p>Search for a word</p>\n    <p>Click one of the results to get a definition. ^_^</p>\n    <p>App is simple enough at this point</p>\n    <p>More Help coming soon.</p>\n\n</div>"
 
 /***/ }),
 
@@ -580,7 +594,7 @@ var HelpComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container\">\n    \n<mat-tab-group>\n    <mat-tab label=\"Definition\"> \n        <form (ngSubmit)=\"this.ds.getData(definition.value, 'definition')\">\n          <mat-form-field>\n            <input matInput #definition placeholder=\"Find Definition\">\n        </mat-form-field>\n        <button type=\"submit\" class=\"button-left\" mat-flat-button color=\"primary\">Search</button>\n        </form> \n        <div class=\"container\">\n            <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n            <span *ngIf=\"this.ds.DefObjList!== null || ls.DefObjListSpinner.loading === false\">\n                <span *ngFor=\"let word of this.ds.DefObjList;let idx\">\n                    <mat-chip-list>\n                    <mat-chip [ngStyle]=\"setMyStyles(word)\" value=\"word.word\"> {{word.word}}  </mat-chip>\n                    </mat-chip-list>\n                    <mat-list *ngFor=\"let def of word.defs\">\n                        <mat-list-item> -<i>{{def}}</i> </mat-list-item>\n                    </mat-list>\n              </span>\n            </span>\n            <app-loader *ngIf=\"ls.DefObjListSpinner.loading === true\"></app-loader>        \n          </div>\n      </mat-tab>\n    \n      <mat-tab label=\"Related\"> \n          <form (ngSubmit)=\"this.ds.getData(related.value, 'related')\">\n            <mat-form-field>\n              <input #related  matInput placeholder=\"Related Words\">\n          </mat-form-field>\n          <button type=\"submit\" mat-flat-button class=\"button-left\" color=\"primary\">Search</button>\n          </form>\n          <div class=\"container\">\n              <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n              <span *ngIf=\"this.ds.RelObjList !== null ||  ls.RelObjListSpinner.loading === false\">\n                      <mat-chip-list>\n                        <span *ngFor=\"let word of this.ds.RelObjList; let idx\">\n                          <mat-chip [ngStyle]=\"setMyStyles(word)\" value=\"word.word\">{{word.word}}</mat-chip>\n                        </span>\n                      </mat-chip-list>\n                </span>\n                <app-loader *ngIf=\"ls.RelObjListSpinner.loading === true\"></app-loader>\n            </div>\n      </mat-tab>\n\n    <mat-tab label=\"Synonym\">\n      <form (ngSubmit)=\"this.ds.getData(synonym.value, 'synonym')\">\n        <mat-form-field>\n            <input #synonym matInput placeholder=\"Find Synonym\">\n        </mat-form-field>\n        <button type=\"submit\" class=\"button-left\" mat-flat-button color=\"primary\">Search</button>\n      </form> \n      <div class=\"container\">\n          <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n          <span  *ngIf=\"this.ds.SynObjList !== null ||  ls.SynObjListSpinner.loading === false\">\n                  <mat-chip-list>\n                    <span *ngFor=\"let word of this.ds.SynObjList; let idx\">\n                      <mat-chip [ngStyle]=\"setMyStyles(word)\" value=\"word.word\">{{word.word}}</mat-chip>\n                    </span>\n                  </mat-chip-list>\n          </span>\n          <app-loader *ngIf=\"ls.SynObjListSpinner.loading === true\"></app-loader> \n\n        </div>\n    </mat-tab>\n\n    <mat-tab label=\"Antonym\"> \n        <form (ngSubmit)=\"this.ds.getData(antonym.value, 'antonym')\">\n          <mat-form-field>\n            <input #antonym  matInput placeholder=\"Find Antonym\">\n        </mat-form-field>\n        <button type=\"submit\" mat-flat-button class=\"button-left\" color=\"primary\">Search</button>\n        </form>\n        <div class=\"container\">\n            <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n            <span *ngIf=\"this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false\">\n            \n                    <mat-chip-list>\n                      <span *ngFor=\"let word of this.ds.AntObjList; let idx\">\n                        <mat-chip [ngStyle]=\"setMyStyles(word)\" value=\"word.word\">{{word.word}}</mat-chip>\n                      </span>\n                    </mat-chip-list>\n              </span>\n              <app-loader *ngIf=\"ls.AntObjListSpinner.loading === true\"></app-loader>\n          </div>\n    </mat-tab>\n\n    <mat-tab label=\"Rhyme\"> \n      <form (ngSubmit)=\"this.ds.getData(rhyme.value, 'rhyme')\">\n        <mat-form-field>\n            <input matInput #rhyme placeholder=\"Find Rhyme\">\n          </mat-form-field>\n           <button type=\"submit\" mat-flat-button class=\"button-left\" color=\"primary\">Search</button>\n        </form>\n        <div class=\"container\">\n            <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n            <span *ngIf=\"this.ds.RhymObjList !== null || ls.RhymObjListSpinner.loading === false\" >\n                    <mat-chip-list>\n                      <span *ngFor=\"let word of this.ds.RhymObjList\">\n                          <mat-chip [ngStyle]=\"setMyStyles(word.word)\" value=\"word.word\">{{word.word}}</mat-chip>\n                      </span>\n                    </mat-chip-list>\n            </span>\n            <app-loader *ngIf=\"ls.RhymObjListSpinner.loading === true\"></app-loader>\n        </div>\n        </mat-tab>\n      \n\n        <mat-tab label=\"Other Search\"> \n        <pre>\n            words with a meaning similar to ringing in the ears\t/words?ml=ringing+in+the+ears\n            words related to duck that start with the letter b\t/words?ml=duck&sp=b*\n            words related to spoon nvmthat end with the letter a\t/words?ml=spoon&sp=*a\n            words that sound like elefint\t/words?sl=elefint\n            words that start with t, end in k, and have two letters in between\t/words?sp=t??k\n            words that are spelled similarly to coneticut\t/words?sp=coneticut\n            words that rhyme with forgetful\t/words?rel_rhy=forgetful\n            words that rhyme with grape that are related to breakfast\t/words?ml=breakfast&rel_rhy=grape\n            adjectives that are often used to describe ocean\t/words?rel_jjb=ocean\n            adjectives describing ocean sorted by how related they are to temperature\t/words?rel_jjb=ocean&topics=temperature\n            nouns that are often described by the adjective yellow\t/words?rel_jja=yellow\n            words that often follow \"drink\" in a sentence, that start with the letter w\t/words?lc=drink&sp=w*\n            words that are triggered by (strongly associated with) the word \"cow\"\t/words?rel_trg=cow\n            suggestions for the user if they have typed in rawand so far\t/sug?s=rawand\n\n        </pre>\n      </mat-tab>\n  </mat-tab-group>\n</div>\n\n\n\n"
+module.exports = "\n<div class=\"container\">\n    \n<mat-tab-group  #mytab  >\n    <mat-tab   label=\"Definition\"> \n        <form (ngSubmit)=\"this.ds.getData(definition.value, 'definition')\">\n          <mat-form-field>\n            <input matInput #definition placeholder=\"Find Definition\">\n        </mat-form-field>\n        <button type=\"submit\" class=\"button-left\" mat-flat-button color=\"primary\">Search</button>\n        </form> \n        <div class=\"container\">\n            <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n            <span *ngIf=\"this.ds.DefObjList!== null || ls.DefObjListSpinner.loading === false\">\n                <span *ngFor=\"let word of this.ds.DefObjList;let idx\">\n                    <mat-chip-list>\n                      <mat-chip (click)=\"getServiceData(0, word.word, 'definition')\" [ngStyle]=\"setMyStyles(word)\" value=\"word.word\"> {{word.word}}  </mat-chip>\n                    </mat-chip-list>\n                    <mat-list *ngFor=\"let def of word.defs\">\n                        <mat-list-item> -<i>{{def}}</i> </mat-list-item>\n                    </mat-list>\n              </span>\n            </span>\n            <app-loader *ngIf=\"ls.DefObjListSpinner.loading === true\"></app-loader>        \n          </div>\n      </mat-tab>\n    \n      <mat-tab  label=\"Related\"> \n          <form (ngSubmit)=\"this.ds.getData(related.value, 'related')\">\n            <mat-form-field>\n              <input #related  matInput placeholder=\"Related Words\">\n          </mat-form-field>\n          <button type=\"submit\" mat-flat-button class=\"button-left\" color=\"primary\">Search</button>\n          </form>\n          <div class=\"container\">\n              <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n              <span *ngIf=\"this.ds.RelObjList !== null ||  ls.RelObjListSpinner.loading === false\">\n                      <mat-chip-list>\n                        <span *ngFor=\"let word of this.ds.RelObjList; let idx\">\n                          <mat-chip  \n                          aria-label=\"Show/Hide tooltip on the button at the end of this section\"\n                          class=\"example-action-button\"\n                          (click)=\"getServiceData(1, word.word, 'definition')\"\n                          [ngStyle]=\"setMyStyles(word)\" \n                          value=\"word.word\">{{word.word}}</mat-chip>\n                        </span>\n                      </mat-chip-list>\n                      \n                </span>\n                <app-loader *ngIf=\"ls.RelObjListSpinner.loading === true\"></app-loader>\n            </div>\n      </mat-tab>\n\n    <mat-tab label=\"Synonym\">\n      <form (ngSubmit)=\"this.ds.getData(synonym.value, 'synonym')\">\n        <mat-form-field>\n            <input #synonym matInput placeholder=\"Find Synonym\">\n        </mat-form-field>\n        <button type=\"submit\" class=\"button-left\" mat-flat-button color=\"primary\">Search</button>\n      </form> \n      <div class=\"container\">\n          <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n          <span  *ngIf=\"this.ds.SynObjList !== null ||  ls.SynObjListSpinner.loading === false\">\n                  <mat-chip-list>\n                    <span *ngFor=\"let word of this.ds.SynObjList; let idx\">\n                      <mat-chip (click)=\"getServiceData(2, word.word, 'definition')\" [ngStyle]=\"setMyStyles(word)\" value=\"word.word\">{{word.word}}</mat-chip>\n                    </span>\n                  </mat-chip-list>\n          </span>\n          <app-loader *ngIf=\"ls.SynObjListSpinner.loading === true\"></app-loader> \n\n        </div>\n    </mat-tab>\n\n    <mat-tab label=\"Antonym\"> \n        <form (ngSubmit)=\"this.ds.getData(antonym.value, 'antonym')\">\n          <mat-form-field>\n            <input #antonym  matInput placeholder=\"Find Antonym\">\n        </mat-form-field>\n        <button type=\"submit\" mat-flat-button class=\"button-left\" color=\"primary\">Search</button>\n        </form>\n        <div class=\"container\">\n            <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n            <span *ngIf=\"this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false\">\n            \n                    <mat-chip-list>\n                      <span *ngFor=\"let word of this.ds.AntObjList; let idx\">\n                        <mat-chip (click)=\"getServiceData(3, word.word, 'definition')\"  [ngStyle]=\"setMyStyles(word)\" value=\"word.word\">{{word.word}}</mat-chip>\n                      </span>\n                    </mat-chip-list>\n              </span>\n              <app-loader *ngIf=\"ls.AntObjListSpinner.loading === true\"></app-loader>\n          </div>\n    </mat-tab>\n\n    <mat-tab label=\"Rhyme\"> \n      <form (ngSubmit)=\"this.ds.getData(rhyme.value, 'rhyme')\">\n        <mat-form-field>\n            <input matInput #rhyme placeholder=\"Find Rhyme\">\n          </mat-form-field>\n           <button type=\"submit\" mat-flat-button class=\"button-left\" color=\"primary\">Search</button>\n        </form>\n        <div class=\"container\">\n            <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n            <span *ngIf=\"this.ds.RhymObjList !== null || ls.RhymObjListSpinner.loading === false\" >\n                    <mat-chip-list>\n                      <span *ngFor=\"let word of this.ds.RhymObjList\">\n                          <mat-chip (click)=\"getServiceData(4, word.word, 'definition')\" [ngStyle]=\"setMyStyles(word.word)\" value=\"word.word\">{{word.word}}</mat-chip>\n                      </span>\n                    </mat-chip-list>\n            </span>\n            <app-loader *ngIf=\"ls.RhymObjListSpinner.loading === true\"></app-loader>\n        </div>\n        </mat-tab>\n      \n\n        <mat-tab   label=\"Other Search\"> \n        <pre>\n            words with a meaning similar to ringing in the ears\t/words?ml=ringing+in+the+ears\n            words related to duck that start with the letter b\t/words?ml=duck&sp=b*\n            words related to spoon nvmthat end with the letter a\t/words?ml=spoon&sp=*a\n            words that sound like elefint\t/words?sl=elefint\n            words that start with t, end in k, and have two letters in between\t/words?sp=t??k\n            words that are spelled similarly to coneticut\t/words?sp=coneticut\n            words that rhyme with forgetful\t/words?rel_rhy=forgetful\n            words that rhyme with grape that are related to breakfast\t/words?ml=breakfast&rel_rhy=grape\n            adjectives that are often used to describe ocean\t/words?rel_jjb=ocean\n            adjectives describing ocean sorted by how related they are to temperature\t/words?rel_jjb=ocean&topics=temperature\n            nouns that are often described by the adjective yellow\t/words?rel_jja=yellow\n            words that often follow \"drink\" in a sentence, that start with the letter w\t/words?lc=drink&sp=w*\n            words that are triggered by (strongly associated with) the word \"cow\"\t/words?rel_trg=cow\n            suggestions for the user if they have typed in rawand so far\t/sug?s=rawand\n\n        </pre>\n      </mat-tab>\n  </mat-tab-group>\n</div>\n\n\n\n"
 
 /***/ }),
 
@@ -591,7 +605,7 @@ module.exports = "\n<div class=\"container\">\n    \n<mat-tab-group>\n    <mat-t
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Neucha\");\n.example-container {\n  display: flex;\n  flex-direction: column; }\n.example-container > * {\n  width: 100%; }\n.button-left {\n  margin: 0em 1em; }\n.mat-form-field, .mat-tab-group {\n  padding-top: 1em; }\n.font-fam3 {\n  font-family: 'Nothing You Could Do', cursive; }\n.err {\n  font-family: 'Nothing You Could Do', cursive;\n  word-spacing: 2px;\n  font-size: 1.5em;\n  font-weight: 600; }\n.mat-progress-spinner {\n  margin: 0 auto;\n  background-color: #bdbdbd; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9hbmd1bGFyLWNocm9tZS1leHRlbnNpb24vY2hyb21lLWFuZ3VsYXIvc3JjL2FwcC9ob21lL2hvbWUuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0EsNkRBQVk7QUFFWjtFQUNFLGFBQWE7RUFDYixzQkFBc0IsRUFBQTtBQUd4QjtFQUNFLFdBQVcsRUFBQTtBQUdiO0VBQ0UsZUFBZSxFQUFBO0FBR2pCO0VBQ0UsZ0JBQWdCLEVBQUE7QUFHbEI7RUFDRSw0Q0FBNEMsRUFBQTtBQUk5QztFQUNFLDRDQUE0QztFQUM1QyxpQkFBaUI7RUFDakIsZ0JBQWdCO0VBQ2hCLGdCQUFnQixFQUFBO0FBRWxCO0VBQ0UsY0FBYztFQUNkLHlCQUFvQyxFQUFBIiwiZmlsZSI6InNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG5AaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3M/ZmFtaWx5PU5ldWNoYScpO1xuXG4uZXhhbXBsZS1jb250YWluZXIge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xufVxuXG4uZXhhbXBsZS1jb250YWluZXIgPiAqIHtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbi5idXR0b24tbGVmdCB7XG4gIG1hcmdpbjogMGVtIDFlbTtcbn1cblxuLm1hdC1mb3JtLWZpZWxkLCAubWF0LXRhYi1ncm91cCB7XG4gIHBhZGRpbmctdG9wOiAxZW07XG59XG5cbi5mb250LWZhbTMge1xuICBmb250LWZhbWlseTogJ05vdGhpbmcgWW91IENvdWxkIERvJywgY3Vyc2l2ZTtcblxufVxuXG4uZXJyIHtcbiAgZm9udC1mYW1pbHk6ICdOb3RoaW5nIFlvdSBDb3VsZCBEbycsIGN1cnNpdmU7XG4gIHdvcmQtc3BhY2luZzogMnB4O1xuICBmb250LXNpemU6IDEuNWVtO1xuICBmb250LXdlaWdodDogNjAwO1xufVxuLm1hdC1wcm9ncmVzcy1zcGlubmVyIHtcbiAgbWFyZ2luOiAwIGF1dG87XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigxODksIDE4OSwgMTg5KVxufVxuXG4iXX0= */"
+module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Neucha\");\n.example-container {\n  display: flex;\n  flex-direction: column; }\n.example-container > * {\n  width: 100%; }\n.button-left {\n  margin: 0em 1em; }\n.mat-form-field, .mat-tab-group {\n  padding-top: 1em; }\n.font-fam3 {\n  font-family: 'Nothing You Could Do', cursive; }\n.err {\n  font-family: 'Nothing You Could Do', cursive;\n  word-spacing: 2px;\n  font-size: 1.5em;\n  font-weight: 600; }\n.mat-progress-spinner {\n  margin: 0 auto;\n  background-color: #bdbdbd; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9hbmd1bGFyLWNocm9tZS1leHRlbnNpb24vY2hyb21lLWFuZ3VsYXIvc3JjL2FwcC9ob21lL2hvbWUuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0EsNkRBQVk7QUFFWjtFQUNFLGFBQWE7RUFDYixzQkFBc0IsRUFBQTtBQUd4QjtFQUNFLFdBQVcsRUFBQTtBQUdiO0VBQ0UsZUFBZSxFQUFBO0FBR2pCO0VBQ0UsZ0JBQWdCLEVBQUE7QUFHbEI7RUFDRSw0Q0FBNEMsRUFBQTtBQUc5QztFQUNFLDRDQUE0QztFQUM1QyxpQkFBaUI7RUFDakIsZ0JBQWdCO0VBQ2hCLGdCQUFnQixFQUFBO0FBRWxCO0VBQ0UsY0FBYztFQUNkLHlCQUFvQyxFQUFBIiwiZmlsZSI6InNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG5AaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3M/ZmFtaWx5PU5ldWNoYScpO1xuXG4uZXhhbXBsZS1jb250YWluZXIge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xufVxuXG4uZXhhbXBsZS1jb250YWluZXIgPiAqIHtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbi5idXR0b24tbGVmdCB7XG4gIG1hcmdpbjogMGVtIDFlbTtcbn1cblxuLm1hdC1mb3JtLWZpZWxkLCAubWF0LXRhYi1ncm91cCB7XG4gIHBhZGRpbmctdG9wOiAxZW07XG59XG5cbi5mb250LWZhbTMge1xuICBmb250LWZhbWlseTogJ05vdGhpbmcgWW91IENvdWxkIERvJywgY3Vyc2l2ZTtcbn1cblxuLmVyciB7XG4gIGZvbnQtZmFtaWx5OiAnTm90aGluZyBZb3UgQ291bGQgRG8nLCBjdXJzaXZlO1xuICB3b3JkLXNwYWNpbmc6IDJweDtcbiAgZm9udC1zaXplOiAxLjVlbTtcbiAgZm9udC13ZWlnaHQ6IDYwMDtcbn1cbi5tYXQtcHJvZ3Jlc3Mtc3Bpbm5lciB7XG4gIG1hcmdpbjogMCBhdXRvO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTg5LCAxODksIDE4OSlcbn1cblxuIl19 */"
 
 /***/ }),
 
@@ -609,11 +623,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 /* harmony import */ var _loader_loader_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../loader/loader.service */ "./src/app/loader/loader.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 
 
 
 
-// import { spinnerFade } from '../animate';
+
 var HomeComponent = /** @class */ (function () {
     function HomeComponent(ds, ls) {
         this.ds = ds;
@@ -622,12 +637,13 @@ var HomeComponent = /** @class */ (function () {
     }
     HomeComponent.prototype.ngOnInit = function () {
     };
-    HomeComponent.prototype.getServiceData = function (word, type) {
-        this.ds.errMessage = '';
+    HomeComponent.prototype.getServiceData = function (tab, word, type) {
         event.preventDefault();
         this.ds.getData(word, type);
-        // console.log(`click... ${word} : ${type}`);
         this.empty = this.ds.errMessage;
+        if (type === 'definition') {
+            this.tabGroup.selectedIndex = 0;
+        }
     };
     HomeComponent.prototype.setMyStyles = function (word) {
         var styles = {
@@ -635,6 +651,10 @@ var HomeComponent = /** @class */ (function () {
         };
         return styles;
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('mytab'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTabGroup"])
+    ], HomeComponent.prototype, "tabGroup", void 0);
     HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-home',
@@ -649,6 +669,57 @@ var HomeComponent = /** @class */ (function () {
     return HomeComponent;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/app/home/searches.class.ts":
+/*!****************************************!*\
+  !*** ./src/app/home/searches.class.ts ***!
+  \****************************************/
+/*! exports provided: Context */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Context", function() { return Context; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+// START not in current functionality feature WIP
+
+var Context = /** @class */ (function () {
+    function Context() {
+        this.con = new Map();
+        this.searchDict = new rxjs__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"](
+        // Behavior subject so we can
+        // subsribe to an observable thats a map of info that can be set...
+        // instead of a bunch of seperate observables  in data.service
+        this.con.set('RhymObjList', []).set('SynObjList', []).set('DefObjList', []).set('RelObjList', []));
+    }
+    Context.prototype.query = function (type, word) {
+        return;
+    };
+    Context.prototype.returnSpecificContext = function () {
+        return this.searchDict;
+    };
+    Context.prototype.addKeyAndList = function () {
+        this.searchDict.con.set('newkey', []);
+    };
+    Context.prototype.newKey = function (newKey) {
+        this.searchDict.con.set(newKey, []);
+    };
+    Context.prototype.getAndAssign = function (key, content) {
+        var _this = this;
+        this.searchDict._value.set(key, content);
+        this.searchDict.asObservable().subscribe(function (data) {
+            _this.searchDict._value.set(key, content);
+            console.log(_this.searchDict._value);
+        });
+        // return  this.searchDict.con;
+    };
+    return Context;
+}());
+
+// END not in current functionality feature WIP
 
 
 /***/ }),
@@ -777,7 +848,7 @@ var LoaderService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h1>Satans </h1>\n    <p>Shall go here soon</p>\n</div>"
+module.exports = "<div class=\"container\">\n    <h1>Satans </h1>\n    <p>WIP Shall go here soon. Settings for including definitions for related words </p>\n</div>"
 
 /***/ }),
 

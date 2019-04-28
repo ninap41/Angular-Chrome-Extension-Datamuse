@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DemoMaterialModule } from '../angular-material';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { LoaderService } from '../loader/loader.service';
 // import { spinnerFade } from '../animate';
+import { Context } from './searches.class';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
+import { MatTabChangeEvent, MatTabGroup } from '@angular/material';
+import {FormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-home',
@@ -12,8 +17,9 @@ import { LoaderService } from '../loader/loader.service';
   animations: [ ] // spinnerFade
 })
 export class HomeComponent implements OnInit {
-
   empty = '';
+  @ViewChild('mytab') tabGroup: MatTabGroup;
+
   constructor(
     private ds: DataService,
     private ls: LoaderService
@@ -22,14 +28,16 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  public getServiceData(word, type) {
-    this.ds.errMessage = '';
+  public getServiceData(tab, word, type) {
     event.preventDefault();
     this.ds.getData(word, type);
-    // console.log(`click... ${word} : ${type}`);
     this.empty = this.ds.errMessage;
+    if (type === 'definition') {
+      this.tabGroup.selectedIndex = 0;
+    }
   }
+
+
 
   setMyStyles(word) {
       const styles = {

@@ -1,8 +1,8 @@
 
 <div class="container">
     
-<mat-tab-group>
-    <mat-tab label="Definition"> 
+<mat-tab-group  #mytab  >
+    <mat-tab   label="Definition"> 
         <form (ngSubmit)="this.ds.getData(definition.value, 'definition')">
           <mat-form-field>
             <input matInput #definition placeholder="Find Definition">
@@ -14,7 +14,7 @@
             <span *ngIf="this.ds.DefObjList!== null || ls.DefObjListSpinner.loading === false">
                 <span *ngFor="let word of this.ds.DefObjList;let idx">
                     <mat-chip-list>
-                      <mat-chip (click)="getServiceData(word.word, 'definition')" [ngStyle]="setMyStyles(word)" value="word.word"> {{word.word}}  </mat-chip>
+                      <mat-chip (click)="getServiceData(0, word.word, 'definition')" [ngStyle]="setMyStyles(word)" value="word.word"> {{word.word}}  </mat-chip>
                     </mat-chip-list>
                     <mat-list *ngFor="let def of word.defs">
                         <mat-list-item> -<i>{{def}}</i> </mat-list-item>
@@ -25,7 +25,7 @@
           </div>
       </mat-tab>
     
-      <mat-tab label="Related"> 
+      <mat-tab  label="Related"> 
           <form (ngSubmit)="this.ds.getData(related.value, 'related')">
             <mat-form-field>
               <input #related  matInput placeholder="Related Words">
@@ -37,9 +37,15 @@
               <span *ngIf="this.ds.RelObjList !== null ||  ls.RelObjListSpinner.loading === false">
                       <mat-chip-list>
                         <span *ngFor="let word of this.ds.RelObjList; let idx">
-                          <mat-chip (click)="getServiceData(word.word, 'related')" [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
+                          <mat-chip  
+                          aria-label="Show/Hide tooltip on the button at the end of this section"
+                          class="example-action-button"
+                          (click)="getServiceData(1, word.word, 'definition')"
+                          [ngStyle]="setMyStyles(word)" 
+                          value="word.word">{{word.word}}</mat-chip>
                         </span>
                       </mat-chip-list>
+                      
                 </span>
                 <app-loader *ngIf="ls.RelObjListSpinner.loading === true"></app-loader>
             </div>
@@ -57,7 +63,7 @@
           <span  *ngIf="this.ds.SynObjList !== null ||  ls.SynObjListSpinner.loading === false">
                   <mat-chip-list>
                     <span *ngFor="let word of this.ds.SynObjList; let idx">
-                      <mat-chip (click)="getServiceData(word.word, 'synonym')" [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
+                      <mat-chip (click)="getServiceData(2, word.word, 'definition')" [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
                     </span>
                   </mat-chip-list>
           </span>
@@ -79,7 +85,7 @@
             
                     <mat-chip-list>
                       <span *ngFor="let word of this.ds.AntObjList; let idx">
-                        <mat-chip (click)="getServiceData(word.word, 'antonym')"  [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
+                        <mat-chip (click)="getServiceData(3, word.word, 'definition')"  [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
                       </span>
                     </mat-chip-list>
               </span>
@@ -99,7 +105,7 @@
             <span *ngIf="this.ds.RhymObjList !== null || ls.RhymObjListSpinner.loading === false" >
                     <mat-chip-list>
                       <span *ngFor="let word of this.ds.RhymObjList">
-                          <mat-chip (click)="getServiceData(word.word, 'rhyme')" [ngStyle]="setMyStyles(word.word)" value="word.word">{{word.word}}</mat-chip>
+                          <mat-chip (click)="getServiceData(4, word.word, 'definition')" [ngStyle]="setMyStyles(word.word)" value="word.word">{{word.word}}</mat-chip>
                       </span>
                     </mat-chip-list>
             </span>
@@ -108,7 +114,7 @@
         </mat-tab>
       
 
-        <mat-tab label="Other Search"> 
+        <mat-tab   label="Other Search"> 
         <pre>
             words with a meaning similar to ringing in the ears	/words?ml=ringing+in+the+ears
             words related to duck that start with the letter b	/words?ml=duck&sp=b*
