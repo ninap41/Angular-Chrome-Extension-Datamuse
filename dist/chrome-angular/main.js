@@ -404,7 +404,7 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 _data_service__WEBPACK_IMPORTED_MODULE_12__["DataService"],
-                _loader_loader_service__WEBPACK_IMPORTED_MODULE_17__["LoaderService"]
+                _loader_loader_service__WEBPACK_IMPORTED_MODULE_17__["LoaderService"],
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
         })
@@ -431,7 +431,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
 /* harmony import */ var _loader_loader_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loader/loader.service */ "./src/app/loader/loader.service.ts");
 /* harmony import */ var _home_searches_class__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./home/searches.class */ "./src/app/home/searches.class.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _assets_words_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../assets/words.json */ "./src/assets/words.json");
+var _assets_words_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../assets/words.json */ "./src/assets/words.json", 1);
 
 
 
@@ -439,11 +440,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var DataService = /** @class */ (function () {
-    function DataService(http, ls, router) {
+    function DataService(http, ls) {
         this.http = http;
         this.ls = ls;
-        this.router = router;
         this.url = 'https://api.datamuse.com';
+        this.favorites = _assets_words_json__WEBPACK_IMPORTED_MODULE_5__["favorites"];
+        this.history = [];
         // START not in current functionality WIP
         this.Context = new _home_searches_class__WEBPACK_IMPORTED_MODULE_4__["Context"]();
         // START not in current functionality WIP
@@ -498,7 +500,12 @@ var DataService = /** @class */ (function () {
         }, 2000);
     };
     DataService.prototype.finished = function () {
+        var _this = this;
         this.ls.destroySpinner(this.objRef + "Spinner");
+        this[this.objRef].forEach(function (word) {
+            _this.history.push(word);
+        });
+        console.log(this.history);
     };
     DataService.prototype.clearData = function (list) {
         var _this = this;
@@ -516,13 +523,17 @@ var DataService = /** @class */ (function () {
             }
         });
     };
+    DataService.prototype.downloadFile = function (data) {
+        var blob = new Blob([data], { type: 'text/csv' });
+        var url = window.URL.createObjectURL(blob);
+        window.open(url);
+    };
     DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_2__["Http"],
-            _loader_loader_service__WEBPACK_IMPORTED_MODULE_3__["LoaderService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+            _loader_loader_service__WEBPACK_IMPORTED_MODULE_3__["LoaderService"]])
     ], DataService);
     return DataService;
 }());
@@ -594,7 +605,7 @@ var HelpComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container\">\n    \n<mat-tab-group  #mytab  >\n    <mat-tab   label=\"Definition\"> \n        <form (ngSubmit)=\"this.ds.getData(definition.value, 'definition')\">\n          <mat-form-field>\n            <input matInput #definition placeholder=\"Find Definition\">\n        </mat-form-field>\n        <button type=\"submit\" class=\"button-left\" mat-flat-button color=\"primary\">Search</button>\n        </form> \n        <div class=\"container\">\n            <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n            <span *ngIf=\"this.ds.DefObjList!== null || ls.DefObjListSpinner.loading === false\">\n                <span *ngFor=\"let word of this.ds.DefObjList;let idx\">\n                  <mat-chip-list>\n                    <mat-chip (click)=\"getServiceData(0, word.word, 'definition')\" [ngStyle]=\"setMyStyles(word)\" value=\"word.word\"> {{word.word}}  </mat-chip>\n                  </mat-chip-list>\n                  <br>\n                  <div *ngFor=\"let def of word.defs\"> <p>-{{def}} </p> </div>\n              </span>\n            </span>\n            <app-loader *ngIf=\"ls.DefObjListSpinner.loading === true\"></app-loader>        \n          </div>\n      </mat-tab>\n    \n      <mat-tab  label=\"Related\"> \n          <form (ngSubmit)=\"this.ds.getData(related.value, 'related')\">\n            <mat-form-field>\n              <input #related  matInput placeholder=\"Related Words\">\n          </mat-form-field>\n          <button type=\"submit\" mat-flat-button class=\"button-left\" color=\"primary\">Search</button>\n          </form>\n          <div class=\"container\">\n              <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n              <span *ngIf=\"this.ds.RelObjList !== null ||  ls.RelObjListSpinner.loading === false\">\n                      <mat-chip-list>\n                        <span *ngFor=\"let word of this.ds.RelObjList; let idx\">\n                          <mat-chip  \n                          aria-label=\"Show/Hide tooltip on the button at the end of this section\"\n                          class=\"example-action-button\"\n                          (click)=\"getServiceData(1, word.word, 'definition')\"\n                          [ngStyle]=\"setMyStyles(word)\" \n                          value=\"word.word\">{{word.word}}</mat-chip>\n                        </span>\n                      </mat-chip-list>\n                      \n                </span>\n                <app-loader *ngIf=\"ls.RelObjListSpinner.loading === true\"></app-loader>\n            </div>\n      </mat-tab>\n\n    <mat-tab label=\"Synonym\">\n      <form (ngSubmit)=\"this.ds.getData(synonym.value, 'synonym')\">\n        <mat-form-field>\n            <input #synonym matInput placeholder=\"Find Synonym\">\n        </mat-form-field>\n        <button type=\"submit\" class=\"button-left\" mat-flat-button color=\"primary\">Search</button>\n      </form> \n      <div class=\"container\">\n          <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n          <span  *ngIf=\"this.ds.SynObjList !== null ||  ls.SynObjListSpinner.loading === false\">\n                  <mat-chip-list>\n                    <span *ngFor=\"let word of this.ds.SynObjList; let idx\">\n                      <mat-chip (click)=\"getServiceData(2, word.word, 'definition')\" [ngStyle]=\"setMyStyles(word)\" value=\"word.word\">{{word.word}}</mat-chip>\n                    </span>\n                  </mat-chip-list>\n          </span>\n          <app-loader *ngIf=\"ls.SynObjListSpinner.loading === true\"></app-loader> \n\n        </div>\n    </mat-tab>\n\n    <mat-tab label=\"Antonym\"> \n        <form (ngSubmit)=\"this.ds.getData(antonym.value, 'antonym')\">\n          <mat-form-field>\n            <input #antonym  matInput placeholder=\"Find Antonym\">\n        </mat-form-field>\n        <button type=\"submit\" mat-flat-button class=\"button-left\" color=\"primary\">Search</button>\n        </form>\n        <div class=\"container\">\n            <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n            <span *ngIf=\"this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false\">\n                <p *ngIf=\"this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false\"> click '?' for synonyms | click the word for definitions</p>\n                    <mat-chip-list>\n                      <span *ngFor=\"let word of this.ds.AntObjList; let idx\">\n                        <mat-chip [ngStyle]=\"setMyStyles(word)\" value=\"word.word\">\n                          <span (click)=\"getServiceData(3, word.word, 'synonym')\" ><i class=\"fas fa-question\"></i>\t&nbsp;</span>\n                          <span (click)=\"getServiceData(3, word.word, 'definition')\" > {{word.word}}</span>\n                        </mat-chip>\n                      </span>\n                    </mat-chip-list>\n              </span>\n              <app-loader *ngIf=\"ls.AntObjListSpinner.loading === true\"></app-loader>\n          </div>\n    </mat-tab>\n\n    <mat-tab label=\"Rhyme\"> \n      <form (ngSubmit)=\"this.ds.getData(rhyme.value, 'rhyme')\">\n        <mat-form-field>\n            <input matInput #rhyme placeholder=\"Find Rhyme\">\n          </mat-form-field>\n           <button type=\"submit\" mat-flat-button class=\"button-left\" color=\"primary\">Search</button>\n        </form>\n        <div class=\"container\">\n            <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n            <span *ngIf=\"this.ds.RhymObjList !== null || ls.RhymObjListSpinner.loading === false\" >\n                    <mat-chip-list>\n                      <span *ngFor=\"let word of this.ds.RhymObjList\">\n                          <mat-chip (click)=\"getServiceData(4, word.word, 'definition')\" [ngStyle]=\"setMyStyles(word.word)\" value=\"word.word\">{{word.word}}</mat-chip>\n                      </span>\n                    </mat-chip-list>\n            </span>\n            <app-loader *ngIf=\"ls.RhymObjListSpinner.loading === true\"></app-loader>\n        </div>\n        </mat-tab>\n      \n\n        <mat-tab   label=\"Other Search\"> \n        <pre>\n            words with a meaning similar to ringing in the ears\t/words?ml=ringing+in+the+ears\n            words related to duck that start with the letter b\t/words?ml=duck&sp=b*\n            words related to spoon nvmthat end with the letter a\t/words?ml=spoon&sp=*a\n            words that sound like elefint\t/words?sl=elefint\n            words that start with t, end in k, and have two letters in between\t/words?sp=t??k\n            words that are spelled similarly to coneticut\t/words?sp=coneticut\n            words that rhyme with forgetful\t/words?rel_rhy=forgetful\n            words that rhyme with grape that are related to breakfast\t/words?ml=breakfast&rel_rhy=grape\n            adjectives that are often used to describe ocean\t/words?rel_jjb=ocean\n            adjectives describing ocean sorted by how related they are to temperature\t/words?rel_jjb=ocean&topics=temperature\n            nouns that are often described by the adjective yellow\t/words?rel_jja=yellow\n            words that often follow \"drink\" in a sentence, that start with the letter w\t/words?lc=drink&sp=w*\n            words that are triggered by (strongly associated with) the word \"cow\"\t/words?rel_trg=cow\n            suggestions for the user if they have typed in rawand so far\t/sug?s=rawand\n\n        </pre>\n      </mat-tab>\n  </mat-tab-group>\n</div>\n\n\n\n"
+module.exports = "\n<div class=\"container\">\n    \n<mat-tab-group  #mytab  >\n    <mat-tab   label=\"Definition\"> \n        <form (ngSubmit)=\"this.ds.getData(definition.value, 'definition')\">\n          <mat-form-field>\n            <input matInput #definition placeholder=\"Find Definition\">\n        </mat-form-field>\n        <button type=\"submit\" class=\"button-left\" mat-flat-button color=\"primary\">Search</button>\n        </form> \n        <div class=\"container\">\n            <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n            <span *ngIf=\"this.ds.DefObjList!== null || ls.DefObjListSpinner.loading === false\">\n                <span *ngFor=\"let word of this.ds.DefObjList;let idx\">\n                  <mat-chip-list>\n                    <mat-chip (click)=\"getServiceData(0, word.word, 'definition')\" [ngStyle]=\"setMyStylesMat(word)\" value=\"word.word\"> \n                      {{word.word}} \n                    </mat-chip>\n                    &nbsp;<mat-icon class=\"heart\" (click)=\"saveWord(word.word)\" aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>\n                  </mat-chip-list>\n\n                  <br>\n                  <div *ngFor=\"let def of word.defs\"> <p>-{{def}}\n                  </p> </div>\n              </span>\n            </span>\n            <app-loader *ngIf=\"ls.DefObjListSpinner.loading === true\"></app-loader>        \n          </div>\n      </mat-tab>\n    \n      <mat-tab  label=\"Related\"> \n          <form (ngSubmit)=\"this.ds.getData(related.value, 'related')\">\n            <mat-form-field>\n              <input #related  matInput placeholder=\"Related Words\">\n          </mat-form-field>\n          <button type=\"submit\" mat-flat-button class=\"button-left\" color=\"primary\">Search</button>\n          </form>\n          <div class=\"container\">\n              <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n              <span *ngIf=\"this.ds.RelObjList !== null ||  ls.RelObjListSpinner.loading === false\">\n                      <mat-chip-list>\n                        <span *ngFor=\"let word of this.ds.RelObjList; let idx\">\n                          <mat-chip  \n                          aria-label=\"Show/Hide tooltip on the button at the end of this section\"\n                          class=\"example-action-button\"\n                          [ngStyle]=\"setMyStylesMat(word)\" \n                          value=\"word.word\">\n                          <span (click)=\"getServiceData(1, word.word, 'definition')\">{{word.word}}</span>\n                          \n                        </mat-chip>\n                        </span>\n                      </mat-chip-list>\n                      \n                </span>\n                <app-loader *ngIf=\"ls.RelObjListSpinner.loading === true\"></app-loader>\n            </div>\n      </mat-tab>\n\n    <mat-tab label=\"Synonym\">\n      <form (ngSubmit)=\"this.ds.getData(synonym.value, 'synonym')\">\n        <mat-form-field>\n            <input #synonym matInput placeholder=\"Find Synonym\">\n        </mat-form-field>\n        <button type=\"submit\" class=\"button-left\" mat-flat-button color=\"primary\">Search</button>\n      </form> \n      <div class=\"container\">\n          <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n          <span  *ngIf=\"this.ds.SynObjList !== null ||  ls.SynObjListSpinner.loading === false\">\n                  <mat-chip-list>\n                    <span *ngFor=\"let word of this.ds.SynObjList; let idx\">\n                      <mat-chip [ngStyle]=\"setMyStylesMat(word)\" value=\"word.word\">\n                        <span (click)=\"getServiceData(2, word.word, 'definition')\" >{{word.word}}</span>\n                        <button mat-icon-button color=\"warn\">  </button>\n                        \n\n                      </mat-chip>\n                    </span>\n                  </mat-chip-list>\n          </span>\n          <app-loader *ngIf=\"ls.SynObjListSpinner.loading === true\"></app-loader> \n\n        </div>\n    </mat-tab>\n\n    <mat-tab label=\"Antonym\"> \n        <form (ngSubmit)=\"this.ds.getData(antonym.value, 'antonym')\">\n          <mat-form-field>\n            <input #antonym  matInput placeholder=\"Find Antonym\">\n        </mat-form-field>\n        <button type=\"submit\" mat-flat-button class=\"button-left\" color=\"primary\">Search</button>\n        </form>\n        <div class=\"container\">\n            <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n            <span *ngIf=\"this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false\">\n                <p *ngIf=\"this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false\"> click '?' for synonyms | click the word for definitions</p>\n                    <mat-chip-list>\n                      <span *ngFor=\"let word of this.ds.AntObjList; let idx\">\n                        <mat-chip [ngStyle]=\"setMyStylesMat(word)\" value=\"word.word\">\n                          <span (click)=\"getServiceData(3, word.word, 'synonym')\" ><i class=\"fas fa-question\"></i>\t&nbsp;</span>\n                          <span (click)=\"getServiceData(3, word.word, 'definition')\" > {{word.word}}</span>\n                          \n                        </mat-chip>\n                      </span>\n                    </mat-chip-list>\n              </span>\n              <app-loader *ngIf=\"ls.AntObjListSpinner.loading === true\"></app-loader>\n          </div>\n    </mat-tab>\n\n    <mat-tab label=\"Rhyme\"> \n      <form (ngSubmit)=\"this.ds.getData(rhyme.value, 'rhyme')\">\n        <mat-form-field>\n            <input matInput #rhyme placeholder=\"Find Rhyme\">\n          </mat-form-field>\n           <button type=\"submit\" mat-flat-button class=\"button-left\" color=\"primary\">Search</button>\n        </form>\n        <div class=\"container\">\n            <span [innerHTML]=\"this.ds.errMessage\" class=\"err\"></span>\n            <span *ngIf=\"this.ds.RhymObjList !== null || ls.RhymObjListSpinner.loading === false\" >\n                    <mat-chip-list>\n                      <span *ngFor=\"let word of this.ds.RhymObjList\">\n                          <mat-chip [ngStyle]=\"setMyStylesMat(word.word)\" value=\"word.word\">\n                            <span (click)=\"getServiceData(4, word.word, 'definition')\" >{{word.word}}</span>\n                            \n                          </mat-chip>\n                          \n                      </span>\n                    </mat-chip-list>\n            </span>\n            <app-loader *ngIf=\"ls.RhymObjListSpinner.loading === true\"></app-loader>\n        </div>\n        </mat-tab>\n      \n\n      <mat-tab  label=\"Session Favorites\"> \n        <div class=\"container\">\n          <br><br>\n          <mat-chip-list >\n            <span *ngFor=\"let word of this.ds.favorites\">\n              <div class=\"container\">\n                <mat-chip (click)=\"getServiceData(5, word, 'definition')\">{{word}} \n                </mat-chip>\n                <span class=\"remove\" (click)='removeFromFavs(word)'>X</span>\n              </div>\n            </span>\n          </mat-chip-list>\n          <BR><BR>\n        <button class=\"btn btn-primary\"(click) =\"downloadFile(this.ds.favorites)\">Save Words</button>\n        </div>\n      </mat-tab>\n  </mat-tab-group>\n</div>\n\n\n\n"
 
 /***/ }),
 
@@ -605,7 +616,7 @@ module.exports = "\n<div class=\"container\">\n    \n<mat-tab-group  #mytab  >\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Neucha\");\n.example-container > * {\n  width: 100%; }\n.button-left {\n  margin: 0em 1em; }\n.mat-form-field, .mat-tab-group {\n  padding-top: 1em; }\n.font-fam3 {\n  font-family: 'Nothing You Could Do', cursive; }\n.err {\n  font-family: 'Nothing You Could Do', cursive;\n  word-spacing: 2px;\n  font-size: 1.5em;\n  font-weight: 600; }\n.mat-progress-spinner {\n  margin: 0 auto;\n  background-color: #bdbdbd; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9hbmd1bGFyLWNocm9tZS1leHRlbnNpb24vY2hyb21lLWFuZ3VsYXIvc3JjL2FwcC9ob21lL2hvbWUuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0EsNkRBQVk7QUFLWjtFQUNFLFdBQVcsRUFBQTtBQUdiO0VBQ0UsZUFBZSxFQUFBO0FBR2pCO0VBQ0UsZ0JBQWdCLEVBQUE7QUFHbEI7RUFDRSw0Q0FBNEMsRUFBQTtBQUc5QztFQUNFLDRDQUE0QztFQUM1QyxpQkFBaUI7RUFDakIsZ0JBQWdCO0VBQ2hCLGdCQUFnQixFQUFBO0FBRWxCO0VBQ0UsY0FBYztFQUNkLHlCQUFvQyxFQUFBIiwiZmlsZSI6InNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG5AaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3M/ZmFtaWx5PU5ldWNoYScpO1xuXG4uZXhhbXBsZS1jb250YWluZXIge1xufVxuXG4uZXhhbXBsZS1jb250YWluZXIgPiAqIHtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbi5idXR0b24tbGVmdCB7XG4gIG1hcmdpbjogMGVtIDFlbTtcbn1cblxuLm1hdC1mb3JtLWZpZWxkLCAubWF0LXRhYi1ncm91cCB7XG4gIHBhZGRpbmctdG9wOiAxZW07XG59XG5cbi5mb250LWZhbTMge1xuICBmb250LWZhbWlseTogJ05vdGhpbmcgWW91IENvdWxkIERvJywgY3Vyc2l2ZTtcbn1cblxuLmVyciB7XG4gIGZvbnQtZmFtaWx5OiAnTm90aGluZyBZb3UgQ291bGQgRG8nLCBjdXJzaXZlO1xuICB3b3JkLXNwYWNpbmc6IDJweDtcbiAgZm9udC1zaXplOiAxLjVlbTtcbiAgZm9udC13ZWlnaHQ6IDYwMDtcbn1cbi5tYXQtcHJvZ3Jlc3Mtc3Bpbm5lciB7XG4gIG1hcmdpbjogMCBhdXRvO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTg5LCAxODksIDE4OSlcbn1cblxuIl19 */"
+module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Neucha\");\n.example-container > * {\n  width: 100%; }\n.button-left {\n  margin: 0em 1em; }\n.mat-form-field, .mat-tab-group {\n  padding-top: 1em; }\n.font-fam3 {\n  font-family: 'Nothing You Could Do', cursive; }\n.err {\n  font-family: 'Nothing You Could Do', cursive;\n  word-spacing: 2px;\n  font-size: 1.5em;\n  font-weight: 600; }\n.mat-progress-spinner {\n  margin: 0 auto;\n  background-color: #bdbdbd; }\n.remove {\n  cursor: pointer; }\n.heart {\n  cursor: pointer;\n  color: #cf1d7f;\n  white-space: pre; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9hbmd1bGFyLWNocm9tZS1leHRlbnNpb24vY2hyb21lLWFuZ3VsYXIvc3JjL2FwcC9ob21lL2hvbWUuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0EsNkRBQVk7QUFLWjtFQUNFLFdBQVcsRUFBQTtBQUdiO0VBQ0UsZUFBZSxFQUFBO0FBR2pCO0VBQ0UsZ0JBQWdCLEVBQUE7QUFHbEI7RUFDRSw0Q0FBNEMsRUFBQTtBQUc5QztFQUNFLDRDQUE0QztFQUM1QyxpQkFBaUI7RUFDakIsZ0JBQWdCO0VBQ2hCLGdCQUFnQixFQUFBO0FBRWxCO0VBQ0UsY0FBYztFQUNkLHlCQUFvQyxFQUFBO0FBR3RDO0VBQ0UsZUFBZSxFQUFBO0FBR2pCO0VBQ0UsZUFBZTtFQUVmLGNBQXdCO0VBQ3hCLGdCQUFlLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbkBpbXBvcnQgdXJsKCdodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2Nzcz9mYW1pbHk9TmV1Y2hhJyk7XG5cbi5leGFtcGxlLWNvbnRhaW5lciB7XG59XG5cbi5leGFtcGxlLWNvbnRhaW5lciA+ICoge1xuICB3aWR0aDogMTAwJTtcbn1cblxuLmJ1dHRvbi1sZWZ0IHtcbiAgbWFyZ2luOiAwZW0gMWVtO1xufVxuXG4ubWF0LWZvcm0tZmllbGQsIC5tYXQtdGFiLWdyb3VwIHtcbiAgcGFkZGluZy10b3A6IDFlbTtcbn1cblxuLmZvbnQtZmFtMyB7XG4gIGZvbnQtZmFtaWx5OiAnTm90aGluZyBZb3UgQ291bGQgRG8nLCBjdXJzaXZlO1xufVxuXG4uZXJyIHtcbiAgZm9udC1mYW1pbHk6ICdOb3RoaW5nIFlvdSBDb3VsZCBEbycsIGN1cnNpdmU7XG4gIHdvcmQtc3BhY2luZzogMnB4O1xuICBmb250LXNpemU6IDEuNWVtO1xuICBmb250LXdlaWdodDogNjAwO1xufVxuLm1hdC1wcm9ncmVzcy1zcGlubmVyIHtcbiAgbWFyZ2luOiAwIGF1dG87XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigxODksIDE4OSwgMTg5KVxufVxuXG4ucmVtb3ZlIHtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uaGVhcnQge1xuICBjdXJzb3I6IHBvaW50ZXI7XG5cbiAgY29sb3I6IHJnYigyMDcsIDI5LCAxMjcpO1xuICB3aGl0ZS1zcGFjZTpwcmU7XG59Il19 */"
 
 /***/ }),
 
@@ -629,26 +640,50 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(ds, ls) {
+    function HomeComponent(ds, ls, snackBar) {
         this.ds = ds;
         this.ls = ls;
+        this.snackBar = snackBar;
         this.empty = '';
     }
     HomeComponent.prototype.ngOnInit = function () {
     };
     HomeComponent.prototype.getServiceData = function (tab, word, type) {
-        event.preventDefault();
-        this.ds.getData(word, type);
-        this.empty = this.ds.errMessage;
         if (type === 'definition') {
             this.tabGroup.selectedIndex = 0;
         }
         else if (type === 'synonym') {
             this.tabGroup.selectedIndex = 2;
         }
+        event.preventDefault();
+        this.ds.getData(word, type);
+        this.empty = this.ds.errMessage;
     };
-    HomeComponent.prototype.setMyStyles = function (word) {
+    HomeComponent.prototype.saveWord = function (word) {
+        var bool = null;
+        this.ds.favorites.forEach(function (w) {
+            if (word === w) {
+                bool = true;
+            }
+        });
+        if (bool === true) {
+            this.snackBar.open("That word is already in your favorites (" + word + ")", '', {
+                duration: 5000,
+            });
+        }
+        else {
+            this.ds.favorites.push(word);
+            this.snackBar.open('You favorited', word, {
+                duration: 5000,
+            });
+        }
+    };
+    HomeComponent.prototype.downloadFile = function (data) {
+        this.ds.downloadFile(data);
+    };
+    HomeComponent.prototype.setMyStylesMat = function (word) {
         var styles = {
             'background-color': word.score > 70000 ? 'plum' : 'rgb(189, 189, 189)',
         };
@@ -662,12 +697,13 @@ var HomeComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-home',
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
-            animations: [] // spinnerFade
+            animations: [] // spinnerFade,
             ,
             styles: [__webpack_require__(/*! ./home.component.scss */ "./src/app/home/home.component.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"],
-            _loader_loader_service__WEBPACK_IMPORTED_MODULE_3__["LoaderService"]])
+            _loader_loader_service__WEBPACK_IMPORTED_MODULE_3__["LoaderService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -897,6 +933,17 @@ var SettingsComponent = /** @class */ (function () {
 }());
 
 
+
+/***/ }),
+
+/***/ "./src/assets/words.json":
+/*!*******************************!*\
+  !*** ./src/assets/words.json ***!
+  \*******************************/
+/*! exports provided: favorites, default */
+/***/ (function(module) {
+
+module.exports = {"favorites":[]};
 
 /***/ }),
 
