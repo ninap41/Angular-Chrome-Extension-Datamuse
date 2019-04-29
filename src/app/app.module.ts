@@ -43,12 +43,14 @@ import { LoaderService } from './loader/loader.service';
     HttpClientModule,
     HttpModule,
     DemoMaterialModule,
+
     MatNativeDateModule,
     ReactiveFormsModule,
   ],
   providers: [
      DataService,
-     LoaderService
+     LoaderService,
+
    ],
   bootstrap: [AppComponent]
 })

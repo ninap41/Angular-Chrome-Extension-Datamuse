@@ -14,10 +14,13 @@
             <span *ngIf="this.ds.DefObjList!== null || ls.DefObjListSpinner.loading === false">
                 <span *ngFor="let word of this.ds.DefObjList;let idx">
                   <mat-chip-list>
-                    <mat-chip (click)="getServiceData(0, word.word, 'definition')" [ngStyle]="setMyStyles(word)" value="word.word"> {{word.word}}  </mat-chip>
+                    <mat-chip (click)="getServiceData(0, word.word, 'definition')" [ngStyle]="setMyStylesMat(word)" value="word.word"> 
+                      {{word.word}} &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                    </mat-chip>
                   </mat-chip-list>
                   <br>
-                  <div *ngFor="let def of word.defs"> <p>-{{def}} </p> </div>
+                  <div *ngFor="let def of word.defs"> <p>-{{def}}
+                  </p> </div>
               </span>
             </span>
             <app-loader *ngIf="ls.DefObjListSpinner.loading === true"></app-loader>        
@@ -39,9 +42,11 @@
                           <mat-chip  
                           aria-label="Show/Hide tooltip on the button at the end of this section"
                           class="example-action-button"
-                          (click)="getServiceData(1, word.word, 'definition')"
-                          [ngStyle]="setMyStyles(word)" 
-                          value="word.word">{{word.word}}</mat-chip>
+                          [ngStyle]="setMyStylesMat(word)" 
+                          value="word.word">
+                          <span (click)="getServiceData(1, word.word, 'definition')">{{word.word}}</span>
+                          &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                        </mat-chip>
                         </span>
                       </mat-chip-list>
                       
@@ -62,7 +67,12 @@
           <span  *ngIf="this.ds.SynObjList !== null ||  ls.SynObjListSpinner.loading === false">
                   <mat-chip-list>
                     <span *ngFor="let word of this.ds.SynObjList; let idx">
-                      <mat-chip (click)="getServiceData(2, word.word, 'definition')" [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
+                      <mat-chip [ngStyle]="setMyStylesMat(word)" value="word.word">
+                        <span (click)="getServiceData(2, word.word, 'definition')" >{{word.word}}</span>
+                        <button mat-icon-button color="warn">  </button>
+                        &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+
+                      </mat-chip>
                     </span>
                   </mat-chip-list>
           </span>
@@ -84,9 +94,10 @@
                 <p *ngIf="this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false"> click '?' for synonyms | click the word for definitions</p>
                     <mat-chip-list>
                       <span *ngFor="let word of this.ds.AntObjList; let idx">
-                        <mat-chip [ngStyle]="setMyStyles(word)" value="word.word">
+                        <mat-chip [ngStyle]="setMyStylesMat(word)" value="word.word">
                           <span (click)="getServiceData(3, word.word, 'synonym')" ><i class="fas fa-question"></i>	&nbsp;</span>
                           <span (click)="getServiceData(3, word.word, 'definition')" > {{word.word}}</span>
+                          &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
                         </mat-chip>
                       </span>
                     </mat-chip-list>
@@ -107,7 +118,11 @@
             <span *ngIf="this.ds.RhymObjList !== null || ls.RhymObjListSpinner.loading === false" >
                     <mat-chip-list>
                       <span *ngFor="let word of this.ds.RhymObjList">
-                          <mat-chip (click)="getServiceData(4, word.word, 'definition')" [ngStyle]="setMyStyles(word.word)" value="word.word">{{word.word}}</mat-chip>
+                          <mat-chip [ngStyle]="setMyStylesMat(word.word)" value="word.word">
+                            <span (click)="getServiceData(4, word.word, 'definition')" >{{word.word}}</span>
+                            &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                          </mat-chip>
+                          
                       </span>
                     </mat-chip-list>
             </span>
@@ -116,24 +131,21 @@
         </mat-tab>
       
 
-        <mat-tab   label="Other Search"> 
-        <pre>
-            words with a meaning similar to ringing in the ears	/words?ml=ringing+in+the+ears
-            words related to duck that start with the letter b	/words?ml=duck&sp=b*
-            words related to spoon nvmthat end with the letter a	/words?ml=spoon&sp=*a
-            words that sound like elefint	/words?sl=elefint
-            words that start with t, end in k, and have two letters in between	/words?sp=t??k
-            words that are spelled similarly to coneticut	/words?sp=coneticut
-            words that rhyme with forgetful	/words?rel_rhy=forgetful
-            words that rhyme with grape that are related to breakfast	/words?ml=breakfast&rel_rhy=grape
-            adjectives that are often used to describe ocean	/words?rel_jjb=ocean
-            adjectives describing ocean sorted by how related they are to temperature	/words?rel_jjb=ocean&topics=temperature
-            nouns that are often described by the adjective yellow	/words?rel_jja=yellow
-            words that often follow "drink" in a sentence, that start with the letter w	/words?lc=drink&sp=w*
-            words that are triggered by (strongly associated with) the word "cow"	/words?rel_trg=cow
-            suggestions for the user if they have typed in rawand so far	/sug?s=rawand
-
-        </pre>
+      <mat-tab  label="Session Favorites"> 
+        <div class="container">
+          <br><br>
+          <mat-chip-list >
+            <span *ngFor="let word of this.ds.favorites">
+              <div class="container">
+                <mat-chip (click)="getServiceData(5, word, 'definition')">{{word}} 
+                </mat-chip>
+                <span class="remove" (click)='removeFromFavs(word)'>X</span>
+              </div>
+            </span>
+          </mat-chip-list>
+          <BR><BR>
+        <button class="btn btn-primary"(click) ="downloadFile(this.ds.favorites)">Save Words</button>
+        </div>
       </mat-tab>
   </mat-tab-group>
 </div>

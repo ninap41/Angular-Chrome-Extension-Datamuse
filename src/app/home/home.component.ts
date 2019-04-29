@@ -7,46 +7,63 @@ import { LoaderService } from '../loader/loader.service';
 import { Context } from './searches.class';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material';
-import {FormControl} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
 
+import * as saveAs from 'file-saver';
+import { ViewEncapsulation } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [ ] // spinnerFade
+  animations: [ ] // spinnerFade,
 })
 export class HomeComponent implements OnInit {
   empty = '';
+
   @ViewChild('mytab') tabGroup: MatTabGroup;
 
   constructor(
     private ds: DataService,
-    private ls: LoaderService
+    private ls: LoaderService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
   }
 
   public getServiceData(tab, word, type) {
-    event.preventDefault();
-    this.ds.getData(word, type);
-    this.empty = this.ds.errMessage;
     if (type === 'definition') {
       this.tabGroup.selectedIndex = 0;
     } else if (type === 'synonym') {
       this.tabGroup.selectedIndex = 2;
     }
+    event.preventDefault();
+    this.ds.getData(word, type);
+    this.empty = this.ds.errMessage;
+
   }
 
 
+saveWord(word: string) {
+  this.ds.favorites.push(word);
+  this.snackBar.open('You favorited', word, {
+    duration: 5000,
 
-  setMyStyles(word) {
+  });
+}
+
+downloadFile(data: any) {
+  this.ds.downloadFile(data);
+}
+
+  setMyStylesMat(word) {
       const styles = {
         'background-color': word.score > 70000 ? 'plum' : 'rgb(189, 189, 189)',
       };
       return styles;
     }
+   
   }
 
 

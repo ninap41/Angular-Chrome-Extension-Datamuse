@@ -6,6 +6,8 @@ import { LoaderService } from './loader/loader.service';
 import { compileBaseDefFromMetadata, compilePipeFromMetadata } from '@angular/compiler';
 import { Context } from './home/searches.class';
 import { Router } from '@angular/router';
+import { favorites } from '../assets/words.json';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,8 @@ any: string;
 errMessage: string;
 objRef;
 formatUrl;
+favorites = favorites;
+history = [];
 
 // START not in current functionality WIP
 Context = new Context();
@@ -34,7 +38,6 @@ Tab: Observable<any>;
 constructor(
     private http: Http,
     private ls: LoaderService,
-    private router: Router
   ) {
     // START not in current functionality WIP
     this.Context.getAndAssign('RhymObjList', { meh : 'meh' } );
@@ -97,6 +100,11 @@ constructor(
 
       finished() {
           this.ls.destroySpinner(`${this.objRef}Spinner`);
+          this[this.objRef].forEach((word) => {
+            this.history.push(word);
+          });
+          console.log(this.history);
+
       }
 
       clearData(list: string) {
@@ -113,6 +121,12 @@ constructor(
               this[l] = null;
             }
           });
+        }
+
+        downloadFile(data: any) {
+          const blob = new Blob([data], { type: 'text/csv' });
+          const url = window.URL.createObjectURL(blob);
+          window.open(url);
         }
 
     }
