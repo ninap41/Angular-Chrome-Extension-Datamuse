@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit {
     this.empty = this.ds.errMessage;
     if (type === 'definition') {
       this.tabGroup.selectedIndex = 0;
+    } else if (type === 'synonym') {
+      this.tabGroup.selectedIndex = 2;
     }
   }
 

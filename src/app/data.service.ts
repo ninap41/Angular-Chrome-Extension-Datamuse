@@ -13,23 +13,23 @@ import { Router } from '@angular/router';
 export class DataService {
 
 
-  url = 'https://api.datamuse.com';
-  word: string;
-  any: string;
-  // tslint:disable-next-line:no-inferrable-types
-  errMessage: string;
-  objRef;
-  formatUrl;
-      // START not in current functionality WIP
+url = 'https://api.datamuse.com';
+word: string;
+any: string;
+errMessage: string;
+objRef;
+formatUrl;
 
-  Context = new Context();
+// START not in current functionality WIP
+Context = new Context();
+// END WIP
 
-  AntObjList: Observable<any>; // consider making context, observable collection, or class;
-  RhymObjList: Observable<any>;
-  SynObjList: Observable<any>;
-  DefObjList: Observable<any>;
-  RelObjList: Observable<any>;
-  Tab: Observable<any>;
+AntObjList: Observable<any>; // consider making context, observable collection, or class;
+RhymObjList: Observable<any>;
+SynObjList: Observable<any>;
+DefObjList: Observable<any>;
+RelObjList: Observable<any>;
+Tab: Observable<any>;
 
 constructor(
     private http: Http,
@@ -101,12 +101,12 @@ constructor(
 
       clearData(list: string) {
         // tslint:disable-next-line:variable-name
-        const arr_list = ['AntObjList',
+        const arrList = ['AntObjList',
           'RhymObjList',
           'SynObjList',
           'DefObjList',
           'RelObjList'];
-        arr_list.forEach(l => {
+        arrList.forEach(l => {
             if (l === list) {
               console.log(l);
               console.log(list);

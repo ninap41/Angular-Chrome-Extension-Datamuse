@@ -13,14 +13,11 @@
             <span [innerHTML]="this.ds.errMessage" class="err"></span>
             <span *ngIf="this.ds.DefObjList!== null || ls.DefObjListSpinner.loading === false">
                 <span *ngFor="let word of this.ds.DefObjList;let idx">
-                    <mat-chip-list>
+                  <mat-chip-list>
                     <mat-chip (click)="getServiceData(0, word.word, 'definition')" [ngStyle]="setMyStyles(word)" value="word.word"> {{word.word}}  </mat-chip>
                   </mat-chip-list>
                   <br>
-                  <div *ngFor="let def of word.defs">
-                      <p>-{{def}} </p>
-                  </div>
-
+                  <div *ngFor="let def of word.defs"> <p>-{{def}} </p> </div>
               </span>
             </span>
             <app-loader *ngIf="ls.DefObjListSpinner.loading === true"></app-loader>        
@@ -84,10 +81,13 @@
         <div class="container">
             <span [innerHTML]="this.ds.errMessage" class="err"></span>
             <span *ngIf="this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false">
-            
+                <p *ngIf="this.ds.AntObjList !== null ||  ls.AntObjListSpinner.loading === false"> click '?' for synonyms | click the word for definitions</p>
                     <mat-chip-list>
                       <span *ngFor="let word of this.ds.AntObjList; let idx">
-                        <mat-chip (click)="getServiceData(3, word.word, 'definition')"  [ngStyle]="setMyStyles(word)" value="word.word">{{word.word}}</mat-chip>
+                        <mat-chip [ngStyle]="setMyStyles(word)" value="word.word">
+                          <span (click)="getServiceData(3, word.word, 'synonym')" ><i class="fas fa-question"></i>	&nbsp;</span>
+                          <span (click)="getServiceData(3, word.word, 'definition')" > {{word.word}}</span>
+                        </mat-chip>
                       </span>
                     </mat-chip-list>
               </span>
