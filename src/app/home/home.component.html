@@ -15,9 +15,11 @@
                 <span *ngFor="let word of this.ds.DefObjList;let idx">
                   <mat-chip-list>
                     <mat-chip (click)="getServiceData(0, word.word, 'definition')" [ngStyle]="setMyStylesMat(word)" value="word.word"> 
-                      {{word.word}} &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                      {{word.word}} 
                     </mat-chip>
+                    &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
                   </mat-chip-list>
+
                   <br>
                   <div *ngFor="let def of word.defs"> <p>-{{def}}
                   </p> </div>
@@ -45,7 +47,7 @@
                           [ngStyle]="setMyStylesMat(word)" 
                           value="word.word">
                           <span (click)="getServiceData(1, word.word, 'definition')">{{word.word}}</span>
-                          &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                          
                         </mat-chip>
                         </span>
                       </mat-chip-list>
@@ -70,7 +72,7 @@
                       <mat-chip [ngStyle]="setMyStylesMat(word)" value="word.word">
                         <span (click)="getServiceData(2, word.word, 'definition')" >{{word.word}}</span>
                         <button mat-icon-button color="warn">  </button>
-                        &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                        
 
                       </mat-chip>
                     </span>
@@ -97,7 +99,7 @@
                         <mat-chip [ngStyle]="setMyStylesMat(word)" value="word.word">
                           <span (click)="getServiceData(3, word.word, 'synonym')" ><i class="fas fa-question"></i>	&nbsp;</span>
                           <span (click)="getServiceData(3, word.word, 'definition')" > {{word.word}}</span>
-                          &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                          
                         </mat-chip>
                       </span>
                     </mat-chip-list>
@@ -120,7 +122,7 @@
                       <span *ngFor="let word of this.ds.RhymObjList">
                           <mat-chip [ngStyle]="setMyStylesMat(word.word)" value="word.word">
                             <span (click)="getServiceData(4, word.word, 'definition')" >{{word.word}}</span>
-                            &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                            
                           </mat-chip>
                           
                       </span>

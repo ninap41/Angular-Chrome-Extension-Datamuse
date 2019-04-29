@@ -46,11 +46,22 @@ export class HomeComponent implements OnInit {
 
 
 saveWord(word: string) {
-  this.ds.favorites.push(word);
-  this.snackBar.open('You favorited', word, {
-    duration: 5000,
-
+  let bool = null;
+  this.ds.favorites.forEach(w => {
+    if (word === w) {
+      bool = true;
+    }
   });
+  if (bool === true) {
+    this.snackBar.open(`That word is already in your favorites (${word})`, '', {
+      duration: 5000,
+    });
+  } else {
+    this.ds.favorites.push(word);
+    this.snackBar.open('You favorited', word, {
+      duration: 5000,
+    });
+  }
 }
 
 downloadFile(data: any) {
@@ -63,7 +74,7 @@ downloadFile(data: any) {
       };
       return styles;
     }
-   
+
   }
 
 
