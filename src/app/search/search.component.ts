@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SearchService } from './search.service';
 import { LoaderService } from '../loader/loader.service';
 import { Context } from '../search/searches.class';
@@ -13,6 +13,8 @@ import { ViewEncapsulation } from '@angular/compiler/src/core';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+// @ViewChild('wordForm') formValue; // Added this
+
 context;
 title = ['Word', 'Synonym', 'Antonyms', 'Related Words', 'Rhymes'];
 
@@ -27,7 +29,7 @@ title = ['Word', 'Synonym', 'Antonyms', 'Related Words', 'Rhymes'];
     this.context =  this.s.context;
   }
 
-  public onSubmit(word: string) {
+  public onSubmit(word: string, isNotBackFor: boolean) {
     if(word === '') {
       this.snackBar.open(`Please Enter Word`, 'You Left The Field Blank', {
         duration: 5000,
@@ -36,9 +38,8 @@ title = ['Word', 'Synonym', 'Antonyms', 'Related Words', 'Rhymes'];
       this.s.context.word === word ?
       this.snackBar.open(`That word is already displayed (${word})`, '', {
        duration: 5000,
-     }) : this.s.createSearch(word);
+     }) : this.s.createSearch(word, isNotBackFor); // boolean is for if we DONT want to push to history
     }
   }
-
 
 }

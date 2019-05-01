@@ -23,7 +23,7 @@ export class SearchService {
   ) {
   }
 
-  createSearch(word: string): Observable<Context> {
+  createSearch(word: string, isNotBackFor: boolean): Observable<Context> {
     this.ls.startSpinner();
     const list = ['rhymList', 'synList', 'defList', 'relList', 'antList'];
     this.context.word = word;
@@ -39,13 +39,12 @@ export class SearchService {
           i === list.length - 1 ? this.validator( this.context.searchDict, list) : console.log('continue')
         },
         (err) => this.context.errMessage = `Datamuse API problem. Ain't me!` + '\n' + `${JSON.stringify(err)}`,
-        () =>  i === list.length - 1 ? this.finished(this.context.word) : console.log('continue'),
+        () =>  i === list.length - 1 ? this.finished(this.context.word, isNotBackFor) : console.log('continue'),
         );
       }
     }, 2000);
     return of(this.context);
     }
-
 
     validator(searchDict: object,keys: Array<string>) {
       let emptyBreakPoint = keys.length;
@@ -61,10 +60,15 @@ export class SearchService {
           return this.context.errMessage;
     }
 
-    public finished(word: string) {
-      this.history.push(word);
-      this.historyIndex += 1;
+    public finished(word: string, isNotBackFor: boolean) {
+      isNotBackFor ? console.log('dont push history') : this.isNotBackForward() ;
       this.ls.stopSpinner();
+    }
+
+    isNotBackForward() {
+      console.log('pushing into history') 
+      this.history.push(this.context.word);
+      this.historyIndex += 1;
     }
 
     public goBack() {
@@ -74,12 +78,12 @@ export class SearchService {
           duration: 2000,
         });
         let previousWord = this.history[this.historyIndex];
-        this.createSearch(previousWord)
+        this.createSearch(previousWord, true) // we dont want to push to history
         this.history = [];
         this.historyIndex -= 1;
       } else {
         let previousWord = this.history[this.historyIndex];
-        this.createSearch(previousWord)
+        this.createSearch(previousWord, true) // we dont want to push to history
         this.historyIndex -= 1;
         this.snackBar.open(`Went back to previous word...`, `"${this.context.word}"`, {
           duration: 5000,
@@ -90,13 +94,13 @@ export class SearchService {
     public goForward() {
       this.historyIndex += 1;
       if (this.historyIndex === this.history.length - 1 ) {
-        this.snackBar.open('You are at the end of your history', '', {
+        this.snackBar.open(' You went forward. You are at the END of your history', '', {
           duration: 2000,
         });
         this.historyIndex -= 1;
       } else {
         let nextWord = this.history[this.historyIndex];
-        this.createSearch(nextWord)
+        this.createSearch(nextWord, true);
         this.historyIndex += 1;
         this.snackBar.open(`Went back to next word...`, `"${this.context.word}"`, {
           duration: 5000,

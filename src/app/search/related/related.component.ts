@@ -31,7 +31,7 @@ export class RelatedComponent implements OnInit {
       this.s.context.word === word ?
       this.snackBar.open(`That word is already displayed (${word})`, '', {
        duration: 5000,
-     }) : this.s.createSearch(word);
+     }) : this.s.createSearch(word, true);
     }
   }
 

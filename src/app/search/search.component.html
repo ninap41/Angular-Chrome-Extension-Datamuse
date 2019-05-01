@@ -1,11 +1,13 @@
 
 <div class="container">
-    <form (ngSubmit)="onSubmit(word.value)">
+    <form name="wordForm" (ngSubmit)="onSubmit(word.value, false)">
         <mat-form-field>
             <input matInput #word placeholder="Search Word">
         </mat-form-field>
         <button type="submit" class="button-left" mat-flat-button color="primary">Search</button>
         <button *ngIf="this.s.historyIndex > 0" [disabled]="this.ls.uniSpinner.loading === true" (click)="this.s.goBack()" mat-flat-button color="warning">Go Back</button>
+        <!-- <button *ngIf="this.s.historyIndex !== this.s.history.length - 1" [disabled]="this.ls.uniSpinner.loading === true" (click)="this.s.goForward()" mat-flat-button color="warning">Go Forward</button> -->
+
      </form>
 </div>
 <app-loader *ngIf="this.ls.uniSpinner.loading === true"></app-loader>
