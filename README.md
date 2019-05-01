@@ -12,7 +12,7 @@ Adding Soon: lowDB for filesync storage to a local json file and revised go/back
 
 ## Getting it Into Chrome
 
-*latest build in dist May 1st, 2019*
+*latest build May 1st, 2019*
 load unpacked extension in extension settings developer mode at this directory  `dist/chrome-angular`. Icon should show in extensions (lil book icon).
 
 ## Development server
