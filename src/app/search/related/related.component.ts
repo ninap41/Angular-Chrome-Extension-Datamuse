@@ -23,7 +23,16 @@ export class RelatedComponent implements OnInit {
   }
 
   public searchAgain(word: string) {
-    this.s.createSearch(word);
+    if(word === '') {
+      this.snackBar.open(`Please Enter Word`, '', {
+        duration: 5000,
+      });
+    } else {
+      this.s.context.word === word ?
+      this.snackBar.open(`That word is already displayed (${word})`, '', {
+       duration: 5000,
+     }) : this.s.createSearch(word);
+    }
   }
 
   saveWord(word: string) {

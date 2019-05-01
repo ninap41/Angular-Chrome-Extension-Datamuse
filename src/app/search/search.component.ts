@@ -10,7 +10,7 @@ import { ViewEncapsulation } from '@angular/compiler/src/core';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.sass']
+  styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
 context;
@@ -28,7 +28,16 @@ title = ['Word', 'Synonym', 'Antonyms', 'Related Words', 'Rhymes'];
   }
 
   public onSubmit(word: string) {
-    this.s.createSearch(word);
+    if(word === '') {
+      this.snackBar.open(`Please Enter Word`, 'You Left The Field Blank', {
+        duration: 5000,
+      });
+    } else {
+      this.s.context.word === word ?
+      this.snackBar.open(`That word is already displayed (${word})`, '', {
+       duration: 5000,
+     }) : this.s.createSearch(word);
+    }
   }
 
 

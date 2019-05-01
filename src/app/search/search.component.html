@@ -8,11 +8,8 @@
         <button *ngIf="this.s.historyIndex > 0" [disabled]="this.ls.uniSpinner.loading === true" (click)="this.s.goBack()" mat-flat-button color="warning">Go Back</button>
      </form>
 </div>
-
 <app-loader *ngIf="this.ls.uniSpinner.loading === true"></app-loader>
-
-
-<!-- {{ context | json }} -->
+<span [innerHTML]="context.errMessage"  class=""></span>
 <div class="" *ngIf="this.ls.uniSpinner.loading === false" >
   <br>
   <app-related [con]="this.context.searchDict.defList" [index]="this.currentIndex" [title]='this.title[0]'></app-related>
