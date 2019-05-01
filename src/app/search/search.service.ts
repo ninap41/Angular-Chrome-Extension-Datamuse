@@ -39,12 +39,11 @@ export class SearchService {
           this.context.searchDict[list[i]] = data.json();
           i === list.length - 1 ? this.validator( this.context.searchDict, list) : console.log('continue')
         },
-        (err) => console.log('error whoops'),
+        (err) => this.context.errMessage = `Datamuse API problem. Ain't me!` + '\n' `${JSON.stringify(err)}`,
         () =>  i === list.length - 1 ? this.finished(this.context.word) : console.log('continue'),
         );
       }
     }, 2000);
-  
     return of(this.context);
     }
 
@@ -64,7 +63,6 @@ export class SearchService {
     }
 
     public finished(word: string) {
-      console.log(word);
       this.history.push(word);
       this.historyIndex += 1;
       this.ls.stopSpinner();
