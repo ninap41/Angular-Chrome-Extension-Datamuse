@@ -9,7 +9,7 @@
      </form>
 </div>
 <app-loader *ngIf="this.ls.uniSpinner.loading === true"></app-loader>
-<span [innerHTML]="context.errMessage"  class=""></span>
+<span *ngIf="this.ls.uniSpinner.loading === false" [innerHTML]="context.errMessage"  class=""></span>
 <div class="" *ngIf="this.ls.uniSpinner.loading === false" >
   <br>
   <app-related [con]="this.context.searchDict.defList" [index]="this.currentIndex" [title]='this.title[0]'></app-related>
