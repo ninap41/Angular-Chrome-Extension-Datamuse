@@ -5,19 +5,21 @@ import { Observable, of } from 'rxjs';
 import { LoaderService } from '../loader/loader.service';
 import { compileBaseDefFromMetadata, compilePipeFromMetadata } from '@angular/compiler';
 import { Context, Set} from '../search/searches.class';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class SearchService {
   context = new Context().createContext();
+  history = [];
+  historyIndex = -1;
 
   constructor(
     private http: Http,
-    private ls: LoaderService
+    private ls: LoaderService,
+    private snackBar: MatSnackBar
   ) {
-    console.log(JSON.stringify(this.context));
   }
 
   createSearch(word: string): Observable<Context> {
@@ -40,17 +42,41 @@ export class SearchService {
           ` : this.context.errMessage = '';
         },
         (err) => console.log('error whoops'),
-        () =>  i === list.length - 1 ? this.finished(word) : console.log('continue'),
+        () =>  i === list.length - 1 ? this.finished(this.context.word) : console.log('continue'),
         );
       }
     }, 2000);
+  
     return of(this.context);
     }
 
     public finished(word: string) {
-      this.context.loadState = false;
-      this.context.history.push(word);
+      console.log(word);
+      this.history.push(word);
+      this.historyIndex += 1;
       this.ls.stopSpinner();
+    }
+
+    public goBack() {
+      this.historyIndex -= 1;
+      console.log("this.context.histIndex goBack " +  this.context.histIndex )
+      if (this.historyIndex == 0 ) {
+        this.snackBar.open('You went all the way back in your history', '', {
+          duration: 2000,
+        });
+        let previousWord = this.history[this.historyIndex];
+        this.createSearch(previousWord)
+        this.history = [];
+        this.historyIndex -= 1;
+      } else {
+        let previousWord = this.history[this.historyIndex];
+        this.createSearch(previousWord)
+        this.historyIndex -= 1;
+        this.snackBar.open(`Went back to previous word...`, `"${this.context.word}"`, {
+          duration: 5000,
+        });
+      }
+
     }
 
     downloadFile(data: any) {

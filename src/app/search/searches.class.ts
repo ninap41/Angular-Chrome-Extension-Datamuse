@@ -116,8 +116,9 @@ export class Context { // dee
     settings: Set;
     errMessage: string;
     sdKeys: Array<string>;
-    history: Array<string>;
     favorites: Array<string>;
+
+
 
   constructor() {
     this.url = 'https://api.datamuse.com';
@@ -139,7 +140,6 @@ export class Context { // dee
     this.errMessage = '';
     this.loadState = false;
     this.loadStateMessage = 'getting info....';
-    this.history = [];
     this.favorites = [];
   }
 

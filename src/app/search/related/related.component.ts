@@ -11,7 +11,7 @@ import { SearchService } from '../search.service';
 export class RelatedComponent implements OnInit {
   @Input() con;
   @Input() title;
-
+  @Input() index;
 
   constructor(
     private snackBar: MatSnackBar,

@@ -17,5 +17,8 @@ export class FavoritesComponent implements OnInit {
   downloadFile(favs: any) {
       this.s.downloadFile(favs);
   }
+  public searchAgain(word: string) {
+    this.s.createSearch(word);
+  }
 
 }
