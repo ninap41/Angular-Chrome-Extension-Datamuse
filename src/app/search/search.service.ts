@@ -59,7 +59,6 @@ export class SearchService {
 
     public goBack() {
       this.historyIndex -= 1;
-      console.log("this.context.histIndex goBack " +  this.context.histIndex )
       if (this.historyIndex == 0 ) {
         this.snackBar.open('You went all the way back in your history', '', {
           duration: 2000,

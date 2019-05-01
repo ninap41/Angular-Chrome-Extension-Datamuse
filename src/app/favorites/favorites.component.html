@@ -5,7 +5,7 @@
 <mat-chip-list>
     <span *ngFor="let word of this.fav; let idx">
       <mat-chip >
-        <span (click)="searchAgain(word.word)">{{word.word}}</span>
+        <span (click)="searchAgain(word)">{{word}}</span>
       </mat-chip>
     </span>
 </mat-chip-list>
