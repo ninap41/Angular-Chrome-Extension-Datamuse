@@ -22,21 +22,11 @@ import { DataLoader } from './loader.class';
     constructor() {
     }
 
-    createSpinner(type: string) {
-      this[type].loading = true;
-      return;
-    }
-
     startSpinner() {
       this.uniSpinner.loading = true;
     }
 
     stopSpinner() {
       this.uniSpinner.loading = false;
-    }
-
-    destroySpinner(type: string) {
-        this[type].loading = false;
-        return;
     }
   }
