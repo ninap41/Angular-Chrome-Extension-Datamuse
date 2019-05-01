@@ -29,7 +29,6 @@ export class SearchService {
     this.context.word = word;
     // tslint:disable-next-line:prefer-for-of
     setTimeout(() => {
-
     for (let i = 0; i < list.length; i++) {
       // tslint:disable-next-line:prefer-const
       let url = this.context.createUrl(list[i]);
@@ -39,7 +38,7 @@ export class SearchService {
           this.context.searchDict[list[i]] = data.json();
           i === list.length - 1 ? this.validator( this.context.searchDict, list) : console.log('continue')
         },
-        (err) => this.context.errMessage = `Datamuse API problem. Ain't me!` + '\n' `${JSON.stringify(err)}`,
+        (err) => this.context.errMessage = `Datamuse API problem. Ain't me!` + '\n' + `${JSON.stringify(err)}`,
         () =>  i === list.length - 1 ? this.finished(this.context.word) : console.log('continue'),
         );
       }
@@ -86,8 +85,25 @@ export class SearchService {
           duration: 5000,
         });
       }
-
     }
+// WIP forward button
+    public goForward() {
+      this.historyIndex += 1;
+      if (this.historyIndex === this.history.length - 1 ) {
+        this.snackBar.open('You are at the end of your history', '', {
+          duration: 2000,
+        });
+        this.historyIndex -= 1;
+      } else {
+        let nextWord = this.history[this.historyIndex];
+        this.createSearch(nextWord)
+        this.historyIndex += 1;
+        this.snackBar.open(`Went back to next word...`, `"${this.context.word}"`, {
+          duration: 5000,
+        });
+      }
+    }
+// WIP forward button
 
     downloadFile(data: any) {
       const blob = new Blob([data], { type: 'text/csv' });
