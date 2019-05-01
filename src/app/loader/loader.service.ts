@@ -16,6 +16,7 @@ import { DataLoader } from './loader.class';
     AntObjListSpinner = new DataLoader();
     SynObjListSpinner  = new DataLoader();
     RelObjListSpinner  = new DataLoader();
+    uniSpinner = new DataLoader();
 
 
     constructor() {
@@ -24,6 +25,14 @@ import { DataLoader } from './loader.class';
     createSpinner(type: string) {
       this[type].loading = true;
       return;
+    }
+
+    startSpinner() {
+      this.uniSpinner.loading = true;
+    }
+
+    stopSpinner() {
+      this.uniSpinner.loading = false;
     }
 
     destroySpinner(type: string) {

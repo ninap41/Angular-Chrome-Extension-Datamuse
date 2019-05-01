@@ -1,0 +1,14 @@
+<div class="container">
+<span *ngIf="this.fav.length ===0">
+  <p>You have no favorites yet.</p>
+</span>
+<mat-chip-list>
+    <span *ngFor="let word of this.fav; let idx">
+      <mat-chip >
+        <span (click)="searchAgain(word.word)">{{word.word}}</span>
+      </mat-chip>
+    </span>
+</mat-chip-list>
+<button class="btn btn-primary"(click) ="downloadFile(this.fav)">Save Words</button>
+
+</div>
