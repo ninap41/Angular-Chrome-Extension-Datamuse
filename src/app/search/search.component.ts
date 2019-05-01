@@ -29,26 +29,27 @@ currentIndex;
 
   }
 
-  // public goBack() {
-  //   if (this.currentIndex === 0 || this.currentIndex === -1) {
-  //     this.snackBar.open('You went all the way back in your history', '', {
-  //       duration: 2000,
-  //     });
-  //   } else {
-  //     this.currentIndex -= 1;
-  //     const word = this.s.context.history[this.currentIndex];
-  //     this.snackBar.open(`Went back to previous word...`, `"${word}"`, {
-  //       duration: 5000,
-  //     });
-  //     this.onSubmit(word);
-  //     this.currentIndex -= 1;
-  //   }
-  // }
-  // public onSubmit(word: string) {
-  //   this.s.createSearch(word);
-  //   this.currentIndex += 1;
+  public goBack() {
+   // working on
+    // if (this.currentIndex === 0 || this.currentIndex === -1) {
+    //   this.snackBar.open('You went all the way back in your history', '', {
+    //     duration: 2000,
+    //   });
+    // } else {
+    //   this.currentIndex -= 1;
+    //   const word = this.s.context.history[this.currentIndex];
+    //   this.snackBar.open(`Went back to previous word...`, `"${word}"`, {
+    //     duration: 5000,
+    //   });
+    //   this.onSubmit(word);
+    //   this.currentIndex -= 1;
+    // }
+  }
+  public onSubmit(word: string) {
+    this.s.createSearch(word);
+    this.currentIndex += 1;
 
-  // }
+  }
 
 
 }
