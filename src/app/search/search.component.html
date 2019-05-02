@@ -33,13 +33,13 @@
 
 <div class="" *ngIf="this.ls.uniSpinner.loading === false" >
   <br>
-  <app-related [con]="this.context.searchDict.defList" [index]="this.currentIndex" [title]='this.title[0]'></app-related>
+  <app-related [con]="this.context.searchDict.defList" [title]='this.title[0]'></app-related>
   <br>
-  <app-related [con]="this.context.searchDict.synList" [index]="this.currentIndex" [title]='this.title[1]'></app-related>
+  <app-related [con]="this.context.searchDict.synList"  [title]='this.title[1]'></app-related>
   <br>
-  <app-related [con]="this.context.searchDict.relList" [index]="this.currentIndex" [title]='this.title[3]'></app-related>
+  <app-related [con]="this.context.searchDict.relList"  [title]='this.title[3]'></app-related>
   <br>
-  <app-related [con]="this.context.searchDict.rhymList" [index]="this.currentIndex" [title]='this.title[4]'></app-related>
+  <app-related [con]="this.context.searchDict.rhymList" [title]='this.title[4]'></app-related>
   <br>
-  <app-related [con]="this.context.searchDict.antList" [index]="this.currentIndex" [title]='this.title[2]'></app-related>
+  <app-related [con]="this.context.searchDict.antList" [title]='this.title[2]'></app-related>
 </div>

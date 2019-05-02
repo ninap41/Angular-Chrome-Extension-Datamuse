@@ -7,7 +7,6 @@ import { compileBaseDefFromMetadata, compilePipeFromMetadata } from '@angular/co
 import { Context, Set} from '../search/searches.class';
 import { MatSnackBar } from '@angular/material';
 import { Validators } from '@angular/forms';
-import { DbService } from './db.service';
 
 @Injectable({
   providedIn: 'root'

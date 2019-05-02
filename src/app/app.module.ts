@@ -24,8 +24,6 @@ import { RelatedComponent } from './search/related/related.component';
 // Services
 import { LoaderService } from './loader/loader.service';
 import { SearchService } from './search/search.service';
-import { DbService } from './search/db.service';
-
 
 
 @NgModule({
@@ -57,7 +55,6 @@ import { DbService } from './search/db.service';
   providers: [
      LoaderService,
      SearchService,
-     DbService
    ],
   bootstrap: [AppComponent]
 })
