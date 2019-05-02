@@ -22,6 +22,7 @@ export class SearchService {
     private ls: LoaderService,
     private snackBar: MatSnackBar
   ) {
+    this.history = []
   }
 
   createSearch(word: string, isNotBackFor: boolean): Observable<Context> {
