@@ -34,7 +34,7 @@ export class RelatedComponent implements OnInit {
     }
   }
 
-  saveWord(word: string, ) {
+  saveWord(word: any ) {
     let bool = null;
     this.s.context.favorites.forEach(w => {
       if (word === w) {

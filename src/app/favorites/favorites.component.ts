@@ -7,12 +7,14 @@ import { SearchService } from '../search/search.service';
 })
 export class FavoritesComponent implements OnInit {
   fav;
+  his
   constructor(
     private s: SearchService
   ) { }
 
   ngOnInit() {
     this.fav = this.s.context.favorites;
+    this.his = this.s.history;
   }
   downloadFile(favs: any) {
       this.s.downloadFile(favs);
