@@ -1,17 +1,36 @@
 
-<div class="container">
+<div class="container-search">
+    <br>
     <form name="wordForm" (ngSubmit)="onSubmit(word.value, false)">
         <mat-form-field>
             <input matInput #word placeholder="Search Word">
         </mat-form-field>
-        <button type="submit" class="button-left" mat-flat-button color="primary">Search</button>
-        <button *ngIf="this.s.historyIndex > 0" [disabled]="this.ls.uniSpinner.loading === true" (click)="this.s.goBack()" mat-flat-button color="warning">Go Back</button>
-        <!-- <button *ngIf="this.s.historyIndex !== this.s.history.length - 1" [disabled]="this.ls.uniSpinner.loading === true" (click)="this.s.goForward()" mat-flat-button color="warning">Go Forward</button> -->
-
+        <button type="submit" 
+          class="button-left" 
+          mat-flat-button color="primary">Search</button>
+        <button *ngIf="this.s.history.length > 0" 
+          matTooltip="Check History"
+          [routerLink]="['favorites']"
+          mat-flat-button color="warning"><i class="fas fa-history"></i></button>
+        <button *ngIf="this.s.historyIndex > 0" 
+          [disabled]="this.ls.uniSpinner.loading === true" 
+          (click)="this.s.goBack(true)" 
+          mat-icon-button
+          matTooltip="Back"  
+          color="warning"><i class="fas fa-chevron-left"></i></button>
+        <button *ngIf="this.s.historyIndex !== this.s.history.length - 1 && this.s.historyIndex  !== this.s.history.length" 
+          [disabled]="this.ls.uniSpinner.loading === true" 
+          (click)="this.s.goForward(true)" 
+          matTooltip="Forward"  
+          mat-icon-button color="warning"  
+          color="warning"><i class="fas fa-chevron-right"></i></button>
      </form>
 </div>
+
 <app-loader *ngIf="this.ls.uniSpinner.loading === true"></app-loader>
+
 <span *ngIf="this.ls.uniSpinner.loading === false" [innerHTML]="context.errMessage"  class=""></span>
+
 <div class="" *ngIf="this.ls.uniSpinner.loading === false" >
   <br>
   <app-related [con]="this.context.searchDict.defList" [index]="this.currentIndex" [title]='this.title[0]'></app-related>

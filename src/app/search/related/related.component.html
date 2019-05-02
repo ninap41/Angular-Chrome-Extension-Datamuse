@@ -6,9 +6,10 @@
             <mat-chip  
             class="example-action-button"
             value="word.word">
-            <span (click)="searchAgain(word.word)">{{ word.word }}    </span> 
+            <span (click)="searchAgain(word.word, false)">{{ word.word }}    </span> 
                 &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
           </mat-chip>
+          <br>
             <div *ngIf="this.title === 'Word'" class="">
               <ul *ngFor="let def of word.defs">
                 <li>{{def}}</li>

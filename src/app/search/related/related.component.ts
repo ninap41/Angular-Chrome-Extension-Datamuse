@@ -19,10 +19,9 @@ export class RelatedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(JSON.stringify(this.con.relList));
   }
 
-  public searchAgain(word: string) {
+  public searchAgain(word: string, boole: boolean) {
     if(word === '') {
       this.snackBar.open(`Please Enter Word`, '', {
         duration: 5000,
@@ -31,11 +30,11 @@ export class RelatedComponent implements OnInit {
       this.s.context.word === word ?
       this.snackBar.open(`That word is already displayed (${word})`, '', {
        duration: 5000,
-     }) : this.s.createSearch(word, true);
+     }) : this.s.createSearch(word, false);
     }
   }
 
-  saveWord(word: string) {
+  saveWord(word: string, ) {
     let bool = null;
     this.s.context.favorites.forEach(w => {
       if (word === w) {

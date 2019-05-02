@@ -7,6 +7,7 @@ import { compileBaseDefFromMetadata, compilePipeFromMetadata } from '@angular/co
 import { Context, Set} from '../search/searches.class';
 import { MatSnackBar } from '@angular/material';
 import { Validators } from '@angular/forms';
+import { DbService } from './db.service';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class SearchService {
       let url = this.context.createUrl(list[i]);
       this.http.get(url)
         .subscribe((data: Response) => {
-          console.log(data.json());
+          // console.log(data.json());
           this.context.searchDict[list[i]] = data.json();
           i === list.length - 1 ? this.validator( this.context.searchDict, list) : console.log('continue')
         },
@@ -61,43 +62,51 @@ export class SearchService {
     }
 
     public finished(word: string, isNotBackFor: boolean) {
-      isNotBackFor ? console.log('dont push history') : this.isNotBackForward() ;
+      isNotBackFor === true ? () => {
+      console.log('dont push history');
+      console.log(this.historyIndex);
+      console.log(JSON.stringify(this.history))
+    }
+       : this.isNotBackForward() ;
       this.ls.stopSpinner();
     }
 
     isNotBackForward() {
       console.log('pushing into history') 
       this.history.push(this.context.word);
-      this.historyIndex += 1;
+      this.historyIndex = this.history.length -1;
+      console.log(this.historyIndex);
+      console.log(JSON.stringify(this.history));
     }
 
-    public goBack() {
+    public goBack(isNotBackFor: boolean) { // we want to be true;
       this.historyIndex -= 1;
-      if (this.historyIndex == 0 ) {
+      if (this.historyIndex == 0) {
         this.snackBar.open('You went all the way back in your history', '', {
           duration: 2000,
         });
         let previousWord = this.history[this.historyIndex];
-        this.createSearch(previousWord, true) // we dont want to push to history
-        this.history = [];
-        this.historyIndex -= 1;
+        this.createSearch(previousWord, isNotBackFor) // we dont want to push to history
       } else {
         let previousWord = this.history[this.historyIndex];
-        this.createSearch(previousWord, true) // we dont want to push to history
-        this.historyIndex -= 1;
+        this.createSearch(previousWord, isNotBackFor) // we dont want to push to history
         this.snackBar.open(`Went back to previous word...`, `"${this.context.word}"`, {
           duration: 5000,
         });
       }
+      console.log('dont push history');
+      console.log(this.historyIndex);
+      console.log(JSON.stringify(this.history))
     }
 // WIP forward button
-    public goForward() {
+
+    public goForward(isNotBackFor: boolean) { // we want to be true;
       this.historyIndex += 1;
-      if (this.historyIndex === this.history.length - 1 ) {
-        this.snackBar.open(' You went forward. You are at the END of your history', '', {
+      if (this.historyIndex === this.history.length ) {
+        this.snackBar.open(' You went forward. You are at the END of your history', '<span>ViewHistory</span>', {
           duration: 2000,
         });
-        this.historyIndex -= 1;
+        this.createSearch(this.context.word, isNotBackFor) // we dont want to push to history
       } else {
         let nextWord = this.history[this.historyIndex];
         this.createSearch(nextWord, true);
