@@ -12,7 +12,7 @@ Adding Soon: some kind of server integration (node/express) for FS.
 
 ## Getting it Into Chrome
 
-*latest build May 1st, 2019*
+*latest build May 2nd, 2019*
 load unpacked extension in extension settings developer mode at this directory  `dist/chrome-angular`. Icon should show in extensions (lil book icon).
 
 ## Development server
