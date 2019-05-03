@@ -171,12 +171,14 @@ var DemoMaterialModule = /** @class */ (function () {
 /*!****************************!*\
   !*** ./src/app/animate.ts ***!
   \****************************/
-/*! exports provided: routerTransition */
+/*! exports provided: routerTransition, spinnerFade, listAnimation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routerTransition", function() { return routerTransition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "spinnerFade", function() { return spinnerFade; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listAnimation", function() { return listAnimation; });
 /* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/animations */ "./node_modules/@angular/animations/fesm5/animations.js");
 
 var routerTransition = Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["trigger"])('routerTransition', [
@@ -194,22 +196,29 @@ var routerTransition = Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["
         ]),
     ]),
 ]);
-// export const spinnerFade = //work on.
-//     trigger('isSpinnerOpen', [
-//         // ...
-//         state('true', style({
-//           opacity: 1,
-//         })),
-//         state('false', style({
-//           opacity: 0,
-//         })),
-//         transition('true => false', [
-//           animate('2s')
-//         ]),
-//         transition('false => true', [
-//           animate('2s')
-//         ]),
-//       ]);
+var spinnerFade = Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["trigger"])('spinnerFade', [
+    Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["state"])('show', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({
+        opacity: 1,
+        position: 'fixed'
+    })),
+    Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["state"])('hide', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({
+        opacity: 0,
+        position: 'fixed'
+    })),
+    Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["transition"])('show => hide', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["animate"])('500ms ease-out')),
+    Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["transition"])('hide => show', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["animate"])('500ms ease-in'))
+]);
+var listAnimation = Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["trigger"])('listAnimation', [
+    Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["transition"])('* => *', [
+        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["query"])(':enter', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({ opacity: 0 }), { optional: true }),
+        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["query"])(':enter', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["stagger"])('100ms', [
+            Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["animate"])('.3s ease-in', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["keyframes"])([
+                Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({ opacity: 0, transform: 'translateY(-25%)', offset: 0 }),
+                Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({ opacity: 1, transform: 'translateY(0)', offset: 1.0 }),
+            ]))
+        ]), { optional: true })
+    ])
+]);
 
 
 /***/ }),
@@ -594,6 +603,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _loader_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./loader.service */ "./src/app/loader/loader.service.ts");
+/* harmony import */ var _animate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../animate */ "./src/app/animate.ts");
+
 
 
 
@@ -606,7 +617,8 @@ var LoaderComponent = /** @class */ (function () {
     LoaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-loader',
-            template: "\n          <mat-progress-spinner\n            class='spinner'\n            color='primary'\n            mode='indeterminate'\n            value='value'>\n          </mat-progress-spinner>\n        ",
+            animations: [_animate__WEBPACK_IMPORTED_MODULE_3__["spinnerFade"]],
+            template: "\n          <mat-progress-spinner\n          [@spinnerFade]=\"this.ls.uniSpinner.loading === true ? 'show' : 'hide'\"\n            class='spinner'\n            color='primary'\n            mode='indeterminate'\n            value='value'>\n          </mat-progress-spinner>\n        ",
             styles: [__webpack_require__(/*! ./loader.component.scss */ "./src/app/loader/loader.component.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_loader_service__WEBPACK_IMPORTED_MODULE_2__["LoaderService"]])
@@ -636,11 +648,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var LoaderService = /** @class */ (function () {
     function LoaderService() {
-        this.RhymObjListSpinner = new _loader_class__WEBPACK_IMPORTED_MODULE_2__["DataLoader"]();
-        this.DefObjListSpinner = new _loader_class__WEBPACK_IMPORTED_MODULE_2__["DataLoader"]();
-        this.AntObjListSpinner = new _loader_class__WEBPACK_IMPORTED_MODULE_2__["DataLoader"]();
-        this.SynObjListSpinner = new _loader_class__WEBPACK_IMPORTED_MODULE_2__["DataLoader"]();
-        this.RelObjListSpinner = new _loader_class__WEBPACK_IMPORTED_MODULE_2__["DataLoader"]();
         this.uniSpinner = new _loader_class__WEBPACK_IMPORTED_MODULE_2__["DataLoader"]();
     }
     LoaderService.prototype.startSpinner = function () {
@@ -669,7 +676,7 @@ var LoaderService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div *ngIf=\"this.con.length > 0\" class=\"container\">\n  <p>{{ this.title }}</p>\n        <mat-chip-list>\n          <span *ngFor=\"let word of this.con; let idx\">\n            <mat-chip  \n            class=\"example-action-button\"\n            value=\"word.word\">\n            <span (click)=\"searchAgain(word.word, false)\">{{ word.word }}    </span> \n                &nbsp;<mat-icon class=\"heart\" (click)=\"saveWord(word.word)\" aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>\n          </mat-chip>\n          <br>\n            <div *ngIf=\"this.title === 'Word'\" class=\"\">\n              <ul *ngFor=\"let def of word.defs\">\n                <li>{{def}}</li>\n              </ul>\n            </div>\n          </span>\n        </mat-chip-list>\n  </div>  "
+module.exports = "\n  <div             \n      [@listAnimation]=\"this.ls.uniSpinner.loading === false\" \n      *ngIf=\"this.con.length > 0\" \n      class=\"container\">\n  <p>{{ this.title }}</p>\n        <mat-chip-list>\n          <span *ngFor=\"let word of this.con; let idx\">\n            <mat-chip  \n            class=\"example-action-button\"\n            value=\"word.word\">\n            <span       \n                (click)=\"searchAgain(word.word, false)\">{{ word.word }}    </span> \n                &nbsp;<mat-icon class=\"heart\" (click)=\"saveWord(word.word)\" aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>\n          </mat-chip>\n          <br>\n            <div *ngIf=\"this.title === 'Word'\" class=\"\">\n              <ul *ngFor=\"let def of word.defs\">\n                <li  >{{def}}</li>\n              </ul>\n            </div>\n          </span>\n        </mat-chip-list>\n  </div>  "
 
 /***/ }),
 
@@ -698,14 +705,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _search_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../search.service */ "./src/app/search/search.service.ts");
+/* harmony import */ var _animate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../animate */ "./src/app/animate.ts");
+/* harmony import */ var _loader_loader_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../loader/loader.service */ "./src/app/loader/loader.service.ts");
+
+
 
 
 
 
 var RelatedComponent = /** @class */ (function () {
-    function RelatedComponent(snackBar, s) {
+    function RelatedComponent(snackBar, s, ls) {
         this.snackBar = snackBar;
         this.s = s;
+        this.ls = ls;
     }
     RelatedComponent.prototype.ngOnInit = function () {
     };
@@ -757,10 +769,12 @@ var RelatedComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-related',
             template: __webpack_require__(/*! ./related.component.html */ "./src/app/search/related/related.component.html"),
+            animations: [_animate__WEBPACK_IMPORTED_MODULE_4__["listAnimation"]],
             styles: [__webpack_require__(/*! ./related.component.scss */ "./src/app/search/related/related.component.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"],
-            _search_service__WEBPACK_IMPORTED_MODULE_3__["SearchService"]])
+            _search_service__WEBPACK_IMPORTED_MODULE_3__["SearchService"],
+            _loader_loader_service__WEBPACK_IMPORTED_MODULE_5__["LoaderService"]])
     ], RelatedComponent);
     return RelatedComponent;
 }());
@@ -776,7 +790,7 @@ var RelatedComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container-search\">\n    <br>\n    <form name=\"wordForm\" (ngSubmit)=\"onSubmit(word.value, false)\">\n        <mat-form-field>\n            <input matInput #word placeholder=\"Search Word\">\n        </mat-form-field>\n        <button type=\"submit\" \n          class=\"button-left\" \n          mat-flat-button color=\"primary\">Search</button>\n        <button *ngIf=\"this.s.history.length > 0\" \n          matTooltip=\"Check History\"\n          [routerLink]=\"['favorites']\"\n          class=\"tinyBut\"\n          mat-flat-button color=\"warning\"><i class=\"fas fa-history\"></i></button>\n        <button *ngIf=\"this.s.historyIndex > 0\" \n          [disabled]=\"this.ls.uniSpinner.loading === true\" \n          (click)=\"this.s.goBack(true)\" \n          class=\"tinyBut\"\n          mat-icon-button\n          matTooltip=\"Back\"  \n          color=\"warning\"><i class=\"fas fa-chevron-left\"></i></button>\n        <button *ngIf=\"this.s.historyIndex !== this.s.history.length - 1 && this.s.historyIndex  !== this.s.history.length\" \n          [disabled]=\"this.ls.uniSpinner.loading === true\" \n          (click)=\"this.s.goForward(true)\" \n          class=\"tinyBut\"\n          matTooltip=\"Forward\"  \n          mat-icon-button color=\"warning\"  \n          color=\"warning\"><i class=\"fas fa-chevron-right\"></i></button>\n     </form>\n</div>\n\n<app-loader *ngIf=\"this.ls.uniSpinner.loading === true\"></app-loader>\n\n<span *ngIf=\"this.ls.uniSpinner.loading === false\" [innerHTML]=\"context.errMessage\"  class=\"\"></span>\n\n<div class=\"\" *ngIf=\"this.ls.uniSpinner.loading === false\" >\n  <br>\n  <app-related [con]=\"this.context.searchDict.defList\" [title]='this.title[0]'></app-related>\n  <br>\n  <app-related [con]=\"this.context.searchDict.synList\"  [title]='this.title[1]'></app-related>\n  <br>\n  <app-related [con]=\"this.context.searchDict.relList\"  [title]='this.title[3]'></app-related>\n  <br>\n  <app-related [con]=\"this.context.searchDict.rhymList\" [title]='this.title[4]'></app-related>\n  <br>\n  <app-related [con]=\"this.context.searchDict.antList\" [title]='this.title[2]'></app-related>\n</div>\n"
+module.exports = "\n<div class=\"container-search\">\n    <br>\n    <form name=\"wordForm\" (ngSubmit)=\"onSubmit(word.value, false)\">\n        <mat-form-field>\n            <input matInput #word placeholder=\"Search Word\">\n        </mat-form-field>\n        <button type=\"submit\" \n          class=\"button-left\" \n          mat-flat-button color=\"primary\">Search</button>\n        <button *ngIf=\"this.s.history.length > 0\" \n          matTooltip=\"Check History\"\n          [routerLink]=\"['favorites']\"\n          class=\"tinyBut\"\n          mat-flat-button color=\"warning\"><i class=\"fas fa-history\"></i></button>\n        <button *ngIf=\"this.s.historyIndex > 0\" \n          [disabled]=\"this.ls.uniSpinner.loading === true\" \n          (click)=\"this.s.goBack(true)\" \n          class=\"tinyBut\"\n          mat-icon-button\n          matTooltip=\"Back\"  \n          color=\"warning\"><i class=\"fas fa-chevron-left\"></i></button>\n        <button *ngIf=\"this.s.historyIndex !== this.s.history.length - 1 && this.s.historyIndex  !== this.s.history.length\" \n          [disabled]=\"this.ls.uniSpinner.loading === true\" \n          (click)=\"this.s.goForward(true)\" \n          class=\"tinyBut\"\n          matTooltip=\"Forward\"  \n          mat-icon-button color=\"warning\"  \n          color=\"warning\"><i class=\"fas fa-chevron-right\"></i></button>\n     </form>\n</div>\n\n<app-loader ></app-loader>\n\n<span *ngIf=\"this.ls.uniSpinner.loading === false\" [innerHTML]=\"context.errMessage\"  class=\"\"></span>\n\n<div class=\"\" *ngIf=\"this.ls.uniSpinner.loading === false\" >\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.defList\" \n      [title]='this.title[0]'></app-related>\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.synList\"  \n      [title]='this.title[1]'></app-related>\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.relList\"  \n      [title]='this.title[3]'></app-related>\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.rhymList\" \n      [title]='this.title[4]'></app-related>\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.antList\" \n      [title]='this.title[2]'></app-related>\n</div>\n"
 
 /***/ }),
 
@@ -806,6 +820,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./search.service */ "./src/app/search/search.service.ts");
 /* harmony import */ var _loader_loader_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../loader/loader.service */ "./src/app/loader/loader.service.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _animate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../animate */ "./src/app/animate.ts");
+
 
 
 
@@ -838,6 +854,7 @@ var SearchComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-search',
             template: __webpack_require__(/*! ./search.component.html */ "./src/app/search/search.component.html"),
+            animations: [_animate__WEBPACK_IMPORTED_MODULE_5__["listAnimation"]],
             styles: [__webpack_require__(/*! ./search.component.scss */ "./src/app/search/search.component.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_search_service__WEBPACK_IMPORTED_MODULE_2__["SearchService"],

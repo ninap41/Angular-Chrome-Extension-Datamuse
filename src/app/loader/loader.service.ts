@@ -11,13 +11,7 @@ import { DataLoader } from './loader.class';
   })
 
   export class LoaderService {
-    RhymObjListSpinner  = new DataLoader();
-    DefObjListSpinner  = new DataLoader();
-    AntObjListSpinner = new DataLoader();
-    SynObjListSpinner  = new DataLoader();
-    RelObjListSpinner  = new DataLoader();
     uniSpinner = new DataLoader();
-
 
     constructor() {
     }

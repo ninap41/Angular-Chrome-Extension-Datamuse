@@ -1,18 +1,22 @@
 
-  <div *ngIf="this.con.length > 0" class="container">
+  <div             
+      [@listAnimation]="this.ls.uniSpinner.loading === false" 
+      *ngIf="this.con.length > 0" 
+      class="container">
   <p>{{ this.title }}</p>
         <mat-chip-list>
           <span *ngFor="let word of this.con; let idx">
             <mat-chip  
             class="example-action-button"
             value="word.word">
-            <span (click)="searchAgain(word.word, false)">{{ word.word }}    </span> 
+            <span       
+                (click)="searchAgain(word.word, false)">{{ word.word }}    </span> 
                 &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
           </mat-chip>
           <br>
             <div *ngIf="this.title === 'Word'" class="">
               <ul *ngFor="let def of word.defs">
-                <li>{{def}}</li>
+                <li  >{{def}}</li>
               </ul>
             </div>
           </span>

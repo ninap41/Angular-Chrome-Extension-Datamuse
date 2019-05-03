@@ -2,11 +2,14 @@ import { Component, OnInit, Input  } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { MatSnackBar } from '@angular/material';
 import { SearchService } from '../search.service';
-
+import { listAnimation } from '../../animate';
+import { LoaderService } from '../../loader/loader.service'
 @Component({
   selector: 'app-related',
   templateUrl: './related.component.html',
-  styleUrls: ['./related.component.scss']
+  styleUrls: ['./related.component.scss'],
+  animations: [ listAnimation ],
+
 })
 export class RelatedComponent implements OnInit {
   @Input() con;
@@ -15,7 +18,8 @@ export class RelatedComponent implements OnInit {
 
   constructor(
     private snackBar: MatSnackBar,
-    private s: SearchService
+    private s: SearchService,
+    private ls: LoaderService
   ) { }
 
   ngOnInit() {
