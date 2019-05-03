@@ -11,16 +11,19 @@
         <button *ngIf="this.s.history.length > 0" 
           matTooltip="Check History"
           [routerLink]="['favorites']"
+          class="tinyBut"
           mat-flat-button color="warning"><i class="fas fa-history"></i></button>
         <button *ngIf="this.s.historyIndex > 0" 
           [disabled]="this.ls.uniSpinner.loading === true" 
           (click)="this.s.goBack(true)" 
+          class="tinyBut"
           mat-icon-button
           matTooltip="Back"  
           color="warning"><i class="fas fa-chevron-left"></i></button>
         <button *ngIf="this.s.historyIndex !== this.s.history.length - 1 && this.s.historyIndex  !== this.s.history.length" 
           [disabled]="this.ls.uniSpinner.loading === true" 
           (click)="this.s.goForward(true)" 
+          class="tinyBut"
           matTooltip="Forward"  
           mat-icon-button color="warning"  
           color="warning"><i class="fas fa-chevron-right"></i></button>

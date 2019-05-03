@@ -281,7 +281,7 @@ module.exports = "   \n<div class=\"background\">\n    <mat-menu #appMenu=\"matM
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Nothing+You+Could+Do|Rock+Salt\");\n.background {\n  margin: 0 auto;\n  padding: 1em 0em;\n  width: 750px;\n  height: 750px; }\n.m-heading {\n  z-index: 2;\n  position: relative;\n  padding-left: 1.5em;\n  padding-bottom: 1em;\n  vertical-align: top;\n  display: inline-block; }\n.font-fam1 {\n  font-family: 'Rock Salt', cursive; }\n.font-fam2 {\n  font-family: 'Nothing You Could Do', cursive;\n  font-size: 1.2em; }\n.mat-fab {\n  position: absolute;\n  top: 0; }\n.gray {\n  color: rgba(128, 128, 128, 0.671); }\n.font-fam3 {\n  font-family: 'Covered By Your Grace', cursive;\n  font-size: 1.4em; }\n.mat-chip-list, button {\n  margin: 1em 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9hbmd1bGFyLWNocm9tZS1leHRlbnNpb24vY2hyb21lLWFuZ3VsYXIvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkdBQVk7QUFDWjtFQUNJLGNBQWM7RUFDZCxnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLGFBQWEsRUFBQTtBQUdoQjtFQUNHLFVBQVU7RUFDVixrQkFBa0I7RUFDbEIsbUJBQW1CO0VBQ25CLG1CQUFtQjtFQUNuQixtQkFBbUI7RUFDbkIscUJBQW9CLEVBQUE7QUFHeEI7RUFDSSxpQ0FBaUMsRUFBQTtBQUdyQztFQUNFLDRDQUE0QztFQUM1QyxnQkFDRixFQUFBO0FBQ0E7RUFDSSxrQkFBa0I7RUFDbEIsTUFBTSxFQUFBO0FBR1Y7RUFDSSxpQ0FBaUMsRUFBQTtBQUdyQztFQUNDLDZDQUE2QztFQUM3QyxnQkFDRCxFQUFBO0FBTUE7RUFDSSxhQUFhLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3M/ZmFtaWx5PUNvdmVyZWQrQnkrWW91citHcmFjZXxOb3RoaW5nK1lvdStDb3VsZCtEb3xSb2NrK1NhbHQnKTtcbi5iYWNrZ3JvdW5ke1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICAgIHBhZGRpbmc6IDFlbSAwZW07XG4gICAgd2lkdGg6IDc1MHB4O1xuICAgIGhlaWdodDogNzUwcHg7XG59XG5cbiAubS1oZWFkaW5nICB7XG4gICAgei1pbmRleDogMjtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgcGFkZGluZy1sZWZ0OiAxLjVlbTtcbiAgICBwYWRkaW5nLWJvdHRvbTogMWVtO1xuICAgIHZlcnRpY2FsLWFsaWduOiB0b3A7XG4gICAgZGlzcGxheTppbmxpbmUtYmxvY2s7XG59XG5cbi5mb250LWZhbTEge1xuICAgIGZvbnQtZmFtaWx5OiAnUm9jayBTYWx0JywgY3Vyc2l2ZTtcbn1cblxuLmZvbnQtZmFtMiB7XG4gIGZvbnQtZmFtaWx5OiAnTm90aGluZyBZb3UgQ291bGQgRG8nLCBjdXJzaXZlO1xuICBmb250LXNpemU6IDEuMmVtXG59XG4ubWF0LWZhYiB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogMDtcbn1cblxuLmdyYXkge1xuICAgIGNvbG9yOiByZ2JhKDEyOCwgMTI4LCAxMjgsIDAuNjcxKTtcbn1cblxuLmZvbnQtZmFtMyB7XG4gZm9udC1mYW1pbHk6ICdDb3ZlcmVkIEJ5IFlvdXIgR3JhY2UnLCBjdXJzaXZlO1xuIGZvbnQtc2l6ZTogMS40ZW1cbn1cblxuLy8gZm9udC1mYW1pbHk6ICdSb2NrIFNhbHQnLCBjdXJzaXZlO1xuLy8gZm9udC1mYW1pbHk6ICdOb3RoaW5nIFlvdSBDb3VsZCBEbycsIGN1cnNpdmU7XG4vLyBmb250LWZhbWlseTogJ0NvdmVyZWQgQnkgWW91ciBHcmFjZScsIGN1cnNpdmU7XG5cbi5tYXQtY2hpcC1saXN0LCBidXR0b24ge1xuICAgIG1hcmdpbjogMWVtIDA7XG59Il19 */"
+module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Nothing+You+Could+Do|Rock+Salt\");\n.background {\n  margin: 0 auto;\n  padding: 1em 0em;\n  width: 625px;\n  height: 625px; }\n.m-heading {\n  z-index: 2;\n  position: relative;\n  padding-left: 1.5em;\n  padding-bottom: 1em;\n  vertical-align: top;\n  display: inline-block; }\n.font-fam1 {\n  font-family: 'Rock Salt', cursive; }\n.font-fam2 {\n  font-family: 'Nothing You Could Do', cursive;\n  font-size: 1.2em; }\n.mat-fab {\n  position: absolute;\n  top: 0; }\n.gray {\n  color: rgba(128, 128, 128, 0.671); }\n.font-fam3 {\n  font-family: 'Covered By Your Grace', cursive;\n  font-size: 1.4em; }\n.mat-chip-list, button {\n  margin: 1em 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9EZXNrdG9wL2Nocm9tZS1hbmd1bGFyLWNsb25lL0FuZ3VsYXItQ2hyb21lLUV4dGVuc2lvbi1EYXRhbXVzZS9zcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyR0FBWTtBQUNaO0VBQ0ksY0FBYztFQUNkLGdCQUFnQjtFQUNoQixZQUFZO0VBQ1osYUFBYSxFQUFBO0FBR2hCO0VBQ0csVUFBVTtFQUNWLGtCQUFrQjtFQUNsQixtQkFBbUI7RUFDbkIsbUJBQW1CO0VBQ25CLG1CQUFtQjtFQUNuQixxQkFBb0IsRUFBQTtBQUd4QjtFQUNJLGlDQUFpQyxFQUFBO0FBR3JDO0VBQ0UsNENBQTRDO0VBQzVDLGdCQUNGLEVBQUE7QUFDQTtFQUNJLGtCQUFrQjtFQUNsQixNQUFNLEVBQUE7QUFHVjtFQUNJLGlDQUFpQyxFQUFBO0FBR3JDO0VBQ0MsNkNBQTZDO0VBQzdDLGdCQUNELEVBQUE7QUFNQTtFQUNJLGFBQWEsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgdXJsKCdodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2Nzcz9mYW1pbHk9Q292ZXJlZCtCeStZb3VyK0dyYWNlfE5vdGhpbmcrWW91K0NvdWxkK0RvfFJvY2srU2FsdCcpO1xuLmJhY2tncm91bmR7XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gICAgcGFkZGluZzogMWVtIDBlbTtcbiAgICB3aWR0aDogNjI1cHg7XG4gICAgaGVpZ2h0OiA2MjVweDtcbn1cblxuIC5tLWhlYWRpbmcgIHtcbiAgICB6LWluZGV4OiAyO1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBwYWRkaW5nLWxlZnQ6IDEuNWVtO1xuICAgIHBhZGRpbmctYm90dG9tOiAxZW07XG4gICAgdmVydGljYWwtYWxpZ246IHRvcDtcbiAgICBkaXNwbGF5OmlubGluZS1ibG9jaztcbn1cblxuLmZvbnQtZmFtMSB7XG4gICAgZm9udC1mYW1pbHk6ICdSb2NrIFNhbHQnLCBjdXJzaXZlO1xufVxuXG4uZm9udC1mYW0yIHtcbiAgZm9udC1mYW1pbHk6ICdOb3RoaW5nIFlvdSBDb3VsZCBEbycsIGN1cnNpdmU7XG4gIGZvbnQtc2l6ZTogMS4yZW1cbn1cbi5tYXQtZmFiIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiAwO1xufVxuXG4uZ3JheSB7XG4gICAgY29sb3I6IHJnYmEoMTI4LCAxMjgsIDEyOCwgMC42NzEpO1xufVxuXG4uZm9udC1mYW0zIHtcbiBmb250LWZhbWlseTogJ0NvdmVyZWQgQnkgWW91ciBHcmFjZScsIGN1cnNpdmU7XG4gZm9udC1zaXplOiAxLjRlbVxufVxuXG4vLyBmb250LWZhbWlseTogJ1JvY2sgU2FsdCcsIGN1cnNpdmU7XG4vLyBmb250LWZhbWlseTogJ05vdGhpbmcgWW91IENvdWxkIERvJywgY3Vyc2l2ZTtcbi8vIGZvbnQtZmFtaWx5OiAnQ292ZXJlZCBCeSBZb3VyIEdyYWNlJywgY3Vyc2l2ZTtcblxuLm1hdC1jaGlwLWxpc3QsIGJ1dHRvbiB7XG4gICAgbWFyZ2luOiAxZW0gMDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -356,7 +356,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search_related_related_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./search/related/related.component */ "./src/app/search/related/related.component.ts");
 /* harmony import */ var _loader_loader_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./loader/loader.service */ "./src/app/loader/loader.service.ts");
 /* harmony import */ var _search_search_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./search/search.service */ "./src/app/search/search.service.ts");
-/* harmony import */ var _search_db_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./search/db.service */ "./src/app/search/db.service.ts");
 
 
 
@@ -379,7 +378,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Services
-
 
 
 var AppModule = /** @class */ (function () {
@@ -414,7 +412,6 @@ var AppModule = /** @class */ (function () {
             providers: [
                 _loader_loader_service__WEBPACK_IMPORTED_MODULE_18__["LoaderService"],
                 _search_search_service__WEBPACK_IMPORTED_MODULE_19__["SearchService"],
-                _search_db_service__WEBPACK_IMPORTED_MODULE_20__["DbService"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
         })
@@ -580,7 +577,7 @@ var DataLoader = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".spinner {\n  position: relative;\n  margin-top: 2em;\n  margin: 0 auto;\n  left: 0;\n  right: 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9hbmd1bGFyLWNocm9tZS1leHRlbnNpb24vY2hyb21lLWFuZ3VsYXIvc3JjL2FwcC9sb2FkZXIvbG9hZGVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQWtCO0VBQ2xCLGVBQWU7RUFDZixjQUFjO0VBQ2QsT0FBTztFQUNQLFFBQVEsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2xvYWRlci9sb2FkZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc3Bpbm5lcntcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWFyZ2luLXRvcDogMmVtO1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICAgIGxlZnQ6IDA7XG4gICAgcmlnaHQ6IDA7XG59Il19 */"
+module.exports = ".spinner {\n  position: relative;\n  margin-top: 2em;\n  margin: 0 auto;\n  left: 0;\n  right: 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9EZXNrdG9wL2Nocm9tZS1hbmd1bGFyLWNsb25lL0FuZ3VsYXItQ2hyb21lLUV4dGVuc2lvbi1EYXRhbXVzZS9zcmMvYXBwL2xvYWRlci9sb2FkZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBa0I7RUFDbEIsZUFBZTtFQUNmLGNBQWM7RUFDZCxPQUFPO0VBQ1AsUUFBUSxFQUFBIiwiZmlsZSI6InNyYy9hcHAvbG9hZGVyL2xvYWRlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zcGlubmVye1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBtYXJnaW4tdG9wOiAyZW07XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gICAgbGVmdDogMDtcbiAgICByaWdodDogMDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -665,42 +662,6 @@ var LoaderService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/search/db.service.ts":
-/*!**************************************!*\
-  !*** ./src/app/search/db.service.ts ***!
-  \**************************************/
-/*! exports provided: DbService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DbService", function() { return DbService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-var DbService = /** @class */ (function () {
-    function DbService(
-    // private low: low,
-    // private db : db
-    ) {
-        // this.dbase = new db();
-        // const adapter = new FileSync('db.json')
-        // this.dbase = this.low(adapter);
-    }
-    DbService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], DbService);
-    return DbService;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/search/related/related.component.html":
 /*!*******************************************************!*\
   !*** ./src/app/search/related/related.component.html ***!
@@ -719,7 +680,7 @@ module.exports = "\n  <div *ngIf=\"this.con.length > 0\" class=\"container\">\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Neucha\");\n.example-container > * {\n  width: 100%; }\n.button-left {\n  margin: 0em 1em; }\n.mat-form-field, .mat-tab-group {\n  padding-top: 1em; }\n.font-fam3 {\n  font-family: 'Nothing You Could Do', cursive; }\n.err {\n  font-family: 'Nothing You Could Do', cursive;\n  word-spacing: 2px;\n  font-size: 1.5em;\n  font-weight: 600; }\n.mat-progress-spinner {\n  margin: 0 auto;\n  background-color: #bdbdbd; }\n.remove {\n  cursor: pointer; }\n.heart {\n  cursor: pointer;\n  color: #cf1d7f;\n  white-space: pre;\n  max-height: 10px;\n  font-size: 14px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9hbmd1bGFyLWNocm9tZS1leHRlbnNpb24vY2hyb21lLWFuZ3VsYXIvc3JjL2FwcC9zZWFyY2gvcmVsYXRlZC9yZWxhdGVkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBLDZEQUFZO0FBS1o7RUFDRSxXQUFXLEVBQUE7QUFHYjtFQUNFLGVBQWUsRUFBQTtBQUdqQjtFQUNFLGdCQUFnQixFQUFBO0FBR2xCO0VBQ0UsNENBQTRDLEVBQUE7QUFHOUM7RUFDRSw0Q0FBNEM7RUFDNUMsaUJBQWlCO0VBQ2pCLGdCQUFnQjtFQUNoQixnQkFBZ0IsRUFBQTtBQUVsQjtFQUNFLGNBQWM7RUFDZCx5QkFBb0MsRUFBQTtBQUd0QztFQUNFLGVBQWUsRUFBQTtBQUdqQjtFQUNFLGVBQWU7RUFDZixjQUF3QjtFQUN4QixnQkFBZTtFQUNmLGdCQUFnQjtFQUNoQixlQUFlLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9zZWFyY2gvcmVsYXRlZC9yZWxhdGVkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG5AaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3M/ZmFtaWx5PU5ldWNoYScpO1xuXG4uZXhhbXBsZS1jb250YWluZXIge1xufVxuXG4uZXhhbXBsZS1jb250YWluZXIgPiAqIHtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbi5idXR0b24tbGVmdCB7XG4gIG1hcmdpbjogMGVtIDFlbTtcbn1cblxuLm1hdC1mb3JtLWZpZWxkLCAubWF0LXRhYi1ncm91cCB7XG4gIHBhZGRpbmctdG9wOiAxZW07XG59XG5cbi5mb250LWZhbTMge1xuICBmb250LWZhbWlseTogJ05vdGhpbmcgWW91IENvdWxkIERvJywgY3Vyc2l2ZTtcbn1cblxuLmVyciB7XG4gIGZvbnQtZmFtaWx5OiAnTm90aGluZyBZb3UgQ291bGQgRG8nLCBjdXJzaXZlO1xuICB3b3JkLXNwYWNpbmc6IDJweDtcbiAgZm9udC1zaXplOiAxLjVlbTtcbiAgZm9udC13ZWlnaHQ6IDYwMDtcbn1cbi5tYXQtcHJvZ3Jlc3Mtc3Bpbm5lciB7XG4gIG1hcmdpbjogMCBhdXRvO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTg5LCAxODksIDE4OSlcbn1cblxuLnJlbW92ZSB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLmhlYXJ0IHtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBjb2xvcjogcmdiKDIwNywgMjksIDEyNyk7XG4gIHdoaXRlLXNwYWNlOnByZTtcbiAgbWF4LWhlaWdodDogMTBweDtcbiAgZm9udC1zaXplOiAxNHB4O1xufVxuIl19 */"
+module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Neucha\");\n.example-container > * {\n  width: 100%; }\n.button-left {\n  margin: 0em 1em; }\n.mat-form-field, .mat-tab-group {\n  padding-top: 1em; }\n.font-fam3 {\n  font-family: 'Nothing You Could Do', cursive; }\n.err {\n  font-family: 'Nothing You Could Do', cursive;\n  word-spacing: 2px;\n  font-size: 1.5em;\n  font-weight: 600; }\n.mat-progress-spinner {\n  margin: 0 auto;\n  background-color: #bdbdbd; }\n.remove {\n  cursor: pointer; }\n.heart {\n  cursor: pointer;\n  color: #cf1d7f;\n  white-space: pre;\n  max-height: 10px;\n  font-size: 14px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9EZXNrdG9wL2Nocm9tZS1hbmd1bGFyLWNsb25lL0FuZ3VsYXItQ2hyb21lLUV4dGVuc2lvbi1EYXRhbXVzZS9zcmMvYXBwL3NlYXJjaC9yZWxhdGVkL3JlbGF0ZWQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0EsNkRBQVk7QUFLWjtFQUNFLFdBQVcsRUFBQTtBQUdiO0VBQ0UsZUFBZSxFQUFBO0FBR2pCO0VBQ0UsZ0JBQWdCLEVBQUE7QUFHbEI7RUFDRSw0Q0FBNEMsRUFBQTtBQUc5QztFQUNFLDRDQUE0QztFQUM1QyxpQkFBaUI7RUFDakIsZ0JBQWdCO0VBQ2hCLGdCQUFnQixFQUFBO0FBRWxCO0VBQ0UsY0FBYztFQUNkLHlCQUFvQyxFQUFBO0FBR3RDO0VBQ0UsZUFBZSxFQUFBO0FBR2pCO0VBQ0UsZUFBZTtFQUNmLGNBQXdCO0VBQ3hCLGdCQUFlO0VBQ2YsZ0JBQWdCO0VBQ2hCLGVBQWUsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3NlYXJjaC9yZWxhdGVkL3JlbGF0ZWQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbkBpbXBvcnQgdXJsKCdodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2Nzcz9mYW1pbHk9TmV1Y2hhJyk7XG5cbi5leGFtcGxlLWNvbnRhaW5lciB7XG59XG5cbi5leGFtcGxlLWNvbnRhaW5lciA+ICoge1xuICB3aWR0aDogMTAwJTtcbn1cblxuLmJ1dHRvbi1sZWZ0IHtcbiAgbWFyZ2luOiAwZW0gMWVtO1xufVxuXG4ubWF0LWZvcm0tZmllbGQsIC5tYXQtdGFiLWdyb3VwIHtcbiAgcGFkZGluZy10b3A6IDFlbTtcbn1cblxuLmZvbnQtZmFtMyB7XG4gIGZvbnQtZmFtaWx5OiAnTm90aGluZyBZb3UgQ291bGQgRG8nLCBjdXJzaXZlO1xufVxuXG4uZXJyIHtcbiAgZm9udC1mYW1pbHk6ICdOb3RoaW5nIFlvdSBDb3VsZCBEbycsIGN1cnNpdmU7XG4gIHdvcmQtc3BhY2luZzogMnB4O1xuICBmb250LXNpemU6IDEuNWVtO1xuICBmb250LXdlaWdodDogNjAwO1xufVxuLm1hdC1wcm9ncmVzcy1zcGlubmVyIHtcbiAgbWFyZ2luOiAwIGF1dG87XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigxODksIDE4OSwgMTg5KVxufVxuXG4ucmVtb3ZlIHtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uaGVhcnQge1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIGNvbG9yOiByZ2IoMjA3LCAyOSwgMTI3KTtcbiAgd2hpdGUtc3BhY2U6cHJlO1xuICBtYXgtaGVpZ2h0OiAxMHB4O1xuICBmb250LXNpemU6IDE0cHg7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -815,7 +776,7 @@ var RelatedComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container-search\">\n    <br>\n    <form name=\"wordForm\" (ngSubmit)=\"onSubmit(word.value, false)\">\n        <mat-form-field>\n            <input matInput #word placeholder=\"Search Word\">\n        </mat-form-field>\n        <button type=\"submit\" \n          class=\"button-left\" \n          mat-flat-button color=\"primary\">Search</button>\n        <button *ngIf=\"this.s.history.length > 0\" \n          matTooltip=\"Check History\"\n          [routerLink]=\"['favorites']\"\n          mat-flat-button color=\"warning\"><i class=\"fas fa-history\"></i></button>\n        <button *ngIf=\"this.s.historyIndex > 0\" \n          [disabled]=\"this.ls.uniSpinner.loading === true\" \n          (click)=\"this.s.goBack(true)\" \n          mat-icon-button\n          matTooltip=\"Back\"  \n          color=\"warning\"><i class=\"fas fa-chevron-left\"></i></button>\n        <button *ngIf=\"this.s.historyIndex !== this.s.history.length - 1 && this.s.historyIndex  !== this.s.history.length\" \n          [disabled]=\"this.ls.uniSpinner.loading === true\" \n          (click)=\"this.s.goForward(true)\" \n          matTooltip=\"Forward\"  \n          mat-icon-button color=\"warning\"  \n          color=\"warning\"><i class=\"fas fa-chevron-right\"></i></button>\n     </form>\n</div>\n\n<app-loader *ngIf=\"this.ls.uniSpinner.loading === true\"></app-loader>\n\n<span *ngIf=\"this.ls.uniSpinner.loading === false\" [innerHTML]=\"context.errMessage\"  class=\"\"></span>\n\n<div class=\"\" *ngIf=\"this.ls.uniSpinner.loading === false\" >\n  <br>\n  <app-related [con]=\"this.context.searchDict.defList\" [index]=\"this.currentIndex\" [title]='this.title[0]'></app-related>\n  <br>\n  <app-related [con]=\"this.context.searchDict.synList\" [index]=\"this.currentIndex\" [title]='this.title[1]'></app-related>\n  <br>\n  <app-related [con]=\"this.context.searchDict.relList\" [index]=\"this.currentIndex\" [title]='this.title[3]'></app-related>\n  <br>\n  <app-related [con]=\"this.context.searchDict.rhymList\" [index]=\"this.currentIndex\" [title]='this.title[4]'></app-related>\n  <br>\n  <app-related [con]=\"this.context.searchDict.antList\" [index]=\"this.currentIndex\" [title]='this.title[2]'></app-related>\n</div>\n"
+module.exports = "\n<div class=\"container-search\">\n    <br>\n    <form name=\"wordForm\" (ngSubmit)=\"onSubmit(word.value, false)\">\n        <mat-form-field>\n            <input matInput #word placeholder=\"Search Word\">\n        </mat-form-field>\n        <button type=\"submit\" \n          class=\"button-left\" \n          mat-flat-button color=\"primary\">Search</button>\n        <button *ngIf=\"this.s.history.length > 0\" \n          matTooltip=\"Check History\"\n          [routerLink]=\"['favorites']\"\n          class=\"tinyBut\"\n          mat-flat-button color=\"warning\"><i class=\"fas fa-history\"></i></button>\n        <button *ngIf=\"this.s.historyIndex > 0\" \n          [disabled]=\"this.ls.uniSpinner.loading === true\" \n          (click)=\"this.s.goBack(true)\" \n          class=\"tinyBut\"\n          mat-icon-button\n          matTooltip=\"Back\"  \n          color=\"warning\"><i class=\"fas fa-chevron-left\"></i></button>\n        <button *ngIf=\"this.s.historyIndex !== this.s.history.length - 1 && this.s.historyIndex  !== this.s.history.length\" \n          [disabled]=\"this.ls.uniSpinner.loading === true\" \n          (click)=\"this.s.goForward(true)\" \n          class=\"tinyBut\"\n          matTooltip=\"Forward\"  \n          mat-icon-button color=\"warning\"  \n          color=\"warning\"><i class=\"fas fa-chevron-right\"></i></button>\n     </form>\n</div>\n\n<app-loader *ngIf=\"this.ls.uniSpinner.loading === true\"></app-loader>\n\n<span *ngIf=\"this.ls.uniSpinner.loading === false\" [innerHTML]=\"context.errMessage\"  class=\"\"></span>\n\n<div class=\"\" *ngIf=\"this.ls.uniSpinner.loading === false\" >\n  <br>\n  <app-related [con]=\"this.context.searchDict.defList\" [title]='this.title[0]'></app-related>\n  <br>\n  <app-related [con]=\"this.context.searchDict.synList\"  [title]='this.title[1]'></app-related>\n  <br>\n  <app-related [con]=\"this.context.searchDict.relList\"  [title]='this.title[3]'></app-related>\n  <br>\n  <app-related [con]=\"this.context.searchDict.rhymList\" [title]='this.title[4]'></app-related>\n  <br>\n  <app-related [con]=\"this.context.searchDict.antList\" [title]='this.title[2]'></app-related>\n</div>\n"
 
 /***/ }),
 
@@ -826,7 +787,7 @@ module.exports = "\n<div class=\"container-search\">\n    <br>\n    <form name=\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".button-left {\n  margin: 0 1em; }\n\n.container-search {\n  position: relative;\n  width: 100%;\n  margin: 0 auto; }\n\nform {\n  position: relative;\n  right: 0;\n  margin: 0 auto; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9hbmd1bGFyLWNocm9tZS1leHRlbnNpb24vY2hyb21lLWFuZ3VsYXIvc3JjL2FwcC9zZWFyY2gvc2VhcmNoLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksYUFBYSxFQUFBOztBQUdqQjtFQUVJLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsY0FBYyxFQUFBOztBQUlsQjtFQUNJLGtCQUFrQjtFQUNsQixRQUFPO0VBQ1AsY0FBYyxFQUFBIiwiZmlsZSI6InNyYy9hcHAvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5idXR0b24tbGVmdCB7XG4gICAgbWFyZ2luOiAwIDFlbTtcbn1cblxuLmNvbnRhaW5lci1zZWFyY2gge1xuICBcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gXG59XG5cbmZvcm0ge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICByaWdodDowO1xuICAgIG1hcmdpbjogMCBhdXRvO1xufSJdfQ== */"
+module.exports = ".button-left {\n  margin: 0 1em; }\n\n.container-search {\n  position: relative;\n  width: 100%;\n  margin: 0 auto; }\n\n.container-search form {\n    position: relative;\n    left: 0;\n    right: 0;\n    padding: 0 15%; }\n\n.tinyBut {\n  max-width: 20px;\n  margin: 0 2px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9EZXNrdG9wL2Nocm9tZS1hbmd1bGFyLWNsb25lL0FuZ3VsYXItQ2hyb21lLUV4dGVuc2lvbi1EYXRhbXVzZS9zcmMvYXBwL3NlYXJjaC9zZWFyY2guY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFhLEVBQUE7O0FBR2pCO0VBRUksa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxjQUFjLEVBQUE7O0FBSmxCO0lBT1Esa0JBQWtCO0lBQ2xCLE9BQU07SUFDTixRQUFPO0lBQ1AsY0FBYSxFQUFBOztBQUtyQjtFQUNJLGVBQWU7RUFDZixhQUFhLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9zZWFyY2gvc2VhcmNoLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmJ1dHRvbi1sZWZ0IHtcbiAgICBtYXJnaW46IDAgMWVtO1xufVxuXG4uY29udGFpbmVyLXNlYXJjaCB7XG4gIFxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBtYXJnaW46IDAgYXV0bztcblxuICAgIGZvcm0ge1xuICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICAgIGxlZnQ6MDtcbiAgICAgICAgcmlnaHQ6MDtcbiAgICAgICAgcGFkZGluZzowIDE1JTtcbiAgICAgICAgXG4gICAgfVxufVxuXG4udGlueUJ1dCB7XG4gICAgbWF4LXdpZHRoOiAyMHB4OyBcbiAgICBtYXJnaW46IDAgMnB4O1xufVxuIl19 */"
 
 /***/ }),
 
@@ -1206,7 +1167,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/Niner/angular-chrome-extension/chrome-angular/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/Niner/Desktop/chrome-angular-clone/Angular-Chrome-Extension-Datamuse/src/main.ts */"./src/main.ts");
 
 
 /***/ })

@@ -9,7 +9,6 @@
         "default_icon":  "assets/icon128.png",
         "default_popup": "index.html"
     },
-
     "permissions": [
         "storage" 
     ],
@@ -23,3 +22,4 @@
         "128": "assets/icon128.png"
     }
   }
+  

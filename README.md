@@ -12,7 +12,7 @@ Adding Soon: some kind of server integration (node/express) for FS.
 
 ## Getting it Into Chrome
 
-**ATTENTION. Currently having difficulty with `ng build` and getting the extension to work in chrome. Was working before May. However, I have an old build within the dist folder, I have added to this repo, that should work if you download it. It is the latest as of May2nd.This app was near complete except for an annoying form hugging the extension border. So, technically finished. Please enjoy**
+**ATTENTION. Currently having difficulty with `ng build`! Was working before May. HOWEVER, I have an old build within the dist folder I have added to this repo that should work if you download it and add to chrome. Do not download, delete the dist, and then run `ng build` until this is fixed! All the features are up to date as of May2nd. History, favorites, search, everything, etc. This app was near complete except for ONE padding issue on the form in the extension So, technically finished project. Please enjoy**
 
 *latest build May 2nd, 2019*
 load unpacked extension in extension settings developer mode at this directory  `dist/chrome-angular`. Icon should show in extensions (lil book icon).
