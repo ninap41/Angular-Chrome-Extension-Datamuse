@@ -15,13 +15,15 @@ export class SearchService {
   context = new Context().createContext();
   history = [];
   historyIndex = -1;
-
+  serviceLocalStorage;
+  
   constructor(
     private http: Http,
     private ls: LoaderService,
     private snackBar: MatSnackBar
   ) {
     this.history = []
+    this.validateCreateStorage();
   }
 
   createSearch(word: string, isNotBackFor: boolean): Observable<Context> {
@@ -98,7 +100,7 @@ export class SearchService {
       console.log(this.historyIndex);
       console.log(JSON.stringify(this.history))
     }
-// WIP forward button
+
 
     public goForward(isNotBackFor: boolean) { // we want to be true;
       this.historyIndex += 1;
@@ -116,12 +118,42 @@ export class SearchService {
         });
       }
     }
-// WIP forward button
 
-    downloadFile(data: any) {
-      const blob = new Blob([data], { type: 'text/csv' });
-      const url = window.URL.createObjectURL(blob);
-      window.open(url);
+    validateCreateStorage() {
+      if (localStorage.getItem("favorites") === null) { //checks if context exists 
+        let obj = { favorites: []}
+        localStorage.setItem("favorites", JSON.stringify(obj)); // assigns obj
+      } else {
+        this.serviceLocalStorage = localStorage.getItem("favorites")
+      }
     }
+
+    setNewStorage(tempObj: any) {
+      localStorage.setItem("favorites", JSON.stringify(tempObj)); // assigns obj
+      this.serviceLocalStorage = JSON.parse(localStorage.getItem('favorites'));
+      console.log( this.serviceLocalStorage );
+    }
+
+    returnStorage() {
+      this.serviceLocalStorage = JSON.parse(localStorage.getItem('favorites'));
+      return  this.serviceLocalStorage;
+    }
+
+    removeStorageWord(wordToRemove) {
+      var temp = this.serviceLocalStorage;
+      for(var i = 0; i < temp.favorites.length; i++) {
+        console.log(temp.favorites[i]);
+        if(temp.favorites[i] = wordToRemove) {
+          temp.favorites.splice(i, 1);
+        } 
+      }      
+      localStorage.setItem("favorites", JSON.stringify(temp)); // assigns obj
+    }
+
+    // downloadFile(data: any) {
+    //   const blob = new Blob([data], { type: 'text/csv' });
+    //   const url = window.URL.createObjectURL(blob);
+    //   window.open(url);
+    // }
 
   } // end of class

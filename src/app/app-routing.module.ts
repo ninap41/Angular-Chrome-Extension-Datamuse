@@ -12,6 +12,7 @@ const routes: Routes = [
   { path : 'about', component: AboutComponent, pathMatch : 'full', data: { state: 'about' }  },
   { path : 'help', component: HelpComponent, pathMatch : 'full', data: { state: 'help' }  },
   { path : 'favorites', component: FavoritesComponent, pathMatch : 'full', data: { state: 'favorites' } },
+  { path : 'search/favorites', component: FavoritesComponent, pathMatch : 'full', data: { state: 'favorites' } },
 
 ];
 

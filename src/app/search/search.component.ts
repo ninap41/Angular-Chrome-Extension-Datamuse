@@ -7,12 +7,13 @@ import { MatTabChangeEvent, MatTabGroup } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
 import { ViewEncapsulation } from '@angular/compiler/src/core';
 import { listAnimation } from '../animate';
+import { routerTransition  } from '../animate';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
-  animations: [ listAnimation ],
+  animations: [ listAnimation, routerTransition ],
 })
 export class SearchComponent implements OnInit {
 // @ViewChild('wordForm') formValue; // Added this
@@ -29,6 +30,7 @@ title = ['Word', 'Synonym', 'Antonyms', 'Related Words', 'Rhymes'];
 
   ngOnInit() {
     this.context =  this.s.context;
+    this.s.validateCreateStorage();
   }
 
   public onSubmit(word: string, isNotBackFor: boolean) {
@@ -42,6 +44,9 @@ title = ['Word', 'Synonym', 'Antonyms', 'Related Words', 'Rhymes'];
        duration: 5000,
      }) : this.s.createSearch(word, isNotBackFor); // boolean is for if we DONT want to push to history
     }
+  }
+  getState(outlet) {
+    return outlet.activatedRouteData.state;
   }
   
 

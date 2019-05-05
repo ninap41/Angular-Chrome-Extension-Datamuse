@@ -15,16 +15,19 @@
   <br>
   <h3>Favorites</h3>
   <br>
-  <span *ngIf="this.fav.length === 0 || this.fav === undefined">
+  <span *ngIf=" this.displayLStor.favorites.length === 0 ||  this.displayLStor.favorites === undefined || this.s.serviceLocalStorage.favorites.length === 0">
     <p>You have no favorites yet.</p>
   </span>
   <mat-chip-list>
-      <span *ngFor="let word of this.fav; let idx">
-        <mat-chip >
-          <span (click)="searchAgain(word, true)">{{word}}</span>
+      <span *ngFor="let word of this.displayLStor.favorites; let idx">
+        <mat-chip>
+          <span (click)="searchAgain(word, false)">{{word}}</span>
+          <span class="xSmall" (click)="removeFromStorageAndContext(word)">&nbsp;&nbsp; X</span>
         </mat-chip>
       </span>
   </mat-chip-list>
   <br>
-  <button class="btn btn-primary"(click) ="downloadFile(this.fav)">Save Words</button>
+  <!-- <button class="btn btn-primary"(click) ="downloadFile(this.fav)">Save Words</button><br><br> -->
+  <button class="btn btn-primary"(click) ="clearStorage()">Clear Storage</button>
+
 </div>

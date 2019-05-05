@@ -11,7 +11,7 @@
             value="word.word">
             <span       
                 (click)="searchAgain(word.word, false)">{{ word.word }}    </span> 
-                &nbsp;<mat-icon class="heart" (click)="saveWord(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                &nbsp;<mat-icon class="heart" (click)="saveWord2(word.word)" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
           </mat-chip>
           <br>
             <div *ngIf="this.title === 'Word'" class="">

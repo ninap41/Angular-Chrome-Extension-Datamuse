@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h1>Abooottt </h1>\n    <p>Shall go here soon</p>\n    <a target=\"_blank\" href=\"https://www.datamuse.com/api\">Datamuse</a><br>\n    <a target=\"_blank\" href=\"https://github.com/ninap41/Angular-Chrome-Extension-Datamuse\">View Project Code</a>\n\n</div>"
+module.exports = "<div class=\"container\">\n    <h1>About </h1>\n    <p>A google chrome extension using Angular w/ Typescript (Angular Materials, Custom Angular Animations, Ng-Templating/Two Way Binding, SCSS, HTML, etc),  Typescript Classes and Microservices, RXJS Observables, localStorage, Bootstrap, and Datamuse API. </p> \n    <p> Needed a tool as a writer. Hope it helps you like it's been aiding me! </p>\n    <p> Please share this app around if you find it cool, give me some pointers on the UI, and let me know any bugs you find.</p>\n    <a target=\"_blank\" href=\"https://www.datamuse.com/api\">Datamuse</a><br>\n    <a target=\"_blank\" href=\"https://github.com/ninap41/Angular-Chrome-Extension-Datamuse\">View Project Code</a>\n\n</div>"
 
 /***/ }),
 
@@ -255,6 +255,7 @@ var routes = [
     { path: 'about', component: _about_about_component__WEBPACK_IMPORTED_MODULE_4__["AboutComponent"], pathMatch: 'full', data: { state: 'about' } },
     { path: 'help', component: _help_help_component__WEBPACK_IMPORTED_MODULE_5__["HelpComponent"], pathMatch: 'full', data: { state: 'help' } },
     { path: 'favorites', component: _favorites_favorites_component__WEBPACK_IMPORTED_MODULE_7__["FavoritesComponent"], pathMatch: 'full', data: { state: 'favorites' } },
+    { path: 'search/favorites', component: _favorites_favorites_component__WEBPACK_IMPORTED_MODULE_7__["FavoritesComponent"], pathMatch: 'full', data: { state: 'favorites' } },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -279,7 +280,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "   \n<div class=\"background\">\n    <mat-menu #appMenu=\"matMenu\" yPosition=\"above\">\n        <button mat-menu-item class=\"active\" routerLinkActive=\"active\"[routerLink]=\"['']\">Search Words</button>\n        <button mat-menu-item routerLinkActive=\"active\"[routerLink]=\"['about']\">About</button>\n        <button mat-menu-item routerLinkActive=\"active\"[routerLink]=\"['settings']\">Settings</button>\n        <button mat-menu-item routerLinkActive=\"active\"[routerLink]=\"['help']\">Help</button>\n        <button mat-menu-item routerLinkActive=\"active\"[routerLink]=\"['favorites']\">Session Favorites</button>\n    </mat-menu>\n    <button mat-icon-button [matMenuTriggerFor]=\"appMenu\">\n      <mat-icon>more_vert</mat-icon>\n    </button>\n      <h2 class=\"m-heading\"><span class=\"font-fam1\">Words. </span><span class=\"font-fam2\">Words? </span><span  class=\"font-fam3\">Words!</span></h2>\n    <br><mat-divider></mat-divider>\n    <main [@routerTransition]=\"getState(o)\">\n        <router-outlet #o=\"outlet\"></router-outlet>\n    </main>\n</div>"
+module.exports = "   \n<div class=\"background\">\n    <mat-menu #appMenu=\"matMenu\" yPosition=\"above\">\n        <button mat-menu-item class=\"active\" routerLinkActive=\"active\"[routerLink]=\"['']\">Search Words</button>\n        <button mat-menu-item routerLinkActive=\"active\"[routerLink]=\"['about']\">About</button>\n        <button mat-menu-item routerLinkActive=\"active\"[routerLink]=\"['settings']\">Settings</button>\n        <button mat-menu-item routerLinkActive=\"active\"[routerLink]=\"['help']\">Help</button>\n        <button mat-menu-item routerLinkActive=\"active\"[routerLink]=\"['favorites']\">Favorites & History</button>\n    </mat-menu>\n    <button mat-icon-button [matMenuTriggerFor]=\"appMenu\">\n      <mat-icon>more_vert</mat-icon>\n    </button>\n      <h2 class=\"m-heading\"><span class=\"font-fam1\">Words. </span><span class=\"font-fam2\">Words? </span><span  class=\"font-fam3\">Words!</span></h2>\n    <br><mat-divider></mat-divider><br>\n    <main [@routerTransition]=\"getState(o)\">\n        <router-outlet #o=\"outlet\"></router-outlet>\n    </main>\n</div>"
 
 /***/ }),
 
@@ -307,12 +308,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _animate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./animate */ "./src/app/animate.ts");
+/* harmony import */ var _search_search_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./search/search.service */ "./src/app/search/search.service.ts");
+
 
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+    function AppComponent(s) {
+        this.s = s;
         this.title = 'chrome-angular';
+        this.s.validateCreateStorage();
     }
     AppComponent.prototype.getState = function (outlet) {
         return outlet.activatedRouteData.state;
@@ -326,7 +331,7 @@ var AppComponent = /** @class */ (function () {
             ],
             styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_search_search_service__WEBPACK_IMPORTED_MODULE_3__["SearchService"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -439,18 +444,18 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <br><br> \n  <h3>History</h3>\n  <br>\n  <mat-chip-list *ngIf=\"this.his\">\n      <span *ngFor=\"let word of this.his; let idx\">\n        <mat-chip >\n          <span (click)=\"searchAgain(word, true)\">{{word}}</span>\n        </mat-chip>\n      </span>\n  </mat-chip-list>\n  <span *ngIf=\"this.his.length === 0\">\n      <p>You have no history yet.</p>\n  </span>\n  <br>\n  <h3>Favorites</h3>\n  <br>\n  <span *ngIf=\"this.fav.length === 0 || this.fav === undefined\">\n    <p>You have no favorites yet.</p>\n  </span>\n  <mat-chip-list>\n      <span *ngFor=\"let word of this.fav; let idx\">\n        <mat-chip >\n          <span (click)=\"searchAgain(word, true)\">{{word}}</span>\n        </mat-chip>\n      </span>\n  </mat-chip-list>\n  <br>\n  <button class=\"btn btn-primary\"(click) =\"downloadFile(this.fav)\">Save Words</button>\n</div>"
+module.exports = "<div class=\"container\">\n  <br><br> \n  <h3>History</h3>\n  <br>\n  <mat-chip-list *ngIf=\"this.his\">\n      <span *ngFor=\"let word of this.his; let idx\">\n        <mat-chip >\n          <span (click)=\"searchAgain(word, true)\">{{word}}</span>\n        </mat-chip>\n      </span>\n  </mat-chip-list>\n  <span *ngIf=\"this.his.length === 0\">\n      <p>You have no history yet.</p>\n  </span>\n  <br>\n  <h3>Favorites</h3>\n  <br>\n  <span *ngIf=\" this.displayLStor.favorites.length === 0 ||  this.displayLStor.favorites === undefined || this.s.serviceLocalStorage.favorites.length === 0\">\n    <p>You have no favorites yet.</p>\n  </span>\n  <mat-chip-list>\n      <span *ngFor=\"let word of this.displayLStor.favorites; let idx\">\n        <mat-chip>\n          <span (click)=\"searchAgain(word, false)\">{{word}}</span>\n          <span class=\"xSmall\" (click)=\"removeFromStorageAndContext(word)\">&nbsp;&nbsp; X</span>\n        </mat-chip>\n      </span>\n  </mat-chip-list>\n  <br>\n  <!-- <button class=\"btn btn-primary\"(click) =\"downloadFile(this.fav)\">Save Words</button><br><br> -->\n  <button class=\"btn btn-primary\"(click) =\"clearStorage()\">Clear Storage</button>\n\n</div>"
 
 /***/ }),
 
-/***/ "./src/app/favorites/favorites.component.sass":
+/***/ "./src/app/favorites/favorites.component.scss":
 /*!****************************************************!*\
-  !*** ./src/app/favorites/favorites.component.sass ***!
+  !*** ./src/app/favorites/favorites.component.scss ***!
   \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Zhdm9yaXRlcy9mYXZvcml0ZXMuY29tcG9uZW50LnNhc3MifQ== */"
+module.exports = ".xSmall {\n  font-size: 7px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9OaW5lci9EZXNrdG9wL2Nocm9tZS1hbmd1bGFyLWNsb25lL0FuZ3VsYXItQ2hyb21lLUV4dGVuc2lvbi1EYXRhbXVzZS9zcmMvYXBwL2Zhdm9yaXRlcy9mYXZvcml0ZXMuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFjLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9mYXZvcml0ZXMvZmF2b3JpdGVzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnhTbWFsbCB7XG4gICAgZm9udC1zaXplOiA3cHg7XG59Il19 */"
 
 /***/ }),
 
@@ -467,30 +472,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _search_search_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../search/search.service */ "./src/app/search/search.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+
+
 
 
 
 var FavoritesComponent = /** @class */ (function () {
-    function FavoritesComponent(s) {
+    function FavoritesComponent(s, _router, snackBar) {
         this.s = s;
+        this._router = _router;
+        this.snackBar = snackBar;
     }
     FavoritesComponent.prototype.ngOnInit = function () {
         this.fav = this.s.context.favorites;
         this.his = this.s.history;
+        this.s.validateCreateStorage();
+        this.displayLStor = this.s.returnStorage();
+        console.log("this.displayLStor " + this.displayLStor.favorites);
     };
-    FavoritesComponent.prototype.downloadFile = function (favs) {
-        this.s.downloadFile(favs);
-    };
+    // downloadFile(favs: any) {
+    //     this.s.downloadFile(favs);
+    // }
     FavoritesComponent.prototype.searchAgain = function (word, isNotBackFor) {
         this.s.createSearch(word, isNotBackFor);
+        this._router.navigateByUrl('');
+    };
+    FavoritesComponent.prototype.removeFromStorageAndContext = function (word) {
+        this.s.removeStorageWord(word);
+        this.displayLStor = this.s.returnStorage();
+    };
+    FavoritesComponent.prototype.clearStorage = function () {
+        if (localStorage.getItem("favorites") === null) {
+            this.snackBar.open("Your favorites list is already empty...", '0_0', {
+                duration: 5000,
+            });
+        }
+        else {
+            localStorage.clear();
+            this.displayLStor.favorites = [];
+            this.snackBar.open("Favorites cleared.", '^_^', {
+                duration: 5000,
+            });
+        }
+        console.log(localStorage);
     };
     FavoritesComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-favorites',
             template: __webpack_require__(/*! ./favorites.component.html */ "./src/app/favorites/favorites.component.html"),
-            styles: [__webpack_require__(/*! ./favorites.component.sass */ "./src/app/favorites/favorites.component.sass")]
+            styles: [__webpack_require__(/*! ./favorites.component.scss */ "./src/app/favorites/favorites.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_search_search_service__WEBPACK_IMPORTED_MODULE_2__["SearchService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_search_search_service__WEBPACK_IMPORTED_MODULE_2__["SearchService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"]])
     ], FavoritesComponent);
     return FavoritesComponent;
 }());
@@ -676,7 +712,7 @@ var LoaderService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div             \n      [@listAnimation]=\"this.ls.uniSpinner.loading === false\" \n      *ngIf=\"this.con.length > 0\" \n      class=\"container\">\n  <p>{{ this.title }}</p>\n        <mat-chip-list>\n          <span *ngFor=\"let word of this.con; let idx\">\n            <mat-chip  \n            class=\"example-action-button\"\n            value=\"word.word\">\n            <span       \n                (click)=\"searchAgain(word.word, false)\">{{ word.word }}    </span> \n                &nbsp;<mat-icon class=\"heart\" (click)=\"saveWord(word.word)\" aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>\n          </mat-chip>\n          <br>\n            <div *ngIf=\"this.title === 'Word'\" class=\"\">\n              <ul *ngFor=\"let def of word.defs\">\n                <li  >{{def}}</li>\n              </ul>\n            </div>\n          </span>\n        </mat-chip-list>\n  </div>  "
+module.exports = "\n  <div             \n      [@listAnimation]=\"this.ls.uniSpinner.loading === false\" \n      *ngIf=\"this.con.length > 0\" \n      class=\"container\">\n  <p>{{ this.title }}</p>\n        <mat-chip-list>\n          <span *ngFor=\"let word of this.con; let idx\">\n            <mat-chip  \n            class=\"example-action-button\"\n            value=\"word.word\">\n            <span       \n                (click)=\"searchAgain(word.word, false)\">{{ word.word }}    </span> \n                &nbsp;<mat-icon class=\"heart\" (click)=\"saveWord2(word.word)\" aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>\n          </mat-chip>\n          <br>\n            <div *ngIf=\"this.title === 'Word'\" class=\"\">\n              <ul *ngFor=\"let def of word.defs\">\n                <li  >{{def}}</li>\n              </ul>\n            </div>\n          </span>\n        </mat-chip-list>\n  </div>  "
 
 /***/ }),
 
@@ -720,6 +756,7 @@ var RelatedComponent = /** @class */ (function () {
         this.ls = ls;
     }
     RelatedComponent.prototype.ngOnInit = function () {
+        this.s.validateCreateStorage();
     };
     RelatedComponent.prototype.searchAgain = function (word, boole) {
         if (word === '') {
@@ -733,6 +770,32 @@ var RelatedComponent = /** @class */ (function () {
                     duration: 5000,
                 }) : this.s.createSearch(word, false);
         }
+    };
+    RelatedComponent.prototype.saveWord2 = function (word) {
+        var tempObj = this.s.returnStorage();
+        console.log(tempObj);
+        var bool = null;
+        tempObj.favorites.forEach(function (w) {
+            if (word === w) {
+                bool = true;
+            }
+        });
+        if (bool === true) {
+            this.snackBar.open("That word is already in your favorites (" + word + ")", '', {
+                duration: 5000,
+            });
+        }
+        else {
+            tempObj.favorites.push(word);
+            this.s.setNewStorage(tempObj);
+            this.snackBar.open('You favorited', word, {
+                duration: 5000,
+            });
+        }
+        // let tempList = JSON.parse(localStorage.getItem("favorites"))
+        // tempList.push(word);
+        // localStorage.setItem('favorites', JSON.stringify(tempList));
+        // console.log(localStorage);
     };
     RelatedComponent.prototype.saveWord = function (word) {
         var bool = null;
@@ -790,7 +853,7 @@ var RelatedComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container-search\">\n    <br>\n    <form name=\"wordForm\" (ngSubmit)=\"onSubmit(word.value, false)\">\n        <mat-form-field>\n            <input matInput #word placeholder=\"Search Word\">\n        </mat-form-field>\n        <button type=\"submit\" \n          class=\"button-left\" \n          mat-flat-button color=\"primary\">Search</button>\n        <button *ngIf=\"this.s.history.length > 0\" \n          matTooltip=\"Check History\"\n          [routerLink]=\"['favorites']\"\n          class=\"tinyBut\"\n          mat-flat-button color=\"warning\"><i class=\"fas fa-history\"></i></button>\n        <button *ngIf=\"this.s.historyIndex > 0\" \n          [disabled]=\"this.ls.uniSpinner.loading === true\" \n          (click)=\"this.s.goBack(true)\" \n          class=\"tinyBut\"\n          mat-icon-button\n          matTooltip=\"Back\"  \n          color=\"warning\"><i class=\"fas fa-chevron-left\"></i></button>\n        <button *ngIf=\"this.s.historyIndex !== this.s.history.length - 1 && this.s.historyIndex  !== this.s.history.length\" \n          [disabled]=\"this.ls.uniSpinner.loading === true\" \n          (click)=\"this.s.goForward(true)\" \n          class=\"tinyBut\"\n          matTooltip=\"Forward\"  \n          mat-icon-button color=\"warning\"  \n          color=\"warning\"><i class=\"fas fa-chevron-right\"></i></button>\n     </form>\n</div>\n\n<app-loader ></app-loader>\n\n<span *ngIf=\"this.ls.uniSpinner.loading === false\" [innerHTML]=\"context.errMessage\"  class=\"\"></span>\n\n<div class=\"\" *ngIf=\"this.ls.uniSpinner.loading === false\" >\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.defList\" \n      [title]='this.title[0]'></app-related>\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.synList\"  \n      [title]='this.title[1]'></app-related>\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.relList\"  \n      [title]='this.title[3]'></app-related>\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.rhymList\" \n      [title]='this.title[4]'></app-related>\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.antList\" \n      [title]='this.title[2]'></app-related>\n</div>\n"
+module.exports = "\n<div class=\"container-search\">\n    <br>\n    <form name=\"wordForm\" (ngSubmit)=\"onSubmit(word.value, false)\">\n        <mat-form-field>\n            <input matInput #word placeholder=\"Search Word\">\n        </mat-form-field>\n        <button type=\"submit\" \n          class=\"button-left\" \n          mat-flat-button color=\"primary\">Search</button>\n        <button *ngIf=\"this.s.history.length > 0\" \n          matTooltip=\"Check History & Favorites\"\n          [routerLink]=\"['search/favorites']\"\n          class=\"tinyBut\"\n          mat-flat-button color=\"warning\"><i class=\"fas fa-history\"></i><i class=\"fas fa-heart\"></i></button>\n        <button *ngIf=\"this.s.historyIndex > 0\" \n          [disabled]=\"this.ls.uniSpinner.loading === true\" \n          (click)=\"this.s.goBack(true)\" \n          class=\"tinyBut\"\n          mat-icon-button\n          matTooltip=\"Back\"  \n          color=\"warning\"><i class=\"fas fa-chevron-left\"></i></button>\n        <button *ngIf=\"this.s.historyIndex !== this.s.history.length - 1 && this.s.historyIndex  !== this.s.history.length\" \n          [disabled]=\"this.ls.uniSpinner.loading === true\" \n          (click)=\"this.s.goForward(true)\" \n          class=\"tinyBut\"\n          matTooltip=\"Forward\"  \n          mat-icon-button color=\"warning\"  \n          color=\"warning\"><i class=\"fas fa-chevron-right\"></i></button>\n     </form>\n</div>\n\n<app-loader ></app-loader>\n\n<span *ngIf=\"this.ls.uniSpinner.loading === false\" [innerHTML]=\"context.errMessage\"  class=\"\"></span>\n\n<div class=\"\" *ngIf=\"this.ls.uniSpinner.loading === false\" >\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.defList\" \n      [title]='this.title[0]'></app-related>\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.synList\"  \n      [title]='this.title[1]'></app-related>\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.relList\"  \n      [title]='this.title[3]'></app-related>\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.rhymList\" \n      [title]='this.title[4]'></app-related>\n  <br>\n  <app-related \n      [con]=\"this.context.searchDict.antList\" \n      [title]='this.title[2]'></app-related>\n</div>\n"
 
 /***/ }),
 
@@ -827,6 +890,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var SearchComponent = /** @class */ (function () {
     function SearchComponent(s, ls, snackBar) {
         this.s = s;
@@ -836,6 +900,7 @@ var SearchComponent = /** @class */ (function () {
     }
     SearchComponent.prototype.ngOnInit = function () {
         this.context = this.s.context;
+        this.s.validateCreateStorage();
     };
     SearchComponent.prototype.onSubmit = function (word, isNotBackFor) {
         if (word === '') {
@@ -850,11 +915,14 @@ var SearchComponent = /** @class */ (function () {
                 }) : this.s.createSearch(word, isNotBackFor); // boolean is for if we DONT want to push to history
         }
     };
+    SearchComponent.prototype.getState = function (outlet) {
+        return outlet.activatedRouteData.state;
+    };
     SearchComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-search',
             template: __webpack_require__(/*! ./search.component.html */ "./src/app/search/search.component.html"),
-            animations: [_animate__WEBPACK_IMPORTED_MODULE_5__["listAnimation"]],
+            animations: [_animate__WEBPACK_IMPORTED_MODULE_5__["listAnimation"], _animate__WEBPACK_IMPORTED_MODULE_5__["routerTransition"]],
             styles: [__webpack_require__(/*! ./search.component.scss */ "./src/app/search/search.component.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_search_service__WEBPACK_IMPORTED_MODULE_2__["SearchService"],
@@ -901,6 +969,7 @@ var SearchService = /** @class */ (function () {
         this.history = [];
         this.historyIndex = -1;
         this.history = [];
+        this.validateCreateStorage();
     }
     SearchService.prototype.createSearch = function (word, isNotBackFor) {
         var _this = this;
@@ -972,7 +1041,6 @@ var SearchService = /** @class */ (function () {
         console.log(this.historyIndex);
         console.log(JSON.stringify(this.history));
     };
-    // WIP forward button
     SearchService.prototype.goForward = function (isNotBackFor) {
         this.historyIndex += 1;
         if (this.historyIndex === this.history.length) {
@@ -990,11 +1058,33 @@ var SearchService = /** @class */ (function () {
             });
         }
     };
-    // WIP forward button
-    SearchService.prototype.downloadFile = function (data) {
-        var blob = new Blob([data], { type: 'text/csv' });
-        var url = window.URL.createObjectURL(blob);
-        window.open(url);
+    SearchService.prototype.validateCreateStorage = function () {
+        if (localStorage.getItem("favorites") === null) { //checks if context exists 
+            var obj = { favorites: [] };
+            localStorage.setItem("favorites", JSON.stringify(obj)); // assigns obj
+        }
+        else {
+            this.serviceLocalStorage = localStorage.getItem("favorites");
+        }
+    };
+    SearchService.prototype.setNewStorage = function (tempObj) {
+        localStorage.setItem("favorites", JSON.stringify(tempObj)); // assigns obj
+        this.serviceLocalStorage = JSON.parse(localStorage.getItem('favorites'));
+        console.log(this.serviceLocalStorage);
+    };
+    SearchService.prototype.returnStorage = function () {
+        this.serviceLocalStorage = JSON.parse(localStorage.getItem('favorites'));
+        return this.serviceLocalStorage;
+    };
+    SearchService.prototype.removeStorageWord = function (wordToRemove) {
+        var temp = this.serviceLocalStorage;
+        for (var i = 0; i < temp.favorites.length; i++) {
+            console.log(temp.favorites[i]);
+            if (temp.favorites[i] = wordToRemove) {
+                temp.favorites.splice(i, 1);
+            }
+        }
+        localStorage.setItem("favorites", JSON.stringify(temp)); // assigns obj
     };
     SearchService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1074,7 +1164,7 @@ var Context = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h1>Satans </h1>\n    <p>Settings for limiting words and showing different kinds of words</p>\n</div>"
+module.exports = "<div class=\"container\">\n    <h1>Satans </h1>\n    <p>Settings will be coming soon. Will include limiting the results and even more customized searches including searches that can be as detailed as this...</p>\n    <ul>\n            <li>words with a meaning similar to ringing in the ears\t</li>\n            <li>words related to duck that start with the letter b</li>\n            <li>words related to spoon that end with the letter a </li>\n            <li>words that sound like elefint</li>\n            <li>words that start with t, end in k, and have two letters in betweenn</li>\n            <li>words that are spelled similarly to coneticut</li>\n            <li>words that rhyme with forgetful </li>\n            <li>words that rhyme with grape that are related to breakfast\t</li>\n            <li>adjectives that are often used to describe ocean\t</li>\n            <li>adjectives describing ocean sorted by how related they are to temperature\t</li>\n            <li>nouns that are often described by the adjective yellow</li>\n            <li>words that often follow \"drink\" in a sentence, that start with the letter w\t</li>\n            <li>words that are triggered by (strongly associated with) the word \"cow\"\t</li>\n            <li>suggestions for the user if they have typed in rawand so far</li>\n    </ul>\n</div>"
 
 /***/ }),
 
@@ -1101,12 +1191,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingsComponent", function() { return SettingsComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _search_search_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../search/search.service */ "./src/app/search/search.service.ts");
+
 
 
 var SettingsComponent = /** @class */ (function () {
-    function SettingsComponent() {
+    function SettingsComponent(s) {
+        this.s = s;
     }
     SettingsComponent.prototype.ngOnInit = function () {
+        this.s.validateCreateStorage();
     };
     SettingsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1114,7 +1208,7 @@ var SettingsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./settings.component.html */ "./src/app/settings/settings.component.html"),
             styles: [__webpack_require__(/*! ./settings.component.sass */ "./src/app/settings/settings.component.sass")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_search_search_service__WEBPACK_IMPORTED_MODULE_2__["SearchService"]])
     ], SettingsComponent);
     return SettingsComponent;
 }());

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { routerTransition  } from './animate';
+import { SearchService } from './search/search.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,10 @@ export class AppComponent {
   title = 'chrome-angular';
   content;
   constructor(
-  ) {}
+    private s: SearchService
+  ) {
+    this.s.validateCreateStorage();
+  }
 
   getState(outlet) {
     return outlet.activatedRouteData.state;

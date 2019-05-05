@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material';
 import { SearchService } from '../search.service';
 import { listAnimation } from '../../animate';
 import { LoaderService } from '../../loader/loader.service'
+import { Favorites } from '../favorites.class';
+
 @Component({
   selector: 'app-related',
   templateUrl: './related.component.html',
@@ -23,6 +25,7 @@ export class RelatedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.s.validateCreateStorage();
   }
 
   public searchAgain(word: string, boole: boolean) {
@@ -38,7 +41,33 @@ export class RelatedComponent implements OnInit {
     }
   }
 
-  saveWord(word: any ) {
+saveWord2(word: any) {
+    let tempObj = this.s.returnStorage();
+    console.log(tempObj);
+    let bool = null;
+    tempObj.favorites.forEach(w => {
+      if (word === w) {
+        bool = true;
+      }
+    });
+    if (bool === true) {
+      this.snackBar.open(`That word is already in your favorites (${word})`, '', {
+        duration: 5000,
+      });
+    } else {
+      tempObj.favorites.push(word);
+      this.s.setNewStorage(tempObj);
+      this.snackBar.open('You favorited', word, {
+        duration: 5000,
+      });
+    }
+  // let tempList = JSON.parse(localStorage.getItem("favorites"))
+  // tempList.push(word);
+  // localStorage.setItem('favorites', JSON.stringify(tempList));
+  // console.log(localStorage);
+
+}
+  saveWord(word: any ) { //
     let bool = null;
     this.s.context.favorites.forEach(w => {
       if (word === w) {
