@@ -1,18 +1,4 @@
 <div class="container">
-  <br><br> 
-  <h3>History</h3>
-  <br>
-  <mat-chip-list *ngIf="this.his">
-      <span *ngFor="let word of this.his; let idx">
-        <mat-chip >
-          <span (click)="searchAgain(word, true)">{{word}}</span>
-        </mat-chip>
-      </span>
-  </mat-chip-list>
-  <span *ngIf="this.his.length === 0">
-      <p>You have no history yet.</p>
-  </span>
-  <br>
   <h3>Favorites</h3>
   <br>
   <span *ngIf=" this.displayLStor.favorites.length === 0 ||  this.displayLStor.favorites === undefined || this.s.serviceLocalStorage.favorites.length === 0">
@@ -27,7 +13,22 @@
       </span>
   </mat-chip-list>
   <br>
-  <!-- <button class="btn btn-primary"(click) ="downloadFile(this.fav)">Save Words</button><br><br> -->
-  <button class="btn btn-primary"(click) ="clearStorage()">Clear Storage</button>
+  <button class="btn btn-primary"(click) ="clearStorage()">Clear Favorites</button>
+  <br>
+  <br>
 
+<h3>History</h3>
+  <br>
+  <mat-chip-list *ngIf="this.his">
+      <span *ngFor="let word of this.his; let idx">
+        <mat-chip >
+          <span (click)="searchAgain(word, true)">{{word}}</span>
+        </mat-chip>
+      </span>
+  </mat-chip-list>
+  <span *ngIf="this.his.length === 0">
+      <p>You have no history yet.</p>
+  </span>
+  <br>
+  <!-- <button class="btn btn-primary"(click) ="downloadFile(this.fav)">Save Words</button><br><br> -->
 </div>

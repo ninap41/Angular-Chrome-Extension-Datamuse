@@ -8,11 +8,11 @@
         <button type="submit" 
           class="button-left" 
           mat-flat-button color="primary">Search</button>
-        <button *ngIf="this.s.history.length > 0" 
+        <!-- <button *ngIf="this.s.history.length > 0" 
           matTooltip="Check History & Favorites"
-          [routerLink]="['search/favorites']"
+          [routerLink]="['../favorites']"
           class="tinyBut"
-          mat-flat-button color="warning"><i class="fas fa-history"></i><i class="fas fa-heart"></i></button>
+          mat-flat-button color="warning"><i class="fas fa-history"></i><i class="fas fa-heart"></i></button> -->
         <button *ngIf="this.s.historyIndex > 0" 
           [disabled]="this.ls.uniSpinner.loading === true" 
           (click)="this.s.goBack(true)" 

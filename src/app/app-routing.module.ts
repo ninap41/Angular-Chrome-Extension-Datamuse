@@ -7,11 +7,15 @@ import { SearchComponent } from './search/search.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 
 const routes: Routes = [
-  { path : '', component: SearchComponent, pathMatch : 'full',  },
+  { path : '', component: SearchComponent, pathMatch : 'full',  
+  children: [
+    { path: 'favorites', component: FavoritesComponent },
+  ]
+},
   { path : 'settings', component: SettingsComponent, pathMatch : 'full', data: { state: 'settings' } },
   { path : 'about', component: AboutComponent, pathMatch : 'full', data: { state: 'about' }  },
   { path : 'help', component: HelpComponent, pathMatch : 'full', data: { state: 'help' }  },
-  { path : 'favorites', component: FavoritesComponent, pathMatch : 'full', data: { state: 'favorites' } },
+  { path : 'favorites', component: FavoritesComponent, pathMatch : 'full', data: { state: 'favorites' }},
   { path : 'search/favorites', component: FavoritesComponent, pathMatch : 'full', data: { state: 'favorites' } },
 
 ];

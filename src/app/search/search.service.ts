@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response} from '@angular/http';
-import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { LoaderService } from '../loader/loader.service';
-import { compileBaseDefFromMetadata, compilePipeFromMetadata } from '@angular/compiler';
 import { Context, Set} from '../search/searches.class';
 import { MatSnackBar } from '@angular/material';
-import { Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
