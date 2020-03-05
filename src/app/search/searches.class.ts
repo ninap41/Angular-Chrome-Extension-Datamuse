@@ -57,9 +57,8 @@ export class Context { // dee
 
   createUrl(key: string) { // call from the loopty loop for keys
     let formattedUrl = null;
-    // tslint:disable-next-line:prefer-const
     let urls = {
-      rhymList: `${this.url}/words?&ml=${this.word}`,
+      rhymList: `${this.url}/words?rel_rhy=${this.word}`,
       defList: `${this.url}/words?sp=${this.word}&md=d&max=1`,
       synList: `${this.url}/words?rel_syn=${this.word}&ml=${this.word}`,
       antList: `${this.url}/words?rel_ant=${this.word}`,

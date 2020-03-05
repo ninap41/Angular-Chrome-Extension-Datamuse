@@ -147,10 +147,10 @@ export class SearchService {
       localStorage.setItem("favorites", JSON.stringify(temp)); // assigns obj
     }
 
-    // downloadFile(data: any) {
-    //   const blob = new Blob([data], { type: 'text/csv' });
-    //   const url = window.URL.createObjectURL(blob);
-    //   window.open(url);
-    // }
+    downloadFile(data: any) {
+      const blob = new Blob([data], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+    }
 
   } // end of class

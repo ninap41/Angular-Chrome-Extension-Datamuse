@@ -29,9 +29,9 @@ export class FavoritesComponent implements OnInit {
     console.log("this.displayLStor " +  this.displayLStor.favorites);
   }
 
-  // downloadFile(favs: any) {
-  //     this.s.downloadFile(favs);
-  // }
+  downloadFile(favs: any) {
+      this.s.downloadFile(favs);
+  }
   
   public searchAgain(word: string, isNotBackFor: boolean) {
     this.s.createSearch(word, isNotBackFor);
