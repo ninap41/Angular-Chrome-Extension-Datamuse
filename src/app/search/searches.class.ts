@@ -26,8 +26,6 @@ export class Context { // dee
     sdKeys: Array<string>;
     favorites: Array<string>;
 
-
-
   constructor() {
     this.url = 'https://api.datamuse.com';
     this.word = '';
@@ -60,7 +58,7 @@ export class Context { // dee
     let urls = {
       rhymList: `${this.url}/words?rel_rhy=${this.word}`,
       defList: `${this.url}/words?sp=${this.word}&md=d&max=1`,
-      synList: `${this.url}/words?rel_syn=${this.word}&ml=${this.word}`,
+      synList: `${this.url}/words?rel_syn=${this.word}`,
       antList: `${this.url}/words?rel_ant=${this.word}`,
       relList: `${this.url}/words?&ml=${this.word}`,
     };

@@ -36,6 +36,8 @@ Features to works on :
 - Vocab builder GAME, where favorite words are cycled through multiple choice options that test the user.
 - Sets of favorite words.
 - color of favorited words be slightly different
+- sentence maker using 'lc' and 'rc' in params
+- &max=15 for limitations
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
